@@ -3,7 +3,7 @@ const path = require('path');
 const Database = require('better-sqlite3');
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 10000;;
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -65,5 +65,5 @@ app.get('/api/requests', (req, res) => {
 
 
 app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Сервер запущен на http://localhost:${PORT}`);
+    console.log(`Server running on ${PORT}`);
 });
