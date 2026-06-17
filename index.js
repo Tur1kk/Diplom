@@ -3,7 +3,7 @@ const path = require('path');
 const Database = require('better-sqlite3');
 
 const app = express();
-const PORT = process.env.PORT || 10000;;
+const PORT = process.env.PORT || 10000;
 
 app.use(express.static('public'));
 app.use(express.json());
@@ -47,7 +47,7 @@ app.post('/api/requests', (req, res) => {
         `).run(name, email, message, consent ? 1 : 0);
         
         const newRequest = db.prepare('SELECT * FROM requests WHERE id = ?').get(result.lastInsertRowid);
-        res.status(201).json(newRequest);
+        res.status(201).json({ success: true, request: newRequest});
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
