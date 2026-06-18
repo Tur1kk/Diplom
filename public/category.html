@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E-shop :: Category</title>
+    <title>ТехноДом :: Каталог</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -60,29 +60,26 @@
                     <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
                         aria-labelledby="offcanvasNavbarLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Catalog</h5>
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Каталог</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="index.html">Главная</a>
+                                    <a class="nav-link" href="index.html">Главная</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">О нас</a>
+                                    <a class="nav-link" href="#about">О нас</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Контакты</a>
+                                    <a class="nav-link" href="#footer">Контакты</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Оплата</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Доставка</a>
+                                    <a class="nav-link" href="orders.html">Заказы</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
                                         aria-expanded="false" data-bs-auto-close="outside">
                                         Каталог
                                     </a>
@@ -121,15 +118,10 @@
                     </div>
 
                     <div>
-                        <a href="#" class="btn p-1">
-                            <i class="fa-solid fa-heart"></i>
-                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">3</span>
-                        </a>
-
-                        <button class="btn p-1" id="cart-open" type="button" data-bs-toggle="offcanvas2"
+                        <button class="btn p-1" id="cart-open" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">5</span>
+                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">0</span>
                         </button>
                     </div>
 
@@ -138,58 +130,57 @@
         </div>
         <!-- ./header-bottom -->
 
+        <!-- ===== ВЫЕЗЖАЮЩАЯ КОРЗИНА ===== -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasCartLabel">Корзина</h5>
+                <h5 class="offcanvas-title" id="offcanvasCartLabel">
+                    <i class="fa-solid fa-cart-shopping me-2"></i>Корзина
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-                <div class="table-responsive">
-                    <table class="table offcanvasCart-table">
-                        <tbody>
-                            <tr>
-                                <td class="product-img-td"><a href="product.html"><img src="assets/img/products/1.jpg"
-                                            alt=""></a>
-                                </td>
-                                <td><a href="product.html">Смартфон Apple iPhone 15 128 ГБ, Dual еSIM, черный black esim esim</a></td>
-                                <td>999₽</td>
-                                <td>&times;1</td>
-                                <td><button class="btn btn-danger"><i class="fa-regular fa-circle-xmark"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product-img-td"><a href="product.html"><img src="assets/img/products/2.jpg"
-                                            alt=""></a>
-                                </td>
-                                <td><a href="product.html">Беспроводные TWS-наушники Apple AirPods 4, белый (Без активного шумоподавления)</a></td>
-                                <td>999₽</td>
-                                <td>&times;2</td>
-                                <td><button class="btn btn-danger"><i class="fa-regular fa-circle-xmark"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product-img-td"><a href="product.html"><img src="assets/img/products/3.jpg"
-                                            alt=""></a>
-                                </td>
-                                <td><a href="product.html">Умная колонка Новая Яндекс Станция Лайт 2 с Алисой на YaGPT фиолетовая</a></td>
-                                <td>999₽</td>
-                                <td>&times;1</td>
-                                <td><button class="btn btn-danger"><i class="fa-regular fa-circle-xmark"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="4" class="text-end">Всего:</td>
-                                <td>999₽</td>
-                            </tr>
-                        </tfoot>
-                    </table>
+            <div class="offcanvas-body d-flex flex-column">
+                <div class="flex-grow-1">
+                    <div class="table-responsive">
+                        <table class="table offcanvasCart-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Товар</th>
+                                    <th>Цена</th>
+                                    <th>Кол-во</th>
+                                    <th>Сумма</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="5" class="text-center py-4 text-muted empty-cart">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        Корзина пуста
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4" class="text-end fw-bold">Итого:</td>
+                                    <td class="fw-bold">0 ₽</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
 
-                <div class="text-end mt-3">
-                    <a href="#" class="btn btn-outline-warning">Перейти к оплате</a>
-                    <a href="#" class="btn btn-outline-secondary">Выход</a>
+                <div class="cart-actions">
+                    <div class="total-display">
+                        Итого: <span id="offcanvasTotal">0 ₽</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-clear" id="clearCartBtn">
+                            <i class="fa-solid fa-trash"></i> Очистить
+                        </button>
+                        <button class="btn btn-sm btn-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+                            <i class="fa-solid fa-credit-card"></i> Оформить
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -202,8 +193,7 @@
                         <nav class="breadcrumbs">
                             <ul>
                                 <li><a href="index.html">Главная</a></li>
-                                <li><a href="#">Магазин</a></li>
-                                <li><span>Категория</span></li>
+                                <li><span>Каталог</span></li>
                             </ul>
                         </nav>
                     </div>
@@ -222,13 +212,32 @@
                             </button>
 
                             <div class="collapse collapse-filters" id="collapseFilters">
+                                <!-- Фильтр по цене -->
+                                <div class="filter-block">
+                                    <h5 class="section-title"><span>Цена</span></h5>
+                                    <div class="mb-2">
+                                        <label class="form-label">От</label>
+                                        <input type="number" class="form-control" id="priceFrom" placeholder="0" min="0">
+                                    </div>
+                                    <div class="mb-2">
+                                        <label class="form-label">До</label>
+                                        <input type="number" class="form-control" id="priceTo" placeholder="200000" min="0">
+                                    </div>
+                                    <button class="btn btn-warning w-100" onclick="filterProducts()">
+                                        <i class="fa-solid fa-magnifying-glass"></i> Применить
+                                    </button>
+                                    <button class="btn btn-outline-secondary w-100 mt-2" onclick="resetFilters()">
+                                        <i class="fa-solid fa-rotate"></i> Сбросить
+                                    </button>
+                                </div>
+
                                 <div class="filter-block">
                                     <h5 class="section-title"><span>Бренд</span></h5>
                                     <form action="">
                                         <div class="form-check d-flex justify-content-between">
                                             <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="black">
-                                                <label class="form-check-label" for="black">
+                                                <input class="form-check-input" type="checkbox" value="" id="brandApple">
+                                                <label class="form-check-label" for="brandApple">
                                                     Apple
                                                 </label>
                                             </div>
@@ -236,17 +245,17 @@
                                         </div>
                                         <div class="form-check d-flex justify-content-between">
                                             <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="white">
-                                                <label class="form-check-label" for="white">
-                                                    Polaris
+                                                <input class="form-check-input" type="checkbox" value="" id="brandSamsung">
+                                                <label class="form-check-label" for="brandSamsung">
+                                                    Samsung
                                                 </label>
                                             </div>
                                             <span class="badge border rounded-0">87</span>
                                         </div>
                                         <div class="form-check d-flex justify-content-between">
                                             <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="red">
-                                                <label class="form-check-label" for="red">
+                                                <input class="form-check-input" type="checkbox" value="" id="brandXiaomi">
+                                                <label class="form-check-label" for="brandXiaomi">
                                                     Xiaomi
                                                 </label>
                                             </div>
@@ -254,9 +263,9 @@
                                         </div>
                                         <div class="form-check d-flex justify-content-between">
                                             <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="blue">
-                                                <label class="form-check-label" for="blue">
-                                                    Samsung
+                                                <input class="form-check-input" type="checkbox" value="" id="brandJBL">
+                                                <label class="form-check-label" for="brandJBL">
+                                                    JBL
                                                 </label>
                                             </div>
                                             <span class="badge border rounded-0">115</span>
@@ -266,77 +275,23 @@
 
                                 <div class="filter-block">
                                     <h5 class="section-title">
-                                        <span>Срок доставки</span>
+                                        <span>Категория</span>
                                     </h5>
 
                                     <form action="">
                                         <div class="form-check d-flex justify-content-between">
                                             <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="xs">
-                                                <label class="form-check-label" for="xs">
-                                                    Сегодня или завтра
+                                                <input class="form-check-input" type="checkbox" value="" id="catPhones">
+                                                <label class="form-check-label" for="catPhones">
+                                                    Смартфоны
                                                 </label>
                                             </div>
                                             <span class="badge border rounded-0">44</span>
                                         </div>
                                         <div class="form-check d-flex justify-content-between">
                                             <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="s">
-                                                <label class="form-check-label" for="s">
-                                                    До 3 дней
-                                                </label>
-                                            </div>
-                                            <span class="badge border rounded-0">105</span>
-                                        </div>
-                                        <div class="form-check d-flex justify-content-between">
-                                            <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="m">
-                                                <label class="form-check-label" for="m">
-                                                    До 5 дней
-                                                </label>
-                                            </div>
-                                            <span class="badge border rounded-0">35</span>
-                                        </div>
-                                        <div class="form-check d-flex justify-content-between">
-                                            <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="l">
-                                                <label class="form-check-label" for="l">
-                                                    До 7 дней
-                                                </label>
-                                            </div>
-                                            <span class="badge border rounded-0">57</span>
-                                        </div>
-                                        <div class="form-check d-flex justify-content-between">
-                                            <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="xl">
-                                                <label class="form-check-label" for="xl">
-                                                    Неважно
-                                                </label>
-                                            </div>
-                                            <span class="badge border rounded-0">12</span>
-                                        </div>
-                                    </form>
-                                </div>
-
-                                <div class="filter-block">
-                                    <h5 class="section-title">
-                                        <span>Тип</span>
-                                    </h5>
-
-                                    <form action="">
-                                        <div class="form-check d-flex justify-content-between">
-                                            <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="man">
-                                                <label class="form-check-label" for="man">
-                                                    Телефоны
-                                                </label>
-                                            </div>
-                                            <span class="badge border rounded-0">44</span>
-                                        </div>
-                                        <div class="form-check d-flex justify-content-between">
-                                            <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="woman">
-                                                <label class="form-check-label" for="woman">
+                                                <input class="form-check-input" type="checkbox" value="" id="catLaptops">
+                                                <label class="form-check-label" for="catLaptops">
                                                     ПК и ноутбуки
                                                 </label>
                                             </div>
@@ -344,332 +299,62 @@
                                         </div>
                                         <div class="form-check d-flex justify-content-between">
                                             <div>
-                                                <input class="form-check-input" type="checkbox" value="" id="baby">
-                                                <label class="form-check-label" for="baby">
+                                                <input class="form-check-input" type="checkbox" value="" id="catTV">
+                                                <label class="form-check-label" for="catTV">
                                                     Телевизоры
                                                 </label>
                                             </div>
                                             <span class="badge border rounded-0">35</span>
                                         </div>
+                                        <div class="form-check d-flex justify-content-between">
+                                            <div>
+                                                <input class="form-check-input" type="checkbox" value="" id="catAudio">
+                                                <label class="form-check-label" for="catAudio">
+                                                    Аудиотехника
+                                                </label>
+                                            </div>
+                                            <span class="badge border rounded-0">57</span>
+                                        </div>
                                     </form>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
 
-                        <div class="col-lg-9 col-md-8">
-                            <div class="row mb-3">
-                                <div class="col-12">
-                                </div>
-                                <div class="col-4 col-sm-2">
-                                </div>
-                                <div class="col-8 col-sm-10">
-                                </div>
-                            </div>
-
-                        <hr>
-
+                    <div class="col-lg-9 col-md-8">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Сортировать по:</span>
-                                    <select class="form-select" aria-label="Sort by:">
-                                        <option selected>По умолчанию</option>
-                                        <option value="1">Оценка (по возрастанию)</option>
-                                        <option value="2">Оценка (по убыванию)</option>
-                                        <option value="3">Цена (по возрастанию)</option>
-                                        <option value="4">Цена (по убыванию)</option>
+                                    <select class="form-select" id="sortSelect" onchange="sortProducts()">
+                                        <option value="default">По умолчанию</option>
+                                        <option value="price-asc">Цена (по возрастанию)</option>
+                                        <option value="price-desc">Цена (по убыванию)</option>
+                                        <option value="name">По названию</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text">Показывать:</span>
-                                    <select class="form-select" aria-label="Show:">
-                                        <option selected>9</option>
-                                        <option value="15">15</option>
-                                        <option value="30">30</option>
-                                        <option value="45">45</option>
+                                    <select class="form-select" id="itemsPerPage" onchange="changeItemsPerPage()">
+                                        <option value="6">6</option>
+                                        <option value="9" selected>9</option>
+                                        <option value="12">12</option>
+                                        <option value="18">18</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-6 mb-3">
-                                <div class="product-card">
-                                    <div class="product-card-offer">
-                                        <div class="offer-hit">Hit</div>
-                                        <div class="offer-new">New</div>
-                                    </div>
-                                    <div class="product-thumb">
-                                        <a href="product.html"><img src="assets/img/products/1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="product-details">
-                                        <h4>
-                                            <a href="product.html">Смартфон Apple iPhone 15 128 ГБ, Dual еSIM, черный black esim esim</a>
-                                        </h4>
-                                        <p class="product-excerpt"> Встречайте iPhone 15 - ваш идеальный спутник в мире безграничных возможностей!</p>
-                                        <div class="product-bottom-details d-flex justify-content-between">
-                                            <div class="product-price">
-                                                <small>84 781₽</small>
-                                                48 562₽
-                                            </div>
-                                            <div class="product-links">
-                                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                        class="fas fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <hr>
 
-                            <div class="col-lg-4 col-sm-6 mb-3">
-                                <div class="product-card">
-                                    <div class="product-card-offer">
-                                        <div class="offer-hit">Hit</div>
-                                    </div>
-                                    <div class="product-thumb">
-                                        <a href="product.html"><img src="assets/img/products/2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="product-details">
-                                        <h4>
-                                            <a href="product.html">Product 2</a>
-                                        </h4>
-                                        <p class="product-excerpt">Lorem ipsum dolor</p>
-                                        <div class="product-bottom-details d-flex justify-content-between">
-                                            <div class="product-price">
-                                                $65
-                                            </div>
-                                            <div class="product-links">
-                                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                        class="fas fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-6 mb-3">
-                                <div class="product-card">
-                                    <div class="product-card-offer">
-                                        <!-- <div class="offer-hit">Hit</div>
-                                        <div class="offer-new">New</div> -->
-                                    </div>
-                                    <div class="product-thumb">
-                                        <a href="product.html"><img src="assets/img/products/3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="product-details">
-                                        <h4>
-                                            <a href="product.html">Product 3 Lorem ipsum</a>
-                                        </h4>
-                                        <p class="product-excerpt">Lorem ipsum</p>
-                                        <div class="product-bottom-details d-flex justify-content-between">
-                                            <div class="product-price">
-                                                $100
-                                            </div>
-                                            <div class="product-links">
-                                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                        class="fas fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-6 mb-3">
-                                <div class="product-card">
-                                    <div class="product-card-offer">
-                                        <div class="offer-hit">Hit</div>
-                                    </div>
-                                    <div class="product-thumb">
-                                        <a href="product.html"><img src="assets/img/products/4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="product-details">
-                                        <h4>
-                                            <a href="product.html">Product 4</a>
-                                        </h4>
-                                        <p class="product-excerpt">Lorem ipsum dolor</p>
-                                        <div class="product-bottom-details d-flex justify-content-between">
-                                            <div class="product-price">
-                                                <small>$70</small>
-                                                $65
-                                            </div>
-                                            <div class="product-links">
-                                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                        class="fas fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-6 mb-3">
-                                <div class="product-card">
-                                    <div class="product-card-offer">
-                                        <div class="offer-hit">Hit</div>
-                                        <div class="offer-new">New</div>
-                                    </div>
-                                    <div class="product-thumb">
-                                        <a href="product.html"><img src="assets/img/products/5.jpg" alt=""></a>
-                                    </div>
-                                    <div class="product-details">
-                                        <h4>
-                                            <a href="product.html">Product 5 Lorem ipsum dolor, sit amet consectetur
-                                                adipisicing.</a>
-                                        </h4>
-                                        <p class="product-excerpt">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                            elit.
-                                            Placeat, aperiam!</p>
-                                        <div class="product-bottom-details d-flex justify-content-between">
-                                            <div class="product-price">
-                                                <small>$70</small>
-                                                $65
-                                            </div>
-                                            <div class="product-links">
-                                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                        class="fas fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-6 mb-3">
-                                <div class="product-card">
-                                    <div class="product-card-offer">
-                                        <div class="offer-hit">Hit</div>
-                                        <div class="offer-new">New</div>
-                                    </div>
-                                    <div class="product-thumb">
-                                        <a href="product.html"><img src="assets/img/products/6.jpg" alt=""></a>
-                                    </div>
-                                    <div class="product-details">
-                                        <h4>
-                                            <a href="product.html">Product 6</a>
-                                        </h4>
-                                        <p class="product-excerpt"></p>
-                                        <div class="product-bottom-details d-flex justify-content-between">
-                                            <div class="product-price">
-                                                <small>$70</small>
-                                                $65
-                                            </div>
-                                            <div class="product-links">
-                                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                        class="fas fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-6 mb-3">
-                                <div class="product-card">
-                                    <div class="product-card-offer">
-                                        <div class="offer-hit">Hit</div>
-                                        <div class="offer-new">New</div>
-                                    </div>
-                                    <div class="product-thumb">
-                                        <a href="product.html"><img src="assets/img/products/7.jpg" alt=""></a>
-                                    </div>
-                                    <div class="product-details">
-                                        <h4>
-                                            <a href="product.html">Product 7</a>
-                                        </h4>
-                                        <p class="product-excerpt">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                            elit.
-                                            Placeat, aperiam!</p>
-                                        <div class="product-bottom-details d-flex justify-content-between">
-                                            <div class="product-price">
-                                                <small>$70</small>
-                                                $65
-                                            </div>
-                                            <div class="product-links">
-                                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                        class="fas fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-6 mb-3">
-                                <div class="product-card">
-                                    <div class="product-card-offer">
-                                        <div class="offer-hit">Hit</div>
-                                        <div class="offer-new">New</div>
-                                    </div>
-                                    <div class="product-thumb">
-                                        <a href="product.html"><img src="assets/img/products/8.jpg" alt=""></a>
-                                    </div>
-                                    <div class="product-details">
-                                        <h4>
-                                            <a href="product.html">Product 8 Lorem</a>
-                                        </h4>
-                                        <p class="product-excerpt">Lorem ipsum dolor</p>
-                                        <div class="product-bottom-details d-flex justify-content-between">
-                                            <div class="product-price">
-                                                <small>$70</small>
-                                                $65
-                                            </div>
-                                            <div class="product-links">
-                                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                        class="fas fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-sm-6 mb-3">
-                                <div class="product-card">
-                                    <div class="product-card-offer">
-                                        <div class="offer-hit">Hit</div>
-                                        <div class="offer-new">New</div>
-                                    </div>
-                                    <div class="product-thumb">
-                                        <a href="product.html"><img src="assets/img/products/1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="product-details">
-                                        <h4>
-                                            <a href="product.html">Product 1 Lorem ipsum dolor, sit amet consectetur
-                                                adipisicing.</a>
-                                        </h4>
-                                        <p class="product-excerpt">Lorem ipsum dolor, sit amet consectetur adipisicing
-                                            elit.
-                                            Placeat, aperiam!</p>
-                                        <div class="product-bottom-details d-flex justify-content-between">
-                                            <div class="product-price">
-                                                <small>$70</small>
-                                                $65
-                                            </div>
-                                            <div class="product-links">
-                                                <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                        class="fas fa-shopping-cart"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="row" id="productsContainer">
+                            <!-- Товары будут загружены через JavaScript -->
                         </div>
 
-                        <div class="row">
-                            <div class="col-12">
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination">
-                                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active" aria-current="page"><a class="page-link"
-                                                href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
+                        <div class="row" id="paginationContainer">
+                            <!-- Пагинация будет загружена через JavaScript -->
                         </div>
 
                     </div>
@@ -682,28 +367,28 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-3 col-6">
-						<h4>Информация</h4>
-						<ul class="list-unstyled">
-							<li><a href="index.html">Главная</a></li>
-							<li><a href="#">Оплата</a></li>
-							<li><a href="#">Доставка</a></li>
-							<li><a href="#">Контакты</a></li>
-						</ul>
-					</div>
+                        <h4>Информация</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="#about">О нас</a></li>
+                            <li><a href="#footer">Контакты</a></li>
+                        </ul>
+                    </div>
 
-					<div class="col-md-3 col-6">
-						<h4>Рабочие часы</h4>
-						<ul class="list-unstyled">
-							<li>Москва</li>
-							<li>пн-пт: 9:00 - 18:00</li>
-						</ul>
-					</div>
+                    <div class="col-md-3 col-6">
+                        <h4>Рабочие часы</h4>
+                        <ul class="list-unstyled">
+                            <li>Москва</li>
+                            <li>пн-пт: 9:00 - 18:00</li>
+                        </ul>
+                    </div>
 
                     <div class="col-md-3 col-6">
                         <h4>Контакты</h4>
                         <ul class="list-unstyled">
                             <li><a href="tel:1234567890">123-456-7890</a></li>
                             <li><a href="tel:0987654321">098-765-4321</a></li>
+                            <li><a href="mailto:info@tehnodom.ru">info@tehnodom.ru</a></li>
                         </ul>
                     </div>
 
@@ -724,10 +409,391 @@
         <i class="fa-solid fa-angles-up"></i>
     </button>
 
+    <!-- ===== МОДАЛЬНОЕ ОКНО ОФОРМЛЕНИЯ ЗАКАЗА ===== -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="orderForm" novalidate>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Оформление заказа</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">ФИО <span class="text-danger">*</span></label>
+                            <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Иванов Иван Иванович" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Телефон <span class="text-danger">*</span></label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="+7 (999) 123-45-67" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="example@mail.ru" required>
+                            <div class="form-text">На этот адрес придёт подтверждение заказа</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Адрес доставки <span class="text-danger">*</span></label>
+                            <textarea id="address" name="address" class="form-control" rows="3" placeholder="Город, улица, дом, квартира" required></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="consentCheck" name="consent" value="1" required>
+                            <label class="form-check-label" for="consentCheck">
+                                Я даю согласие на обработку персональных данных <span class="text-danger">*</span>
+                            </label>
+                            <div class="form-text">
+                                <small>Ваши данные используются только для обработки заказа и не передаются третьим лицам.</small>
+                            </div>
+                        </div>
+                        <div class="text-muted small">
+                            <span class="text-danger">*</span> — поля, обязательные для заполнения
+                        </div>
+                        <div id="formMessage" class="mt-3" style="display: none;"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-warning" id="submitOrderBtn">
+                            <span id="submitText">Оформить заказ</span>
+                            <span id="submitSpinner" class="spinner-border spinner-border-sm" style="display: none;" role="status"></span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/owlcarousel/owl.carousel.min.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
+    <script src="assets/js/checkout.js"></script>
+
+    <!-- ===== СКРИПТ ДЛЯ КАТАЛОГА ===== -->
+    <script>
+        // ============================================
+        // ДАННЫЕ ТОВАРОВ
+        // ============================================
+        const products = [
+            {
+                id: 1,
+                name: 'Смартфон Apple iPhone 15 128 ГБ, Dual еSIM, черный',
+                price: 48562,
+                oldPrice: 84781,
+                image: 'assets/img/products/1.jpg',
+                category: 'Смартфоны',
+                brand: 'Apple',
+                hit: true,
+                new: true,
+                excerpt: 'Встречайте iPhone 15 - ваш идеальный спутник в мире безграничных возможностей!'
+            },
+            {
+                id: 2,
+                name: 'Беспроводные TWS-наушники Apple AirPods 4, белый',
+                price: 10250,
+                oldPrice: null,
+                image: 'assets/img/products/2.jpg',
+                category: 'Аудиотехника',
+                brand: 'Apple',
+                hit: true,
+                new: false,
+                excerpt: 'Беспроводные TWS-наушники Apple AirPods 4 представляют собой высококачественное устройство.'
+            },
+            {
+                id: 3,
+                name: 'Умная колонка Яндекс Станция Лайт 2 с Алисой на YaGPT',
+                price: 5967,
+                oldPrice: null,
+                image: 'assets/img/products/3.jpg',
+                category: 'Аудиотехника',
+                brand: 'Xiaomi',
+                hit: false,
+                new: false,
+                excerpt: 'Яндекс Станция Лайт 2 — новая умная колонка для детей и тех, кто не перестаёт ими быть.'
+            },
+            {
+                id: 4,
+                name: 'Портативная акустика JBL Charge 6, 45 Вт, IP68, черный',
+                price: 12689,
+                oldPrice: 31641,
+                image: 'assets/img/products/4.jpg',
+                category: 'Аудиотехника',
+                brand: 'JBL',
+                hit: true,
+                new: false,
+                excerpt: 'Портативная акустика JBL Charge 6 сочетает в себе мощное звучание, прочный дизайн и расширенные возможности.'
+            },
+            {
+                id: 5,
+                name: '55" Телевизор Tuvio 4K ULTRA HD DLED Frameless на платформе YaOS',
+                price: 25604,
+                oldPrice: 36042,
+                image: 'assets/img/products/5.jpg',
+                category: 'Телевизоры',
+                brand: 'Samsung',
+                hit: true,
+                new: true,
+                excerpt: 'Tuvio — бытовая техника и электроника от Яндекс Фабрики для комфортной жизни дома.'
+            },
+            {
+                id: 6,
+                name: 'Зарядное устройство COMMO Core 20 USB-C, 20 Вт, Серо-зелёный',
+                price: 712,
+                oldPrice: 1001,
+                image: 'assets/img/products/6.jpg',
+                category: 'Аксессуары',
+                brand: 'Xiaomi',
+                hit: true,
+                new: true,
+                excerpt: 'Commo — это бренд мобильных аксессуаров и электроники, придуманный в Яндекс Фабрике.'
+            },
+            {
+                id: 7,
+                name: 'Смартфон Apple iPhone 17 256GB Lavender (Фиолетовый) Dual ESim 2025',
+                price: 70291,
+                oldPrice: 106284,
+                image: 'assets/img/products/7.jpg',
+                category: 'Смартфоны',
+                brand: 'Apple',
+                hit: true,
+                new: true,
+                excerpt: 'Современный и стильный смартфон Apple iPhone 17'
+            },
+            {
+                id: 8,
+                name: 'Игровая приставка Sony PlayStation 5 Slim Digital Edition',
+                price: 43893,
+                oldPrice: 143264,
+                image: 'assets/img/products/8.jpg',
+                category: 'Консоли',
+                brand: 'Samsung',
+                hit: true,
+                new: true,
+                excerpt: 'Игровая приставка Sony PlayStation 5 Slim Digital Edition без дисковода'
+            }
+        ];
+
+        let currentProducts = [...products];
+        let currentPage = 1;
+        let itemsPerPage = 9;
+
+        // ============================================
+        // ФУНКЦИИ ФИЛЬТРАЦИИ И СОРТИРОВКИ
+        // ============================================
+
+        function filterProducts() {
+            const priceFrom = parseInt(document.getElementById('priceFrom').value) || 0;
+            const priceTo = parseInt(document.getElementById('priceTo').value) || 99999999;
+
+            currentProducts = products.filter(product => {
+                return product.price >= priceFrom && product.price <= priceTo;
+            });
+
+            currentPage = 1;
+            renderProducts();
+        }
+
+        function resetFilters() {
+            document.getElementById('priceFrom').value = '';
+            document.getElementById('priceTo').value = '';
+            document.getElementById('sortSelect').value = 'default';
+            
+            // Сбрасываем все чекбоксы
+            document.querySelectorAll('.form-check-input').forEach(cb => cb.checked = false);
+            
+            currentProducts = [...products];
+            currentPage = 1;
+            renderProducts();
+        }
+
+        function sortProducts() {
+            const sortBy = document.getElementById('sortSelect').value;
+            
+            switch(sortBy) {
+                case 'price-asc':
+                    currentProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    currentProducts.sort((a, b) => b.price - a.price);
+                    break;
+                case 'name':
+                    currentProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                default:
+                    currentProducts = [...products];
+                    // Применяем фильтр если он был
+                    const priceFrom = parseInt(document.getElementById('priceFrom').value) || 0;
+                    const priceTo = parseInt(document.getElementById('priceTo').value) || 99999999;
+                    currentProducts = products.filter(p => p.price >= priceFrom && p.price <= priceTo);
+                    break;
+            }
+            
+            currentPage = 1;
+            renderProducts();
+        }
+
+        function changeItemsPerPage() {
+            itemsPerPage = parseInt(document.getElementById('itemsPerPage').value);
+            currentPage = 1;
+            renderProducts();
+        }
+
+        // ============================================
+        // ОТРИСОВКА ТОВАРОВ
+        // ============================================
+
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            const paginationContainer = document.getElementById('paginationContainer');
+            
+            const totalItems = currentProducts.length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            
+            if (currentPage > totalPages) currentPage = totalPages || 1;
+            
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = Math.min(start + itemsPerPage, totalItems);
+            const pageProducts = currentProducts.slice(start, end);
+
+            if (pageProducts.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center py-5">
+                        <i class="fa-solid fa-search fa-3x text-muted mb-3 d-block"></i>
+                        <h4>Товары не найдены</h4>
+                        <p class="text-muted">Попробуйте изменить параметры фильтрации</p>
+                        <button class="btn btn-warning" onclick="resetFilters()">Сбросить фильтры</button>
+                    </div>
+                `;
+                paginationContainer.innerHTML = '';
+                return;
+            }
+
+            let html = '';
+            pageProducts.forEach(product => {
+                const offerHtml = (product.hit || product.new) ? `
+                    <div class="product-card-offer">
+                        ${product.hit ? '<div class="offer-hit">Hit</div>' : ''}
+                        ${product.new ? '<div class="offer-new">New</div>' : ''}
+                    </div>
+                ` : '';
+
+                const oldPriceHtml = product.oldPrice ? 
+                    `<small>${product.oldPrice.toLocaleString()}₽</small>` : '';
+
+                html += `
+                    <div class="col-lg-4 col-sm-6 mb-3">
+                        <div class="product-card">
+                            ${offerHtml}
+                            <div class="product-thumb">
+                                <a href="#"><img src="${product.image}" alt="${product.name}"></a>
+                            </div>
+                            <div class="product-details">
+                                <h4>
+                                    <a href="#">${product.name}</a>
+                                </h4>
+                                <p class="product-excerpt">${product.excerpt}</p>
+                                <div class="product-bottom-details d-flex justify-content-between">
+                                    <div class="product-price">
+                                        ${oldPriceHtml}
+                                        ${product.price.toLocaleString()}₽
+                                    </div>
+                                    <div class="product-links">
+                                        <a href="#" class="btn btn-outline-secondary add-to-cart" 
+                                           data-id="${product.id}"
+                                           data-name="${product.name}"
+                                           data-price="${product.price}"
+                                           data-image="${product.image}">
+                                            <i class="fas fa-shopping-cart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            // Пагинация
+            if (totalPages > 1) {
+                let paginationHtml = `
+                    <div class="col-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                                    <a class="page-link" href="#" onclick="goToPage(${currentPage - 1})">←</a>
+                                </li>
+                `;
+
+                for (let i = 1; i <= totalPages; i++) {
+                    paginationHtml += `
+                        <li class="page-item ${i === currentPage ? 'active' : ''}">
+                            <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
+                        </li>
+                    `;
+                }
+
+                paginationHtml += `
+                                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                                    <a class="page-link" href="#" onclick="goToPage(${currentPage + 1})">→</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                `;
+                paginationContainer.innerHTML = paginationHtml;
+            } else {
+                paginationContainer.innerHTML = '';
+            }
+
+            // Обновляем обработчики для кнопок "Добавить в корзину"
+            document.querySelectorAll('.add-to-cart').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const id = this.dataset.id;
+                    const name = this.dataset.name;
+                    const price = parseFloat(this.dataset.price);
+                    const image = this.dataset.image;
+                    
+                    if (window.addToCart) {
+                        window.addToCart('product_' + id, name, price, image);
+                    } else {
+                        console.warn('Функция addToCart не найдена');
+                    }
+                });
+            });
+        }
+
+        function goToPage(page) {
+            const totalItems = currentProducts.length;
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+            
+            if (page < 1 || page > totalPages) return;
+            
+            currentPage = page;
+            renderProducts();
+            
+            // Прокрутка к началу списка товаров
+            document.querySelector('.col-lg-9').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // ============================================
+        // ИНИЦИАЛИЗАЦИЯ
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Загружаем корзину
+            if (window.loadCart) {
+                window.loadCart();
+                window.updateCartBadge();
+                window.updateCartOffcanvas();
+            }
+            
+            // Рендерим товары
+            renderProducts();
+        });
+    </script>
 </body>
 
 </html>
