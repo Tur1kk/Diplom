@@ -5,8 +5,11 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 10000;
 
+// Раздача статических файлов
 app.use(express.static('public'));
 app.use(express.json());
+
+// === Маршруты ===
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -16,25 +19,24 @@ app.get('/orders', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'orders.html'));
 });
 
-// === Путь к файлу данных ===
-const DATA_FILE = path.join(__dirname, 'orders.json');
-console.log(`📁 Путь к файлу данных: ${DATA_FILE}`);
+// === Работа с данными ===
 
-// === Функции работы с данными ===
+const DATA_FILE = path.join(__dirname, 'orders.json');
+console.log(`📁 Файл данных: ${DATA_FILE}`);
 
 function getOrders() {
     try {
         if (!fs.existsSync(DATA_FILE)) {
-            console.log('📁 Файл orders.json не существует, создаём новый');
+            console.log('📁 Создаём новый файл orders.json');
             fs.writeFileSync(DATA_FILE, JSON.stringify([]));
             return [];
         }
         const data = fs.readFileSync(DATA_FILE, 'utf8');
         const orders = JSON.parse(data);
-        console.log(`📊 Прочитано ${orders.length} заказов из файла`);
+        console.log(`📊 Прочитано ${orders.length} заказов`);
         return orders;
     } catch (error) {
-        console.error('❌ Ошибка чтения orders.json:', error);
+        console.error('❌ Ошибка чтения:', error);
         return [];
     }
 }
@@ -42,12 +44,11 @@ function getOrders() {
 function saveOrders(orders) {
     try {
         fs.writeFileSync(DATA_FILE, JSON.stringify(orders, null, 2));
-        console.log(`💾 Сохранено ${orders.length} заказов в файл`);
-        console.log(`📁 Файл: ${DATA_FILE}`);
+        console.log(`💾 Сохранено ${orders.length} заказов`);
+        console.log(`📁 Размер файла: ${fs.statSync(DATA_FILE).size} байт`);
         return true;
     } catch (error) {
-        console.error('❌ Ошибка записи orders.json:', error);
-        console.error('❌ Детали ошибки:', error.message);
+        console.error('❌ Ошибка записи:', error);
         return false;
     }
 }
@@ -56,12 +57,13 @@ function saveOrders(orders) {
 
 // Получить все заказы
 app.get('/api/orders', (req, res) => {
+    console.log('📥 GET /api/orders');
     try {
         const orders = getOrders();
-        console.log(`📊 Отправка ${orders.length} заказов клиенту`);
+        console.log(`📤 Отправка ${orders.length} заказов`);
         res.json(orders);
     } catch (error) {
-        console.error('❌ Ошибка получения заказов:', error);
+        console.error('❌ Ошибка:', error);
         res.status(500).json({ error: error.message });
     }
 });
@@ -76,27 +78,18 @@ app.post('/api/orders', (req, res) => {
     // Валидация
     if (!fullname || !phone || !email || !address) {
         console.log('❌ Не все поля заполнены');
-        return res.status(400).json({ error: 'Все поля обязательны для заполнения' });
-    }
-    
-    // Валидация email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        console.log('❌ Некорректный email');
-        return res.status(400).json({ error: 'Некорректный email адрес' });
+        return res.status(400).json({ error: 'Все поля обязательны' });
     }
     
     if (!consent) {
         console.log('❌ Нет согласия');
-        return res.status(400).json({ error: 'Необходимо согласие на обработку данных' });
+        return res.status(400).json({ error: 'Необходимо согласие' });
     }
     
     try {
-        // Получаем текущие заказы
         const orders = getOrders();
         console.log(`📊 Текущее количество заказов: ${orders.length}`);
         
-        // Создаём новый заказ
         const newOrder = {
             id: orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1,
             fullname: fullname.trim(),
@@ -109,37 +102,33 @@ app.post('/api/orders', (req, res) => {
         
         console.log('📝 Новый заказ:', JSON.stringify(newOrder, null, 2));
         
-        // Добавляем заказ
         orders.push(newOrder);
-        
-        // Сохраняем
         const saved = saveOrders(orders);
         
         if (!saved) {
-            console.error('❌ Не удалось сохранить заказ');
-            return res.status(500).json({ error: 'Ошибка сохранения заказа' });
+            console.error('❌ Не удалось сохранить');
+            return res.status(500).json({ error: 'Ошибка сохранения' });
         }
         
-        console.log('✅ Заказ успешно создан! ID:', newOrder.id);
+        console.log('✅ Заказ создан! ID:', newOrder.id);
         res.status(201).json({ success: true, order: newOrder });
     } catch (error) {
-        console.error('❌ Ошибка создания заказа:', error);
+        console.error('❌ Ошибка создания:', error);
         res.status(500).json({ error: error.message });
     }
 });
 
-// Проверка статуса (для отладки)
+// Проверка статуса
 app.get('/api/status', (req, res) => {
     const orders = getOrders();
-    const fileExists = fs.existsSync(DATA_FILE);
-    let fileSize = 0;
-    let fileContent = '';
+    const exists = fs.existsSync(DATA_FILE);
+    let size = 0;
+    let content = null;
     
-    if (fileExists) {
-        const stats = fs.statSync(DATA_FILE);
-        fileSize = stats.size;
+    if (exists) {
+        size = fs.statSync(DATA_FILE).size;
         try {
-            fileContent = fs.readFileSync(DATA_FILE, 'utf8');
+            content = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
         } catch (e) {}
     }
     
@@ -147,33 +136,24 @@ app.get('/api/status', (req, res) => {
         status: 'ok',
         ordersCount: orders.length,
         dataFile: DATA_FILE,
-        fileExists: fileExists,
-        fileSize: fileSize,
-        fileContent: fileContent ? JSON.parse(fileContent) : null,
+        fileExists: exists,
+        fileSize: size,
+        fileContent: content,
         nodeVersion: process.version,
         cwd: process.cwd(),
         dirContent: fs.readdirSync(__dirname)
     });
 });
 
-// Запуск сервера
+// === Запуск ===
+
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`🚀 Сервер запущен на порту ${PORT}`);
     console.log(`📁 Рабочая директория: ${__dirname}`);
     console.log(`📁 Файл данных: ${DATA_FILE}`);
     
-    // Проверяем существование файла
-    if (fs.existsSync(DATA_FILE)) {
-        const stats = fs.statSync(DATA_FILE);
-        console.log(`📊 Размер файла: ${stats.size} байт`);
-        const orders = getOrders();
-        console.log(`📊 Количество заказов: ${orders.length}`);
-    } else {
-        console.log('📁 Файл orders.json будет создан при первом заказе');
-    }
-    
-    // Показываем содержимое директории
-    console.log('📁 Содержимое директории:');
+    // Проверяем содержимое директории
+    console.log('📁 Содержимое:');
     const files = fs.readdirSync(__dirname);
     files.forEach(file => {
         const stats = fs.statSync(path.join(__dirname, file));
