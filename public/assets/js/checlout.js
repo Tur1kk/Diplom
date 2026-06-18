@@ -5,10 +5,16 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('orderForm');
-    if (!form) return;
+    if (!form) {
+        console.error('❌ Форма #orderForm не найдена');
+        return;
+    }
+    
+    console.log('✅ Форма заказа найдена');
 
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
+        console.log('📤 Отправка формы...');
 
         // Получаем элементы
         const fullname = document.getElementById('fullname');
@@ -20,6 +26,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const submitBtn = document.getElementById('submitOrderBtn');
         const submitText = document.getElementById('submitText');
         const submitSpinner = document.getElementById('submitSpinner');
+
+        // Проверяем, что все элементы найдены
+        if (!fullname || !phone || !email || !address || !consentCheck) {
+            console.error('❌ Не найдены поля формы');
+            showFormMessage('Ошибка: не все поля формы найдены', 'danger');
+            return;
+        }
 
         // Очищаем предыдущее сообщение
         if (messageDiv) {
@@ -42,6 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
             consent: consentCheck.checked ? 1 : 0
         };
 
+        console.log('📝 Данные формы:', formData);
+
         // Валидация
         if (!formData.fullname || !formData.phone || !formData.email || !formData.address) {
             showFormMessage('Пожалуйста, заполните все обязательные поля', 'danger');
@@ -55,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Валидация телефона (минимальная)
+        // Валидация телефона
         const phoneRegex = /^[\d\+\(\)\s-]{7,}$/;
         if (!phoneRegex.test(formData.phone)) {
             showFormMessage('Пожалуйста, введите корректный номер телефона', 'danger');
@@ -68,6 +83,8 @@ document.addEventListener('DOMContentLoaded', function() {
         submitSpinner.style.display = 'inline-block';
 
         try {
+            console.log('🔄 Отправка запроса на /api/orders...');
+            
             const response = await fetch('/api/orders', {
                 method: 'POST',
                 headers: {
@@ -76,7 +93,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 body: JSON.stringify(formData)
             });
 
+            console.log('📡 Статус ответа:', response.status);
+            
             const result = await response.json();
+            console.log('📦 Ответ сервера:', result);
 
             if (response.ok && result.success) {
                 showFormMessage('✅ Заказ успешно оформлен!', 'success');
@@ -84,17 +104,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Закрываем модальное окно через 2 секунды
                 setTimeout(() => {
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
-                    if (modal) modal.hide();
-                    
-                    // Показываем уведомление на странице
+                    closeModal('checkoutModal');
                     showNotification('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.', 'success');
                 }, 2000);
             } else {
                 showFormMessage(result.error || 'Ошибка при оформлении заказа', 'danger');
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('❌ Ошибка:', error);
             showFormMessage('Ошибка соединения с сервером. Попробуйте позже.', 'danger');
         } finally {
             // Скрываем спиннер
@@ -103,6 +120,46 @@ document.addEventListener('DOMContentLoaded', function() {
             submitSpinner.style.display = 'none';
         }
     });
+
+    /**
+     * Закрытие модального окна без ошибок
+     */
+    function closeModal(modalId) {
+        const modalElement = document.getElementById(modalId);
+        if (!modalElement) {
+            console.warn(`⚠️ Модальное окно #${modalId} не найдено`);
+            return;
+        }
+        
+        try {
+            // Пытаемся получить экземпляр Bootstrap Modal
+            const modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+                modal.hide();
+                console.log(`✅ Модальное окно #${modalId} закрыто через Bootstrap API`);
+            } else {
+                // Если экземпляра нет, используем jQuery
+                if (typeof $ !== 'undefined' && $.fn.modal) {
+                    $(modalElement).modal('hide');
+                    console.log(`✅ Модальное окно #${modalId} закрыто через jQuery`);
+                } else {
+                    // Самый простой способ - скрыть вручную
+                    modalElement.classList.remove('show');
+                    modalElement.style.display = 'none';
+                    document.querySelector('.modal-backdrop')?.remove();
+                    document.body.classList.remove('modal-open');
+                    console.log(`✅ Модальное окно #${modalId} закрыто вручную`);
+                }
+            }
+        } catch (error) {
+            console.error('❌ Ошибка при закрытии модального окна:', error);
+            // Fallback: скрываем вручную
+            modalElement.classList.remove('show');
+            modalElement.style.display = 'none';
+            document.querySelector('.modal-backdrop')?.remove();
+            document.body.classList.remove('modal-open');
+        }
+    }
 
     /**
      * Показать сообщение в форме
@@ -117,13 +174,13 @@ document.addEventListener('DOMContentLoaded', function() {
         messageDiv.className = `alert ${alertClass} mt-3`;
         messageDiv.textContent = text;
         messageDiv.style.display = 'block';
+        console.log(`💬 Сообщение (${type}):`, text);
     }
 
     /**
      * Показать уведомление на странице
      */
     function showNotification(text, type = 'info') {
-        // Проверяем, есть ли контейнер для уведомлений
         let container = document.getElementById('notificationContainer');
         if (!container) {
             container = document.createElement('div');
@@ -152,7 +209,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         container.appendChild(notification);
         
-        // Автоматически скрываем через 5 секунд
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.classList.remove('show');
