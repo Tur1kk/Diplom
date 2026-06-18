@@ -135,59 +135,52 @@
 		</div>
 
 		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasCartLabel">
-            <i class="fa-solid fa-cart-shopping me-2"></i>Корзина
-        </h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body d-flex flex-column">
-        <div class="flex-grow-1">
-            <div class="table-responsive">
-                <table class="table offcanvasCart-table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Товар</th>
-                            <th>Цена</th>
-                            <th>Кол-во</th>
-                            <th>Сумма</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td colspan="6" class="text-center py-4 text-muted empty-cart">
-                                <i class="fa-solid fa-cart-plus"></i>
-                                Корзина пуста
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="5" class="text-end fw-bold">Итого:</td>
-                            <td class="fw-bold">0 ₽</td>
-                        </tr>
-                    </tfoot>
-                </table>
-            </div>
-        </div>
+			<div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasCartLabel">
+					<i class="fa-solid fa-cart-shopping me-2"></i>Корзина
+				</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body d-flex flex-column">
+				<div class="flex-grow-1">
+					<div class="table-responsive">
+						<table class="table offcanvasCart-table">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Товар</th>
+									<th>Цена</th>
+									<th>Кол-во</th>
+									<th>Сумма</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="5" class="text-center py-4 text-muted empty-cart">
+										<i class="fa-solid fa-cart-plus"></i>
+										Корзина пуста
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
 
-        <div class="cart-actions">
-            <div class="total-display">
-                Итого: <span id="offcanvasTotal">0 ₽</span>
-            </div>
-            <div class="d-flex gap-2">
-                <button class="btn btn-sm btn-clear" id="clearCartBtn">
-                    <i class="fa-solid fa-trash"></i> Очистить
-                </button>
-                <button class="btn btn-sm btn-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
-                    <i class="fa-solid fa-credit-card"></i> Оформить
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
+				<div class="cart-actions">
+					<div class="total-display">
+						Итого: <span id="offcanvasTotal">0 ₽</span>
+					</div>
+					<div class="d-flex gap-2">
+						<button class="btn btn-sm btn-clear" id="clearCartBtn">
+							<i class="fa-solid fa-trash"></i> Очистить
+						</button>
+						<button class="btn btn-sm btn-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+							<i class="fa-solid fa-credit-card"></i> Оформить
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<main class="main">
 

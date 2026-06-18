@@ -93,6 +93,37 @@ function updateOrderStatus(orderId, status) {
 }
 
 /**
+ * Удаление заказа
+ */
+function deleteOrder(orderId) {
+    if (!confirm(`Вы уверены, что хотите удалить заказ #${orderId}? Это действие нельзя отменить.`)) {
+        return;
+    }
+    
+    fetch(`/api/orders/${orderId}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP ошибка: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            showNotification(`Заказ #${orderId} удалён!`, 'success');
+            fetchOrders(); // Обновляем список
+        } else {
+            showNotification(data.error || 'Ошибка удаления заказа', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('❌ Ошибка:', error);
+        showNotification('Ошибка соединения с сервером', 'danger');
+    });
+}
+
+/**
  * Отрисовка таблицы с заказами
  */
 function renderOrders(orders) {
@@ -159,36 +190,47 @@ function renderOrders(orders) {
             case 'new':
                 statusHtml = `<span class="status-badge status-new"><i class="fa-regular fa-clock"></i> Новый</span>`;
                 actionsHtml = `
-                    <button class="btn btn-sm btn-success" onclick="updateOrderStatus(${order.id}, 'confirmed')">
+                    <button class="btn btn-sm btn-success" onclick="updateOrderStatus(${order.id}, 'confirmed')" title="Подтвердить">
                         <i class="fa-solid fa-check"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="updateOrderStatus(${order.id}, 'cancelled')">
+                    <button class="btn btn-sm btn-danger" onclick="updateOrderStatus(${order.id}, 'cancelled')" title="Отменить">
                         <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" onclick="deleteOrder(${order.id})" title="Удалить">
+                        <i class="fa-solid fa-trash-can"></i>
                     </button>
                 `;
                 break;
             case 'confirmed':
                 statusHtml = `<span class="status-badge status-confirmed"><i class="fa-solid fa-check-circle"></i> Подтверждён</span>`;
                 actionsHtml = `
-                    <button class="btn btn-sm btn-danger" onclick="updateOrderStatus(${order.id}, 'cancelled')">
-                        <i class="fa-solid fa-xmark"></i> Отменить
+                    <button class="btn btn-sm btn-danger" onclick="updateOrderStatus(${order.id}, 'cancelled')" title="Отменить">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" onclick="deleteOrder(${order.id})" title="Удалить">
+                        <i class="fa-solid fa-trash-can"></i>
                     </button>
                 `;
                 break;
             case 'cancelled':
                 statusHtml = `<span class="status-badge status-cancelled"><i class="fa-solid fa-circle-xmark"></i> Отменён</span>`;
                 actionsHtml = `
-                    <span class="text-muted small">Без действий</span>
+                    <button class="btn btn-sm btn-outline-danger" onclick="deleteOrder(${order.id})" title="Удалить">
+                        <i class="fa-solid fa-trash-can"></i>
+                    </button>
                 `;
                 break;
             default:
                 statusHtml = `<span class="status-badge status-new"><i class="fa-regular fa-clock"></i> Новый</span>`;
                 actionsHtml = `
-                    <button class="btn btn-sm btn-success" onclick="updateOrderStatus(${order.id}, 'confirmed')">
+                    <button class="btn btn-sm btn-success" onclick="updateOrderStatus(${order.id}, 'confirmed')" title="Подтвердить">
                         <i class="fa-solid fa-check"></i>
                     </button>
-                    <button class="btn btn-sm btn-danger" onclick="updateOrderStatus(${order.id}, 'cancelled')">
+                    <button class="btn btn-sm btn-danger" onclick="updateOrderStatus(${order.id}, 'cancelled')" title="Отменить">
                         <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" onclick="deleteOrder(${order.id})" title="Удалить">
+                        <i class="fa-solid fa-trash-can"></i>
                     </button>
                 `;
         }
@@ -266,9 +308,6 @@ function renderOrders(orders) {
                     <i class="fa-regular fa-clock"></i>
                     Последнее обновление: <strong>${new Date().toLocaleString('ru-RU')}</strong>
                 </span>
-                <button class="btn btn-sm btn-outline-warning ms-auto btn-refresh" onclick="fetchOrders()">
-                    <i class="fa-solid fa-rotate"></i> Обновить
-                </button>
             </div>
         </div>
     `;

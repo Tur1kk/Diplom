@@ -106,7 +106,7 @@ app.post('/api/orders', (req, res) => {
                 image: item.image || ''
             })),
             total: total || items.reduce((sum, item) => sum + (item.price * item.quantity), 0),
-            status: 'new', // new, confirmed, cancelled
+            status: 'new',
             created_at: new Date().toISOString()
         };
         
@@ -155,6 +155,31 @@ app.patch('/api/orders/:id/status', (req, res) => {
         res.json({ success: true, order: orders[orderIndex] });
     } catch (error) {
         console.error('❌ Ошибка обновления статуса:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Удалить заказ
+app.delete('/api/orders/:id', (req, res) => {
+    console.log(`📝 DELETE /api/orders/${req.params.id}`);
+    
+    const orderId = parseInt(req.params.id);
+    
+    try {
+        const orders = getOrders();
+        const orderIndex = orders.findIndex(o => o.id === orderId);
+        
+        if (orderIndex === -1) {
+            return res.status(404).json({ error: 'Заказ не найден' });
+        }
+        
+        const deletedOrder = orders.splice(orderIndex, 1)[0];
+        saveOrders(orders);
+        
+        console.log(`✅ Заказ #${orderId} удалён`);
+        res.json({ success: true, order: deletedOrder });
+    } catch (error) {
+        console.error('❌ Ошибка удаления заказа:', error);
         res.status(500).json({ error: error.message });
     }
 });
