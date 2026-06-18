@@ -42,6 +42,7 @@ function fetchOrders() {
         })
         .then(orders => {
             console.log('📊 Получено заказов:', orders.length);
+            console.log('📊 Данные заказов:', orders);
             renderOrders(orders);
         })
         .catch(error => {
@@ -65,9 +66,22 @@ function fetchOrders() {
 function renderOrders(orders) {
     const container = document.getElementById('ordersContainer');
     
-    if (!container) return;
+    console.log('🎨 Отрисовка заказов, контейнер:', container);
+    console.log('🎨 Получено заказов:', orders);
     
-    if (!orders || orders.length === 0) {
+    if (!container) {
+        console.error('❌ Контейнер не найден!');
+        return;
+    }
+    
+    // Проверяем, что orders - это массив
+    if (!Array.isArray(orders)) {
+        console.error('❌ orders не является массивом:', orders);
+        orders = [];
+    }
+    
+    if (orders.length === 0) {
+        console.log('📭 Заказов нет, показываем пустое состояние');
         container.innerHTML = `
             <div class="empty-orders">
                 <i class="fa-solid fa-box-open"></i>
@@ -80,6 +94,8 @@ function renderOrders(orders) {
         `;
         return;
     }
+    
+    console.log('📝 Строим таблицу для', orders.length, 'заказов');
     
     let tableHtml = `
         <div class="orders-table-wrap">
@@ -100,15 +116,26 @@ function renderOrders(orders) {
     `;
     
     orders.forEach((order, index) => {
-        const date = new Date(order.created_at);
-        const formattedDate = date.toLocaleString('ru-RU', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
+        console.log(`📝 Обработка заказа ${index + 1}:`, order);
         
+        // Форматируем дату
+        let formattedDate = 'Нет даты';
+        if (order.created_at) {
+            try {
+                const date = new Date(order.created_at);
+                formattedDate = date.toLocaleString('ru-RU', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            } catch (e) {
+                console.warn('⚠️ Ошибка форматирования даты:', e);
+            }
+        }
+        
+        // Согласие
         const consentHtml = order.consent == 1 
             ? `<span class="consent-badge yes"><i class="fa-solid fa-check-circle"></i> Да</span>`
             : `<span class="consent-badge no"><i class="fa-solid fa-times-circle"></i> Нет</span>`;
@@ -146,7 +173,9 @@ function renderOrders(orders) {
         </div>
     `;
     
+    console.log('✅ Таблица построена, вставляем в DOM');
     container.innerHTML = tableHtml;
+    console.log('✅ Готово!');
 }
 
 /**
