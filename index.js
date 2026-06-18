@@ -43,7 +43,6 @@ function saveOrders(orders) {
     try {
         fs.writeFileSync(DATA_FILE, JSON.stringify(orders, null, 2));
         console.log(`💾 Сохранено ${orders.length} заказов`);
-        console.log(`📁 Размер файла: ${fs.statSync(DATA_FILE).size} байт`);
         return true;
     } catch (error) {
         console.error('❌ Ошибка записи:', error);
@@ -73,7 +72,6 @@ app.post('/api/orders', (req, res) => {
     
     const { fullname, phone, email, address, consent, items, total } = req.body;
     
-    // Валидация
     if (!fullname || !phone || !email || !address) {
         console.log('❌ Не все поля заполнены');
         return res.status(400).json({ error: 'Все поля обязательны' });
@@ -84,7 +82,6 @@ app.post('/api/orders', (req, res) => {
         return res.status(400).json({ error: 'Необходимо согласие' });
     }
     
-    // Проверяем наличие товаров
     if (!items || !Array.isArray(items) || items.length === 0) {
         console.log('❌ Корзина пуста');
         return res.status(400).json({ error: 'Корзина пуста. Добавьте товары.' });
@@ -94,7 +91,6 @@ app.post('/api/orders', (req, res) => {
         const orders = getOrders();
         console.log(`📊 Текущее количество заказов: ${orders.length}`);
         
-        // Создаём новый заказ с товарами
         const newOrder = {
             id: orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1,
             fullname: fullname.trim(),
@@ -110,6 +106,7 @@ app.post('/api/orders', (req, res) => {
                 image: item.image || ''
             })),
             total: total || items.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+            status: 'new', // new, confirmed, cancelled
             created_at: new Date().toISOString()
         };
         
@@ -127,6 +124,37 @@ app.post('/api/orders', (req, res) => {
         res.status(201).json({ success: true, order: newOrder });
     } catch (error) {
         console.error('❌ Ошибка создания:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Обновить статус заказа
+app.patch('/api/orders/:id/status', (req, res) => {
+    console.log(`📝 PATCH /api/orders/${req.params.id}/status`);
+    console.log('📦 Тело запроса:', req.body);
+    
+    const orderId = parseInt(req.params.id);
+    const { status } = req.body;
+    
+    if (!status || !['new', 'confirmed', 'cancelled'].includes(status)) {
+        return res.status(400).json({ error: 'Некорректный статус' });
+    }
+    
+    try {
+        const orders = getOrders();
+        const orderIndex = orders.findIndex(o => o.id === orderId);
+        
+        if (orderIndex === -1) {
+            return res.status(404).json({ error: 'Заказ не найден' });
+        }
+        
+        orders[orderIndex].status = status;
+        saveOrders(orders);
+        
+        console.log(`✅ Статус заказа #${orderId} изменён на ${status}`);
+        res.json({ success: true, order: orders[orderIndex] });
+    } catch (error) {
+        console.error('❌ Ошибка обновления статуса:', error);
         res.status(500).json({ error: error.message });
     }
 });

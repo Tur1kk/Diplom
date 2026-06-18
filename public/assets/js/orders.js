@@ -40,7 +40,6 @@ function fetchOrders() {
         })
         .then(orders => {
             console.log('📊 Получено заказов:', orders.length);
-            console.log('📊 Данные заказов:', JSON.stringify(orders, null, 2));
             renderOrders(orders);
         })
         .catch(error => {
@@ -56,6 +55,41 @@ function fetchOrders() {
                 </div>
             `;
         });
+}
+
+/**
+ * Обновление статуса заказа
+ */
+function updateOrderStatus(orderId, status) {
+    if (!confirm(`Вы уверены, что хотите ${status === 'cancelled' ? 'отменить' : 'подтвердить'} заказ #${orderId}?`)) {
+        return;
+    }
+    
+    fetch(`/api/orders/${orderId}/status`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: status })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP ошибка: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success) {
+            showNotification(`Заказ #${orderId} ${status === 'cancelled' ? 'отменён' : 'подтверждён'}!`, 'success');
+            fetchOrders(); // Обновляем список
+        } else {
+            showNotification(data.error || 'Ошибка обновления статуса', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('❌ Ошибка:', error);
+        showNotification('Ошибка соединения с сервером', 'danger');
+    });
 }
 
 /**
@@ -106,15 +140,58 @@ function renderOrders(orders) {
                             <th>Адрес</th>
                             <th>Товары</th>
                             <th>Сумма</th>
+                            <th class="text-center">Статус</th>
                             <th class="text-center">Согласие</th>
                             <th>Дата</th>
+                            <th class="text-center">Действия</th>
                         </tr>
                     </thead>
                     <tbody>
     `;
     
     orders.forEach((order, index) => {
-        console.log(`📝 Обработка заказа ${index + 1}:`, order);
+        // Статус заказа (по умолчанию 'new')
+        const status = order.status || 'new';
+        let statusHtml = '';
+        let actionsHtml = '';
+        
+        switch(status) {
+            case 'new':
+                statusHtml = `<span class="status-badge status-new"><i class="fa-regular fa-clock"></i> Новый</span>`;
+                actionsHtml = `
+                    <button class="btn btn-sm btn-success" onclick="updateOrderStatus(${order.id}, 'confirmed')">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" onclick="updateOrderStatus(${order.id}, 'cancelled')">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                `;
+                break;
+            case 'confirmed':
+                statusHtml = `<span class="status-badge status-confirmed"><i class="fa-solid fa-check-circle"></i> Подтверждён</span>`;
+                actionsHtml = `
+                    <button class="btn btn-sm btn-danger" onclick="updateOrderStatus(${order.id}, 'cancelled')">
+                        <i class="fa-solid fa-xmark"></i> Отменить
+                    </button>
+                `;
+                break;
+            case 'cancelled':
+                statusHtml = `<span class="status-badge status-cancelled"><i class="fa-solid fa-circle-xmark"></i> Отменён</span>`;
+                actionsHtml = `
+                    <span class="text-muted small">Без действий</span>
+                `;
+                break;
+            default:
+                statusHtml = `<span class="status-badge status-new"><i class="fa-regular fa-clock"></i> Новый</span>`;
+                actionsHtml = `
+                    <button class="btn btn-sm btn-success" onclick="updateOrderStatus(${order.id}, 'confirmed')">
+                        <i class="fa-solid fa-check"></i>
+                    </button>
+                    <button class="btn btn-sm btn-danger" onclick="updateOrderStatus(${order.id}, 'cancelled')">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                `;
+        }
         
         // Форматируем дату
         let formattedDate = 'Нет даты';
@@ -138,12 +215,20 @@ function renderOrders(orders) {
             ? `<span class="consent-badge yes"><i class="fa-solid fa-check-circle"></i> Да</span>`
             : `<span class="consent-badge no"><i class="fa-solid fa-times-circle"></i> Нет</span>`;
         
-        // Товары
+        // Товары (в колонку)
         let itemsHtml = '';
         if (order.items && Array.isArray(order.items) && order.items.length > 0) {
-            itemsHtml = order.items.map(item => 
-                `<div class="order-item">${escapeHtml(item.name)} × ${item.quantity}</div>`
-            ).join('');
+            itemsHtml = `<ul class="order-items-list">`;
+            order.items.forEach(item => {
+                itemsHtml += `
+                    <li class="order-item">
+                        <span class="item-name">${escapeHtml(item.name)}</span>
+                        <span class="item-qty">× ${item.quantity}</span>
+                        <span class="item-price">${Number(item.price).toLocaleString()} ₽</span>
+                    </li>
+                `;
+            });
+            itemsHtml += `</ul>`;
         } else {
             itemsHtml = '<span class="text-muted">Нет товаров</span>';
         }
@@ -160,8 +245,10 @@ function renderOrders(orders) {
                 <td class="order-address">${escapeHtml(order.address)}</td>
                 <td class="order-items">${itemsHtml}</td>
                 <td class="order-total"><strong>${Number(total).toLocaleString()} ₽</strong></td>
+                <td class="text-center">${statusHtml}</td>
                 <td class="text-center">${consentHtml}</td>
                 <td class="order-date"><i class="fa-regular fa-calendar me-1"></i>${formattedDate}</td>
+                <td class="text-center order-actions">${actionsHtml}</td>
             </tr>
         `;
     });
@@ -189,6 +276,54 @@ function renderOrders(orders) {
     console.log('✅ Таблица построена, вставляем в DOM');
     container.innerHTML = tableHtml;
     console.log('✅ Готово!');
+}
+
+/**
+ * Показать уведомление
+ */
+function showNotification(message, type = 'info') {
+    let container = document.getElementById('notificationContainer');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'notificationContainer';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 350px;
+            width: 100%;
+        `;
+        document.body.appendChild(container);
+    }
+    
+    const alertClass = type === 'success' ? 'alert-success' : 
+                      type === 'warning' ? 'alert-warning' : 
+                      type === 'danger' ? 'alert-danger' : 'alert-info';
+    
+    const notification = document.createElement('div');
+    notification.className = `alert ${alertClass} alert-dismissible fade show`;
+    notification.role = 'alert';
+    notification.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    `;
+    
+    container.appendChild(notification);
+    
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.classList.remove('show');
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+                if (container.children.length === 0) {
+                    container.remove();
+                }
+            }, 300);
+        }
+    }, 3000);
 }
 
 /**
