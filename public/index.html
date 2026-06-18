@@ -2,704 +2,587 @@
 <html lang="ru">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ТехноДом :: Главная</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/owlcarousel/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/owlcarousel/owl.theme.default.min.css">
-    <link rel="stylesheet" href="assets/css/main.css">
-    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ТехноДом :: Главная</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+	<link rel="stylesheet" href="assets/owlcarousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="assets/owlcarousel/owl.theme.default.min.css">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
 
-    <div class="wrapper">
+	<div class="wrapper">
 
-        <header class="header">
-
-
-            <div class="header-middle bg-white py-4">
-                <div class="container-fluid">
-                    <div class="row align-items-center">
-
-                        <div class="col-sm-6">
-                            <a href="index.html" class="header-logo h1">ТехноДом</a>
-                        </div>
-
-                        <div class="col-sm-6 mt-2 mt-md-0">
-                            <form action="">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="s" placeholder="Поиск..."
-                                        aria-label="Searching..." aria-describedby="button-search">
-                                    <button class="btn btn-outline-warning" type="submit" id="button-search">
-                                        <i class="fa-solid fa-magnifying-glass"></i>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>
-            <!-- ./header-middle -->
-        </header>
-
-        <div class="header-bottom sticky-top" id="header-nav">
-            <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-                <div class="container-fluid">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
-                        aria-labelledby="offcanvasNavbarLabel">
-                        <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Каталог</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-                                aria-label="Close"></button>
-                        </div>
-                        <div class="offcanvas-body">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="index.html">Главная</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#about">О нас</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#footer">Контакты</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="orders.html">Заказы</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                        aria-expanded="false" data-bs-auto-close="outside">
-                                        Каталог
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li>
-                                            <a class="dropdown-item" href="category.html">ПК и ноутбуки</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="category.html">Смартфоны</a>
-                                        </li>
-                                        <li class="nav-item dropend">
-                                            <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                data-bs-auto-close="outside">Бытовая техника</a>
-                                            <ul class="dropdown-menu dropdown-menu-end">
-                                                <li>
-                                                    <a class="dropdown-item" href="category.html">Для кухни</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="category.html">Для ванной</a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="category.html">Остальное</a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="category.html">ТВ и консоли</a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="category.html">Умный дом</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+		<header class="header">
 
 
-                    <div>
-                        <button class="btn p-1" id="cart-open" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                            <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">0</span>
-                        </button>
-                    </div>
+			<div class="header-middle bg-white py-4">
+				<div class="container-fluid">
+					<div class="row align-items-center">
 
-                </div>
-            </nav>
-        </div>
+						<div class="col-sm-6">
+							<a href="index.html" class="header-logo h1">ТехноДом</a>
+						</div>
 
-        <!-- ===== ВЫЕЗЖАЮЩАЯ КОРЗИНА ===== -->
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasCartLabel">
-                    <i class="fa-solid fa-cart-shopping me-2"></i>Корзина
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body d-flex flex-column">
-                <div class="flex-grow-1">
-                    <div class="table-responsive">
-                        <table class="table offcanvasCart-table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Товар</th>
-                                    <th>Цена</th>
-                                    <th>Кол-во</th>
-                                    <th>Сумма</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="5" class="text-center py-4 text-muted empty-cart">
-                                        <i class="fa-solid fa-cart-plus"></i>
-                                        Корзина пуста
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="4" class="text-end fw-bold">Итого:</td>
-                                    <td class="fw-bold">0 ₽</td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                </div>
+						<div class="col-sm-6 mt-2 mt-md-0">
+							<form action="">
+								<div class="input-group">
+									<input type="text" class="form-control" name="s" placeholder="Поиск..."
+										aria-label="Searching..." aria-describedby="button-search">
+									<button class="btn btn-outline-warning" type="submit" id="button-search">
+										<i class="fa-solid fa-magnifying-glass"></i>
+									</button>
+								</div>
+							</form>
+						</div>
 
-                <div class="cart-actions">
-                    <div class="total-display">
-                        Итого: <span id="offcanvasTotal">0 ₽</span>
-                    </div>
-                    <div class="d-flex gap-2">
-                        <button class="btn btn-sm btn-clear" id="clearCartBtn">
-                            <i class="fa-solid fa-trash"></i> Очистить
-                        </button>
-                        <button class="btn btn-sm btn-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
-                            <i class="fa-solid fa-credit-card"></i> Оформить
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+					</div>
+				</div>
 
-        <main class="main">
+			</div>
+			<!-- ./header-middle -->
+		</header>
 
-            <!-- ===== СЛАЙДЕР С ТЕКСТОМ ===== -->
-            <div id="carousel" class="carousel slide carousel-fade">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"
-                        aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                    <button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="assets/img/slider/1.jpg" class="d-block w-100" alt="ТехноДом - мир электроники">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h2>Добро пожаловать в ТехноДом!</h2>
-                            <p>Ваш надёжный магазин электроники и бытовой техники</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/slider/2.jpg" class="d-block w-100" alt="Новинки электроники">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h2>Только лучшие бренды</h2>
-                            <p>Apple, Samsung, Sony, JBL и многие другие</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/slider/3.jpg" class="d-block w-100" alt="Скидки и акции">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h2>Выгодные цены каждый день</h2>
-                            <p>Скидки до 50% на популярные модели</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/slider/4.jpg" class="d-block w-100" alt="Бытовая техника">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h2>Всё для вашего дома</h2>
-                            <p>От умных колонок до игровых консолей</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="assets/img/slider/5.jpg" class="d-block w-100" alt="Гарантия качества">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h2>100% гарантия качества</h2>
-                            <p>Официальная гарантия от производителей</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+		<div class="header-bottom sticky-top" id="header-nav">
+			<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+				<div class="container-fluid">
+					<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+						data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
+						aria-labelledby="offcanvasNavbarLabel">
+						<div class="offcanvas-header">
+							<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Каталог</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+								aria-label="Close"></button>
+						</div>
+						<div class="offcanvas-body">
+							<ul class="navbar-nav">
+								<li class="nav-item">
+									<a class="nav-link active" aria-current="page" href="index.html">Главная</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#about">О нас</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#footer">Контакты</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="orders.html">Заказы</a>
+								</li>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+										aria-expanded="false" data-bs-auto-close="outside">
+										Каталог
+									</a>
+									<ul class="dropdown-menu dropdown-menu-end">
+										<li>
+											<a class="dropdown-item" href="category.html">ПК и ноутбуки</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="category.html">Смартфоны</a>
+										</li>
+										<li class="nav-item dropend">
+											<a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+												data-bs-auto-close="outside">Бытовая техника</a>
+											<ul class="dropdown-menu dropdown-menu-end">
+												<li>
+													<a class="dropdown-item" href="category.html">Для кухни</a>
+												</li>
+												<li>
+													<a class="dropdown-item" href="category.html">Для ванной</a>
+												</li>
+												<li>
+													<a class="dropdown-item" href="category.html">Остальное</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a class="dropdown-item" href="category.html">ТВ и консоли</a>
+										</li>
+										<li>
+											<a class="dropdown-item" href="category.html">Умный дом</a>
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
 
-            <section class="advantages">
-                <div class="container-fluid">
-                    <div class="row mb-5">
-                        <div class="col-12">
-                            <h2 class="section-title">
-                                <span>Наши преимущества</span>
-                            </h2>
-                        </div>
-                    </div>
 
-                    <div class="row gy-3 items">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="item">
-                                <p>
-                                    <i class="fas fa-shipping-fast"></i>
-                                </p>
-                                <p>Прямые поставки от производителей брендов</p>
-                            </div>
-                        </div>
+					<div>
+						<button class="btn p-1" id="cart-open" type="button" data-bs-toggle="offcanvas"
+							data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+							<i class="fa-solid fa-cart-shopping"></i>
+							<span class="badge text-bg-warning cart-badge bg-warning rounded-circle">0</span>
+						</button>
+					</div>
 
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="item">
-                                <p>
-                                    <i class="fas fa-cubes"></i>
-                                </p>
-                                <p>Широкий ассортимент товаров. Более 10 тыс. наименований</p>
-                            </div>
-                        </div>
+				</div>
+			</nav>
+		</div>
 
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="item">
-                                <p>
-                                    <i class="fas fa-hand-holding-usd"></i>
-                                </p>
-                                <p>Приятные и конкурентные цены</p>
-                            </div>
-                        </div>
+		<!-- ===== ВЫЕЗЖАЮЩАЯ КОРЗИНА ===== -->
+		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+			<div class="offcanvas-header">
+				<h5 class="offcanvas-title" id="offcanvasCartLabel">
+					<i class="fa-solid fa-cart-shopping me-2"></i>Корзина
+				</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body d-flex flex-column">
+				<div class="flex-grow-1">
+					<div class="table-responsive">
+						<table class="table offcanvasCart-table">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Товар</th>
+									<th>Цена</th>
+									<th>Кол-во</th>
+									<th>Сумма</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td colspan="5" class="text-center py-4 text-muted empty-cart">
+										<i class="fa-solid fa-cart-plus"></i>
+										Корзина пуста
+									</td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="4" class="text-end fw-bold">Итого:</td>
+									<td class="fw-bold">0 ₽</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
 
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="item">
-                                <p>
-                                    <i class="fa-solid fa-user-graduate"></i>
-                                </p>
-                                <p>Консультации от профессионалов</p>
-                            </div>
-                        </div>
-                    </div>
+				<div class="cart-actions">
+					<div class="total-display">
+						Итого: <span id="offcanvasTotal">0 ₽</span>
+					</div>
+					<div class="d-flex gap-2">
+						<button class="btn btn-sm btn-clear" id="clearCartBtn">
+							<i class="fa-solid fa-trash"></i> Очистить
+						</button>
+						<button class="btn btn-sm btn-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+							<i class="fa-solid fa-credit-card"></i> Оформить
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
 
-                </div>
-            </section>
+		<main class="main">
 
-            <section class="featured-products">
-                <div class="container-fluid">
-                    <div class="row mb-5">
-                        <div class="col-12">
-                            <h2 class="section-title">
-                                <span>Рекомендуемые товары</span>
-                            </h2>
-                        </div>
-                    </div>
+			<!-- ===== СЛАЙДЕР С ТЕКСТОМ ===== -->
+			<div id="carousel" class="carousel slide carousel-fade">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"
+						aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+					<button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+					<button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img src="assets/img/slider/1.jpg" class="d-block w-100" alt="ТехноДом - мир электроники">
+						<div class="carousel-caption d-none d-md-block">
+							<h2>Добро пожаловать в ТехноДом!</h2>
+							<p>Ваш надёжный магазин электроники и бытовой техники</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="assets/img/slider/2.jpg" class="d-block w-100" alt="Новинки электроники">
+						<div class="carousel-caption d-none d-md-block">
+							<h2>Только лучшие бренды</h2>
+							<p>Apple, Samsung, Sony, JBL и многие другие</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="assets/img/slider/3.jpg" class="d-block w-100" alt="Скидки и акции">
+						<div class="carousel-caption d-none d-md-block">
+							<h2>Выгодные цены каждый день</h2>
+							<p>Скидки до 50% на популярные модели</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="assets/img/slider/4.jpg" class="d-block w-100" alt="Бытовая техника">
+						<div class="carousel-caption d-none d-md-block">
+							<h2>Всё для вашего дома</h2>
+							<p>От умных колонок до игровых консолей</p>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="assets/img/slider/5.jpg" class="d-block w-100" alt="Гарантия качества">
+						<div class="carousel-caption d-none d-md-block">
+							<h2>100% гарантия качества</h2>
+							<p>Официальная гарантия от производителей</p>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
 
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                            <div class="product-card">
-                                <div class="product-card-offer">
-                                    <div class="offer-hit">Hit</div>
-                                    <div class="offer-new">New</div>
-                                </div>
-                                <div class="product-thumb">
-                                    <a href="#"><img src="assets/img/products/1.jpg" alt="Смартфон Apple iPhone 15"></a>
-                                </div>
-                                <div class="product-details">
-                                    <h4>
-                                        <a href="#">Смартфон Apple iPhone 15 128 ГБ, Dual еSIM, черный</a>
-                                    </h4>
-                                    <p class="product-excerpt"> Встречайте iPhone 15 - ваш идеальный спутник в мире
-                                        безграничных возможностей!</p>
-                                    <div class="product-bottom-details d-flex justify-content-between">
-                                        <div class="product-price">
-                                            <small>84 781₽</small>
-                                            48 562₽
-                                        </div>
-                                        <div class="product-links">
-                                            <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                    class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+			<section class="advantages">
+				<div class="container-fluid">
+					<div class="row mb-5">
+						<div class="col-12">
+							<h2 class="section-title">
+								<span>Наши преимущества</span>
+							</h2>
+						</div>
+					</div>
 
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                            <div class="product-card">
-                                <div class="product-card-offer">
-                                    <div class="offer-hit">Hit</div>
-                                </div>
-                                <div class="product-thumb">
-                                    <a href="#"><img src="assets/img/products/2.jpg" alt="Наушники Apple AirPods 4"></a>
-                                </div>
-                                <div class="product-details">
-                                    <h4>
-                                        <a href="#">Беспроводные TWS-наушники Apple AirPods 4, белый</a>
-                                    </h4>
-                                    <p class="product-excerpt">Беспроводные TWS-наушники Apple AirPods 4 представляют
-                                        собой высококачественное устройство.</p>
-                                    <div class="product-bottom-details d-flex justify-content-between">
-                                        <div class="product-price">
-                                            10 250₽
-                                        </div>
-                                        <div class="product-links">
-                                            <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                    class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+					<div class="row gy-3 items">
+						<div class="col-lg-3 col-sm-6">
+							<div class="item">
+								<p>
+									<i class="fas fa-shipping-fast"></i>
+								</p>
+								<p>Прямые поставки от производителей брендов</p>
+							</div>
+						</div>
 
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                            <div class="product-card">
-                                <div class="product-card-offer">
-                                    <!-- <div class="offer-hit">Hit</div>
-                                    <div class="offer-new">New</div> -->
-                                </div>
-                                <div class="product-thumb">
-                                    <a href="#"><img src="assets/img/products/3.jpg" alt="Яндекс Станция Лайт 2"></a>
-                                </div>
-                                <div class="product-details">
-                                    <h4>
-                                        <a href="#">Умная колонка Новая Яндекс Станция Лайт 2 с Алисой на YaGPT</a>
-                                    </h4>
-                                    <p class="product-excerpt">Яндекс Станция Лайт 2 — новая умная колонка для детей и
-                                        тех, кто не перестаёт ими быть.</p>
-                                    <div class="product-bottom-details d-flex justify-content-between">
-                                        <div class="product-price">
-                                            5 967₽
-                                        </div>
-                                        <div class="product-links">
-                                            <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                    class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="item">
+								<p>
+									<i class="fas fa-cubes"></i>
+								</p>
+								<p>Широкий ассортимент товаров. Более 10 тыс. наименований</p>
+							</div>
+						</div>
 
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                            <div class="product-card">
-                                <div class="product-card-offer">
-                                    <div class="offer-hit">Hit</div>
-                                </div>
-                                <div class="product-thumb">
-                                    <a href="#"><img src="assets/img/products/4.jpg" alt="JBL Charge 6"></a>
-                                </div>
-                                <div class="product-details">
-                                    <h4>
-                                        <a href="#">Портативная акустика JBL Charge 6, 45 Вт, IP68, черный</a>
-                                    </h4>
-                                    <p class="product-excerpt">Портативная акустика JBL Charge 6 сочетает в себе мощное звучание, прочный дизайн и
-                                        расширенные возможности подключения.</p>
-                                    <div class="product-bottom-details d-flex justify-content-between">
-                                        <div class="product-price">
-                                            <small>31 641₽</small>
-                                            12 689₽
-                                        </div>
-                                        <div class="product-links">
-                                            <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                    class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="item">
+								<p>
+									<i class="fas fa-hand-holding-usd"></i>
+								</p>
+								<p>Приятные и конкурентные цены</p>
+							</div>
+						</div>
 
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                            <div class="product-card">
-                                <div class="product-card-offer">
-                                    <div class="offer-hit">Hit</div>
-                                    <div class="offer-new">New</div>
-                                </div>
-                                <div class="product-thumb">
-                                    <a href="#"><img src="assets/img/products/5.jpg" alt="Телевизор Tuvio"></a>
-                                </div>
-                                <div class="product-details">
-                                    <h4>
-                                        <a href="#">55" Телевизор Tuvio 4K ULTRA HD DLED Frameless на платформе YaOS</a>
-                                    </h4>
-                                    <p class="product-excerpt">Tuvio — бытовая техника и электроника от Яндекс Фабрики
-                                        для комфортной жизни дома.</p>
-                                    <div class="product-bottom-details d-flex justify-content-between">
-                                        <div class="product-price">
-                                            <small>36 042₽</small>
-                                            25 604₽
-                                        </div>
-                                        <div class="product-links">
-                                            <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                    class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+						<div class="col-lg-3 col-sm-6">
+							<div class="item">
+								<p>
+									<i class="fa-solid fa-user-graduate"></i>
+								</p>
+								<p>Консультации от профессионалов</p>
+							</div>
+						</div>
+					</div>
 
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                            <div class="product-card">
-                                <div class="product-card-offer">
-                                    <div class="offer-hit">Hit</div>
-                                    <div class="offer-new">New</div>
-                                </div>
-                                <div class="product-thumb">
-                                    <a href="#"><img src="assets/img/products/6.jpg" alt="Зарядное устройство COMMO"></a>
-                                </div>
-                                <div class="product-details">
-                                    <h4>
-                                        <a href="#">Быстрое зарядное устройство COMMO Core 20 USB-C, 20 Вт,
-                                            Серо-зелёный</a>
-                                    </h4>
-                                    <p class="product-excerpt">Commo — это бренд мобильных аксессуаров и электроники,
-                                        придуманный в Яндекс Фабрике.</p>
-                                    <div class="product-bottom-details d-flex justify-content-between">
-                                        <div class="product-price">
-                                            <small>1 001₽</small>
-                                            712₽
-                                        </div>
-                                        <div class="product-links">
-                                            <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                    class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+				</div>
+			</section>
 
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                            <div class="product-card">
-                                <div class="product-card-offer">
-                                    <div class="offer-hit">Hit</div>
-                                    <div class="offer-new">New</div>
-                                </div>
-                                <div class="product-thumb">
-                                    <a href="#"><img src="assets/img/products/7.jpg" alt="iPhone 17"></a>
-                                </div>
-                                <div class="product-details">
-                                    <h4>
-                                        <a href="#">Смартфон Apple iPhone 17 256GB Lavender (Фиолетовый) Dual ESim</a>
-                                    </h4>
-                                    <p class="product-excerpt">Современный и стильный смартфон Apple iPhone 17</p>
-                                    <div class="product-bottom-details d-flex justify-content-between">
-                                        <div class="product-price">
-                                            <small>106 284₽</small>
-                                            70 291₽
-                                        </div>
-                                        <div class="product-links">
-                                            <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                    class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+			<section class="featured-products">
+				<div class="container-fluid">
+					<div class="row mb-5">
+						<div class="col-12">
+							<h2 class="section-title">
+								<span>Рекомендуемые товары</span>
+							</h2>
+						</div>
+					</div>
 
-                        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-                            <div class="product-card">
-                                <div class="product-card-offer">
-                                    <div class="offer-hit">Hit</div>
-                                    <div class="offer-new">New</div>
-                                </div>
-                                <div class="product-thumb">
-                                    <a href="#"><img src="assets/img/products/8.jpg" alt="PlayStation 5"></a>
-                                </div>
-                                <div class="product-details">
-                                    <h4>
-                                        <a href="#">Игровая приставка Sony PlayStation 5 Slim Digital Edition, без
-                                            дисковода</a>
-                                    </h4>
-                                    <p class="product-excerpt"></p>
-                                    <div class="product-bottom-details d-flex justify-content-between">
-                                        <div class="product-price">
-                                            <small>143 264₽</small>
-                                            43 893₽
-                                        </div>
-                                        <div class="product-links">
-                                            <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                    class="fas fa-shopping-cart"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+					<div class="row">
+						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+							<div class="product-card">
+								<div class="product-card-offer">
+									<div class="offer-hit">Hit</div>
+									<div class="offer-new">New</div>
+								</div>
+								<div class="product-thumb">
+									<a href="product.html"><img src="assets/img/products/1.jpg"
+											alt="Смартфон Apple iPhone 15"></a>
+								</div>
+								<div class="product-details">
+									<h4>
+										<a href="product.html">Смартфон Apple iPhone 15 128 ГБ, Dual еSIM, черный</a>
+									</h4>
+									<p class="product-excerpt">Встречайте iPhone 15 - ваш идеальный спутник в мире
+										безграничных возможностей!</p>
+									<div class="product-bottom-details d-flex justify-content-between">
+										<div class="product-price">
+											<small>84 781₽</small>
+											48 562₽
+										</div>
+										<div class="product-links">
+											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
+													class="fas fa-shopping-cart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                    </div>
-                </div>
-            </section>
+						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+							<div class="product-card">
+								<div class="product-card-offer">
+									<div class="offer-hit">Hit</div>
+								</div>
+								<div class="product-thumb">
+									<a href="product.html"><img src="assets/img/products/2.jpg"
+											alt="Наушники Apple AirPods 4"></a>
+								</div>
+								<div class="product-details">
+									<h4>
+										<a href="product.html">Беспроводные TWS-наушники Apple AirPods 4, белый</a>
+									</h4>
+									<p class="product-excerpt">Беспроводные TWS-наушники Apple AirPods 4 представляют
+										собой высококачественное устройство.</p>
+									<div class="product-bottom-details d-flex justify-content-between">
+										<div class="product-price">10 250₽</div>
+										<div class="product-links">
+											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
+													class="fas fa-shopping-cart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-            <section class="about-us" id="about">
-                <div class="container fluid">
-                    <div class="row mb-5">
-                        <div class="col-12">
-                            <h2 class="section-title">
-                                <span>О нас</span>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p>Больше 100 тысяч продавцов на Яндекс Маркете предлагают миллионы товаров на любой вкус и
-                                бюджет. Вы найдете все: от техники и одежды до товаров для дома, детских и спортивных
-                                вещей.
-                                <br><br>На Маркете вы можете:<br>
+						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+							<div class="product-card">
+								<div class="product-card-offer"></div>
+								<div class="product-thumb">
+									<a href="product.html"><img src="assets/img/products/3.jpg"
+											alt="Яндекс Станция Лайт 2"></a>
+								</div>
+								<div class="product-details">
+									<h4>
+										<a href="product.html">Умная колонка Новая Яндекс Станция Лайт 2 с Алисой на
+											YaGPT</a>
+									</h4>
+									<p class="product-excerpt">Яндекс Станция Лайт 2 — новая умная колонка для детей и
+										тех, кто не перестаёт ими быть.</p>
+									<div class="product-bottom-details d-flex justify-content-between">
+										<div class="product-price">5 967₽</div>
+										<div class="product-links">
+											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
+													class="fas fa-shopping-cart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-                                <br><mark>Выбирать товары:</mark> сравнивайте характеристики, читайте отзывы, смотрите
-                                рейтинги продавцов и советы экспертов.
-                                <br><mark>Покупать быстро:</mark> оформляйте заказ в пару кликов через сайт или
-                                приложение, оплачивайте онлайн или при получении.
-                                <br><mark>Получать заказы как вам удобно:</mark> курьером домой, по клику, в пункт
-                                выдачи, постамат или отделение Почты России.
-                                <br><mark>Экономить:</mark> участвуйте в акциях, применяйте промокоды и копите баллы
-                                Плюса, следите за скидками.
-                                <br><mark>Покупать с уверенностью:</mark> если что-то пойдет не так, поможем вернуть
-                                деньги или решить вопрос.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+							<div class="product-card">
+								<div class="product-card-offer">
+									<div class="offer-hit">Hit</div>
+								</div>
+								<div class="product-thumb">
+									<a href="product.html"><img src="assets/img/products/4.jpg" alt="JBL Charge 6"></a>
+								</div>
+								<div class="product-details">
+									<h4>
+										<a href="product.html">Портативная акустика JBL Charge 6, 45 Вт, IP68,
+											черный</a>
+									</h4>
+									<p class="product-excerpt">Портативная акустика JBL Charge 6 сочетает в себе мощное
+										звучание, прочный дизайн и расширенные возможности подключения.</p>
+									<div class="product-bottom-details d-flex justify-content-between">
+										<div class="product-price">
+											<small>31 641₽</small>
+											12 689₽
+										</div>
+										<div class="product-links">
+											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
+													class="fas fa-shopping-cart"></i></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 
-        </main>
+						<!-- Продолжите для всех товаров ... -->
+					</div>
+				</div>
+			</section>
 
-        <footer class="footer" id="footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-3 col-6">
-                        <h4>Информация</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="index.html">Главная</a></li>
-                            <li><a href="#about">О нас</a></li>
-                            <li><a href="#footer">Контакты</a></li>
-                        </ul>
-                    </div>
+			<section class="about-us" id="about">
+				<div class="container fluid">
+					<div class="row mb-5">
+						<div class="col-12">
+							<h2 class="section-title">
+								<span>О нас</span>
+							</h2>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-12">
+							<p>Больше 100 тысяч продавцов на Яндекс Маркете предлагают миллионы товаров на любой вкус и
+								бюджет. Вы найдете все: от техники и одежды до товаров для дома, детских и спортивных
+								вещей.
+								<br><br>На Маркете вы можете:<br>
 
-                    <div class="col-md-3 col-6">
-                        <h4>Рабочие часы</h4>
-                        <ul class="list-unstyled">
-                            <li>Москва</li>
-                            <li>пн-пт: 9:00 - 18:00</li>
-                        </ul>
-                    </div>
+								<br><mark>Выбирать товары:</mark> сравнивайте характеристики, читайте отзывы, смотрите
+								рейтинги продавцов и советы экспертов.
+								<br><mark>Покупать быстро:</mark> оформляйте заказ в пару кликов через сайт или
+								приложение, оплачивайте онлайн или при получении.
+								<br><mark>Получать заказы как вам удобно:</mark> курьером домой, по клику, в пункт
+								выдачи, постамат или отделение Почты России.
+								<br><mark>Экономить:</mark> участвуйте в акциях, применяйте промокоды и копите баллы
+								Плюса, следите за скидками.
+								<br><mark>Покупать с уверенностью:</mark> если что-то пойдет не так, поможем вернуть
+								деньги или решить вопрос.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
 
-                    <div class="col-md-3 col-6">
-                        <h4>Контакты</h4>
-                        <ul class="list-unstyled">
-                            <li><a href="tel:1234567890">123-456-7890</a></li>
-                            <li><a href="tel:0987654321">098-765-4321</a></li>
-                            <li><a href="mailto:info@tehnodom.ru">info@tehnodom.ru</a></li>
-                        </ul>
-                    </div>
+		</main>
 
-                    <div class="col-md-3 col-6">
-                        <h4>Наши социальные сети</h4>
-                        <ul class="footer-icons">
-                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </footer>
-    </div>
+		<footer class="footer" id="footer">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-3 col-6">
+						<h4>Информация</h4>
+						<ul class="list-unstyled">
+							<li><a href="index.html">Главная</a></li>
+							<li><a href="#about">О нас</a></li>
+							<li><a href="#footer">Контакты</a></li>
+						</ul>
+					</div>
 
-    <button id="top">
-        <i class="fa-solid fa-angles-up"></i>
-    </button>
+					<div class="col-md-3 col-6">
+						<h4>Рабочие часы</h4>
+						<ul class="list-unstyled">
+							<li>Москва</li>
+							<li>пн-пт: 9:00 - 18:00</li>
+						</ul>
+					</div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/owlcarousel/owl.carousel.min.js"></script>
-    <script src="/assets/js/main.js"></script>
-    <script src="/assets/js/cart.js"></script>
-    <script src="/assets/js/checkout.js"></script>
+					<div class="col-md-3 col-6">
+						<h4>Контакты</h4>
+						<ul class="list-unstyled">
+							<li><a href="tel:1234567890">123-456-7890</a></li>
+							<li><a href="tel:0987654321">098-765-4321</a></li>
+							<li><a href="mailto:info@tehnodom.ru">info@tehnodom.ru</a></li>
+						</ul>
+					</div>
 
-    <!-- Модальное окно оформления заказа -->
-    <div class="modal fade" id="checkoutModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
+					<div class="col-md-3 col-6">
+						<h4>Наши социальные сети</h4>
+						<ul class="footer-icons">
+							<li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+							<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+							<li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
 
-                <form id="orderForm" novalidate>
+	<button id="top">
+		<i class="fa-solid fa-angles-up"></i>
+	</button>
 
-                    <div class="modal-header">
-                        <h5 class="modal-title">Оформление заказа</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="assets/owlcarousel/owl.carousel.min.js"></script>
+	<script src="/assets/js/main.js"></script>
+	<script src="/assets/js/cart.js"></script>
+	<script src="/assets/js/checkout.js"></script>
 
-                    <div class="modal-body">
+	<!-- Модальное окно оформления заказа -->
+	<div class="modal fade" id="checkoutModal" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
 
-                        <div class="mb-3">
-                            <label class="form-label">ФИО <span class="text-danger">*</span></label>
-                            <input type="text" id="fullname" name="fullname" class="form-control"
-                                placeholder="Иванов Иван Иванович" required>
-                        </div>
+				<form id="orderForm" novalidate>
 
-                        <div class="mb-3">
-                            <label class="form-label">Телефон <span class="text-danger">*</span></label>
-                            <input type="tel" id="phone" name="phone" class="form-control"
-                                placeholder="+7 (999) 123-45-67" required>
-                        </div>
+					<div class="modal-header">
+						<h5 class="modal-title">Оформление заказа</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+					</div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" id="email" name="email" class="form-control"
-                                placeholder="example@mail.ru" required>
-                            <div class="form-text">На этот адрес придёт подтверждение заказа</div>
-                        </div>
+					<div class="modal-body">
 
-                        <div class="mb-3">
-                            <label class="form-label">Адрес доставки <span class="text-danger">*</span></label>
-                            <textarea id="address" name="address" class="form-control" rows="3"
-                                placeholder="Город, улица, дом, квартира" required></textarea>
-                        </div>
+						<div class="mb-3">
+							<label class="form-label">ФИО <span class="text-danger">*</span></label>
+							<input type="text" id="fullname" name="fullname" class="form-control"
+								placeholder="Иванов Иван Иванович" required>
+						</div>
 
-                        <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="consentCheck" name="consent" value="1"
-                                required>
-                            <label class="form-check-label" for="consentCheck">
-                                Я даю согласие на обработку персональных данных
-                                <span class="text-danger">*</span>
-                            </label>
-                            <div class="form-text">
-                                <small>Ваши данные используются только для обработки заказа и не передаются третьим
-                                    лицам.</small>
-                            </div>
-                        </div>
+						<div class="mb-3">
+							<label class="form-label">Телефон <span class="text-danger">*</span></label>
+							<input type="tel" id="phone" name="phone" class="form-control"
+								placeholder="+7 (999) 123-45-67" required>
+						</div>
 
-                        <div class="text-muted small">
-                            <span class="text-danger">*</span> — поля, обязательные для заполнения
-                        </div>
+						<div class="mb-3">
+							<label class="form-label">Email <span class="text-danger">*</span></label>
+							<input type="email" id="email" name="email" class="form-control"
+								placeholder="example@mail.ru" required>
+							<div class="form-text">На этот адрес придёт подтверждение заказа</div>
+						</div>
 
-                        <div id="formMessage" class="mt-3" style="display: none;"></div>
+						<div class="mb-3">
+							<label class="form-label">Адрес доставки <span class="text-danger">*</span></label>
+							<textarea id="address" name="address" class="form-control" rows="3"
+								placeholder="Город, улица, дом, квартира" required></textarea>
+						</div>
 
-                    </div>
+						<div class="mb-3 form-check">
+							<input type="checkbox" class="form-check-input" id="consentCheck" name="consent" value="1"
+								required>
+							<label class="form-check-label" for="consentCheck">
+								Я даю согласие на обработку персональных данных
+								<span class="text-danger">*</span>
+							</label>
+							<div class="form-text">
+								<small>Ваши данные используются только для обработки заказа и не передаются третьим
+									лицам.</small>
+							</div>
+						</div>
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                        <button type="submit" class="btn btn-warning" id="submitOrderBtn">
-                            <span id="submitText">Оформить заказ</span>
-                            <span id="submitSpinner" class="spinner-border spinner-border-sm" style="display: none;"
-                                role="status"></span>
-                        </button>
-                    </div>
+						<div class="text-muted small">
+							<span class="text-danger">*</span> — поля, обязательные для заполнения
+						</div>
 
-                </form>
+						<div id="formMessage" class="mt-3" style="display: none;"></div>
 
-            </div>
-        </div>
-    </div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+						<button type="submit" class="btn btn-warning" id="submitOrderBtn">
+							<span id="submitText">Оформить заказ</span>
+							<span id="submitSpinner" class="spinner-border spinner-border-sm" style="display: none;"
+								role="status"></span>
+						</button>
+					</div>
+
+				</form>
+
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

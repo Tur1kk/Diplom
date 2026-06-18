@@ -638,132 +638,132 @@
             renderProducts();
         }
 
-        // ============================================
-        // ОТРИСОВКА ТОВАРОВ
-        // ============================================
+       // ============================================
+// ОТРИСОВКА ТОВАРОВ В КАТАЛОГЕ
+// ============================================
 
-        function renderProducts() {
-            const container = document.getElementById('productsContainer');
-            const paginationContainer = document.getElementById('paginationContainer');
-            
-            const totalItems = currentProducts.length;
-            const totalPages = Math.ceil(totalItems / itemsPerPage);
-            
-            if (currentPage > totalPages) currentPage = totalPages || 1;
-            
-            const start = (currentPage - 1) * itemsPerPage;
-            const end = Math.min(start + itemsPerPage, totalItems);
-            const pageProducts = currentProducts.slice(start, end);
+function renderProducts() {
+    const container = document.getElementById('productsContainer');
+    const paginationContainer = document.getElementById('paginationContainer');
+    
+    const totalItems = currentProducts.length;
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    
+    if (currentPage > totalPages) currentPage = totalPages || 1;
+    
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = Math.min(start + itemsPerPage, totalItems);
+    const pageProducts = currentProducts.slice(start, end);
 
-            if (pageProducts.length === 0) {
-                container.innerHTML = `
-                    <div class="col-12 text-center py-5">
-                        <i class="fa-solid fa-search fa-3x text-muted mb-3 d-block"></i>
-                        <h4>Товары не найдены</h4>
-                        <p class="text-muted">Попробуйте изменить параметры фильтрации</p>
-                        <button class="btn btn-warning" onclick="resetFilters()">Сбросить фильтры</button>
+    if (pageProducts.length === 0) {
+        container.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <i class="fa-solid fa-search fa-3x text-muted mb-3 d-block"></i>
+                <h4>Товары не найдены</h4>
+                <p class="text-muted">Попробуйте изменить параметры фильтрации</p>
+                <button class="btn btn-warning" onclick="resetFilters()">Сбросить фильтры</button>
+            </div>
+        `;
+        paginationContainer.innerHTML = '';
+        return;
+    }
+
+    let html = '';
+    pageProducts.forEach(product => {
+        const offerHtml = (product.hit || product.new) ? `
+            <div class="product-card-offer">
+                ${product.hit ? '<div class="offer-hit">Hit</div>' : ''}
+                ${product.new ? '<div class="offer-new">New</div>' : ''}
+            </div>
+        ` : '';
+
+        const oldPriceHtml = product.oldPrice ? 
+            `<small>${product.oldPrice.toLocaleString()}₽</small>` : '';
+
+        html += `
+            <div class="col-lg-4 col-sm-6 mb-3">
+                <div class="product-card">
+                    ${offerHtml}
+                    <div class="product-thumb">
+                        <a href="product.html"><img src="${product.image}" alt="${product.name}"></a>
                     </div>
-                `;
-                paginationContainer.innerHTML = '';
-                return;
-            }
-
-            let html = '';
-            pageProducts.forEach(product => {
-                const offerHtml = (product.hit || product.new) ? `
-                    <div class="product-card-offer">
-                        ${product.hit ? '<div class="offer-hit">Hit</div>' : ''}
-                        ${product.new ? '<div class="offer-new">New</div>' : ''}
-                    </div>
-                ` : '';
-
-                const oldPriceHtml = product.oldPrice ? 
-                    `<small>${product.oldPrice.toLocaleString()}₽</small>` : '';
-
-                html += `
-                    <div class="col-lg-4 col-sm-6 mb-3">
-                        <div class="product-card">
-                            ${offerHtml}
-                            <div class="product-thumb">
-                                <a href="#"><img src="${product.image}" alt="${product.name}"></a>
+                    <div class="product-details">
+                        <h4>
+                            <a href="product.html">${product.name}</a>
+                        </h4>
+                        <p class="product-excerpt">${product.excerpt}</p>
+                        <div class="product-bottom-details d-flex justify-content-between">
+                            <div class="product-price">
+                                ${oldPriceHtml}
+                                ${product.price.toLocaleString()}₽
                             </div>
-                            <div class="product-details">
-                                <h4>
-                                    <a href="#">${product.name}</a>
-                                </h4>
-                                <p class="product-excerpt">${product.excerpt}</p>
-                                <div class="product-bottom-details d-flex justify-content-between">
-                                    <div class="product-price">
-                                        ${oldPriceHtml}
-                                        ${product.price.toLocaleString()}₽
-                                    </div>
-                                    <div class="product-links">
-                                        <a href="#" class="btn btn-outline-secondary add-to-cart" 
-                                           data-id="${product.id}"
-                                           data-name="${product.name}"
-                                           data-price="${product.price}"
-                                           data-image="${product.image}">
-                                            <i class="fas fa-shopping-cart"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="product-links">
+                                <a href="#" class="btn btn-outline-secondary add-to-cart" 
+                                   data-id="${product.id}"
+                                   data-name="${product.name}"
+                                   data-price="${product.price}"
+                                   data-image="${product.image}">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                `;
-            });
+                </div>
+            </div>
+        `;
+    });
 
-            container.innerHTML = html;
+    container.innerHTML = html;
 
-            // Пагинация
-            if (totalPages > 1) {
-                let paginationHtml = `
-                    <div class="col-12">
-                        <nav aria-label="Page navigation">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
-                                    <a class="page-link" href="#" onclick="goToPage(${currentPage - 1})">←</a>
-                                </li>
-                `;
-
-                for (let i = 1; i <= totalPages; i++) {
-                    paginationHtml += `
-                        <li class="page-item ${i === currentPage ? 'active' : ''}">
-                            <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
+    // Пагинация
+    if (totalPages > 1) {
+        let paginationHtml = `
+            <div class="col-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                            <a class="page-link" href="#" onclick="goToPage(${currentPage - 1})">←</a>
                         </li>
-                    `;
-                }
+        `;
 
-                paginationHtml += `
-                                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
-                                    <a class="page-link" href="#" onclick="goToPage(${currentPage + 1})">→</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                `;
-                paginationContainer.innerHTML = paginationHtml;
-            } else {
-                paginationContainer.innerHTML = '';
-            }
-
-            // Обновляем обработчики для кнопок "Добавить в корзину"
-            document.querySelectorAll('.add-to-cart').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const id = this.dataset.id;
-                    const name = this.dataset.name;
-                    const price = parseFloat(this.dataset.price);
-                    const image = this.dataset.image;
-                    
-                    if (window.addToCart) {
-                        window.addToCart('product_' + id, name, price, image);
-                    } else {
-                        console.warn('Функция addToCart не найдена');
-                    }
-                });
-            });
+        for (let i = 1; i <= totalPages; i++) {
+            paginationHtml += `
+                <li class="page-item ${i === currentPage ? 'active' : ''}">
+                    <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
+                </li>
+            `;
         }
+
+        paginationHtml += `
+                        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                            <a class="page-link" href="#" onclick="goToPage(${currentPage + 1})">→</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        `;
+        paginationContainer.innerHTML = paginationHtml;
+    } else {
+        paginationContainer.innerHTML = '';
+    }
+
+    // Обновляем обработчики для кнопок "Добавить в корзину"
+    document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const id = this.dataset.id;
+            const name = this.dataset.name;
+            const price = parseFloat(this.dataset.price);
+            const image = this.dataset.image;
+            
+            if (window.addToCart) {
+                window.addToCart('product_' + id, name, price, image);
+            } else {
+                console.warn('Функция addToCart не найдена');
+            }
+        });
+    });
+}
 
         function goToPage(page) {
             const totalItems = currentProducts.length;
