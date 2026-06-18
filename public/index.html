@@ -2,718 +2,407 @@
 <html lang="en">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>E-shop :: Home</title>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-	<link rel="stylesheet" href="assets/owlcarousel/owl.carousel.min.css">
-	<link rel="stylesheet" href="assets/owlcarousel/owl.theme.default.min.css">
-	<link rel="stylesheet" href="assets/css/main.css">
-	<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-shop :: Cart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owlcarousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
 
-	<div class="wrapper">
+    <div class="wrapper">
 
-		<header class="header">
+        <header class="header">
+            <div class="header-top py-1">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-6 col-sm-4">
+                            <div class="header-top-phone d-flex align-items-center h-100">
+                                <i class="fa-solid fa-mobile-screen"></i>
+                                <a href="tel:+1234567890" class="ms-2">123-456-7890</a>
+                            </div>
+                        </div>
 
+                        <div class="col-sm-4 d-none d-sm-block">
+                            <ul class="social-icons d-flex justify-content-center">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-brands fa-youtube"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
-			<div class="header-middle bg-white py-4">
-				<div class="container-fluid">
-					<div class="row align-items-center">
+                        <div class="col-6 col-sm-4">
+                            <div class="header-top-account d-flex justify-content-end">
+                                <div class="btn-group me-2">
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            Account
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="#">Sign In</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#">Sign Up</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
 
-						<div class="col-sm-6">
-							<a href="index.html" class="header-logo h1">ТехноДом</a>
-						</div>
+                                <div class="btn-group">
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm dropdown-toggle" type="button"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            EN
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <a class="dropdown-item" href="#">RU</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="#">DE</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- ./header-top-account -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./header-top -->
 
-						<div class="col-sm-6 mt-2 mt-md-0">
-							<form action="">
-								<div class="input-group">
-									<input type="text" class="form-control" name="s" placeholder="Поиск..."
-										aria-label="Searching..." aria-describedby="button-search">
-									<button class="btn btn-outline-warning" type="submit" id="button-search">
-										<i class="fa-solid fa-magnifying-glass"></i>
-									</button>
-								</div>
-							</form>
-						</div>
+            <div class="header-middle bg-white py-4">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
 
-					</div>
-				</div>
+                        <div class="col-sm-6">
+                            <a href="index.html" class="header-logo h1">E-Shop</a>
+                        </div>
 
-			</div>
-			<!-- ./header-middle -->
-		</header>
+                        <div class="col-sm-6 mt-2 mt-md-0">
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="s" placeholder="Searching..."
+                                        aria-label="Searching..." aria-describedby="button-search">
+                                    <button class="btn btn-outline-warning" type="submit" id="button-search">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
 
-		<div class="header-bottom sticky-top" id="header-nav">
-			<nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-				<div class="container-fluid">
-					<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-						data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
-						aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-					<div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
-						aria-labelledby="offcanvasNavbarLabel">
-						<div class="offcanvas-header">
-							<h5 class="offcanvas-title" id="offcanvasNavbarLabel">Catalog</h5>
-							<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
-								aria-label="Close"></button>
-						</div>
-						<div class="offcanvas-body">
-							<ul class="navbar-nav">
-								<li class="nav-item">
-									<a class="nav-link active" aria-current="page" href="index.html">Главная</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">О нас</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Контакты</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Оплата</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">Доставка</a>
-								</li>
-								<li class="nav-item dropdown">
-									<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-										aria-expanded="false" data-bs-auto-close="outside">
-										Каталог
-									</a>
-									<ul class="dropdown-menu dropdown-menu-end">
-										<li>
-											<a class="dropdown-item" href="category.html">ПК и ноутбуки</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="category.html">Смартфоны</a>
-										</li>
-										<li class="nav-item dropend">
-											<a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-												data-bs-auto-close="outside">Бытовая техника</a>
-											<ul class="dropdown-menu dropdown-menu-end">
-												<li>
-													<a class="dropdown-item" href="category.html">Для кухни</a>
-												</li>
-												<li>
-													<a class="dropdown-item" href="category.html">Для ванной</a>
-												</li>
-												<li>
-													<a class="dropdown-item" href="category.html">Остальное</a>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<a class="dropdown-item" href="category.html">ТВ и консоли</a>
-										</li>
-										<li>
-											<a class="dropdown-item" href="category.html">Умный дом</a>
-										</li>
-									</ul>
-								</li>
-							</ul>
-						</div>
-					</div>
+                    </div>
+                </div>
 
+            </div>
+            <!-- ./header-middle -->
+        </header>
 
-					<div>
-						<button class="btn p-1" id="cart-open" type="button" data-bs-toggle="offcanvas2"
-							data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-							<i class="fa-solid fa-cart-shopping"></i>
-							<span class="badge text-bg-warning cart-badge bg-warning rounded-circle">5</span>
-						</button>
-					</div>
+        <div class="header-bottom sticky-top" id="header-nav">
+            <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
+                        aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Catalog</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Payment</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Delivery</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false" data-bs-auto-close="outside">
+                                        Catalog
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <a class="dropdown-item" href="category.html">Shoes</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="category.html">Jeans</a>
+                                        </li>
+                                        <li class="nav-item dropend">
+                                            <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                data-bs-auto-close="outside">Sportswear</a>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li>
+                                                    <a class="dropdown-item" href="category.html">Men's Sportswear</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="category.html">Women's Sportswear</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="category.html">Baby's Sportswear</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="category.html">Coat</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="category.html">Shirts</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-				</div>
-			</nav>
-		</div>
-		<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
-			<div class="offcanvas-header">
-				<h5 class="offcanvas-title" id="offcanvasCartLabel">Корзина</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-			</div>
-			<div class="offcanvas-body">
-				<div class="table-responsive">
-					<table class="table offcanvasCart-table">
-						<tbody>
-							<tr>
-								<td class="product-img-td"><a href="product.html"><img src="assets/img/products/1.jpg"
-											alt=""></a>
-								</td>
-								<td><a href="product.html">Смартфон Apple iPhone 15 128 ГБ, Dual еSIM, черный black esim
-										esim</a></td>
-								<td>999₽</td>
-								<td>&times;1</td>
-								<td><button class="btn btn-danger"><i class="fa-regular fa-circle-xmark"></i></button>
-								</td>
-							</tr>
-							<tr>
-								<td class="product-img-td"><a href="product.html"><img src="assets/img/products/2.jpg"
-											alt=""></a>
-								</td>
-								<td><a href="product.html">Беспроводные TWS-наушники Apple AirPods 4, белый (Без
-										активного шумоподавления)</a></td>
-								<td>999₽</td>
-								<td>&times;2</td>
-								<td><button class="btn btn-danger"><i class="fa-regular fa-circle-xmark"></i></button>
-								</td>
-							</tr>
-							<tr>
-								<td class="product-img-td"><a href="product.html"><img src="assets/img/products/3.jpg"
-											alt=""></a>
-								</td>
-								<td><a href="product.html">Умная колонка Новая Яндекс Станция Лайт 2 с Алисой на YaGPT
-										фиолетовая</a></td>
-								<td>999₽</td>
-								<td>&times;1</td>
-								<td><button class="btn btn-danger"><i class="fa-regular fa-circle-xmark"></i></button>
-								</td>
-							</tr>
-						</tbody>
-						<tfoot>
-							<tr>
-								<td colspan="4" class="text-end">Всего:</td>
-								<td>999₽</td>
-							</tr>
-						</tfoot>
-					</table>
-				</div>
+                    <div>
+                        <a href="#" class="btn p-1">
+                            <i class="fa-solid fa-heart"></i>
+                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">0</span>
+                        </a>
 
-				<div class="text-end mt-3">
-					<button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#checkoutModal">
-						Перейти к оплате
-					</button>
-					<a href="#" class="btn btn-outline-secondary">Выход</a>
-				</div>
-			</div>
-		</div>
+                        <button class="btn p-1" id="cart-open" type="button" data-bs-toggle="offcanvas2"
+                            data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">0</span>
+                        </button>
+                    </div>
 
-		<main class="main">
+                </div>
+            </nav>
+        </div>
+        <!-- ./header-bottom -->
 
-			<div id="carousel" class="carousel slide carousel-fade">
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"
-						aria-current="true" aria-label="Slide 1"></button>
-					<button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-					<button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-					<button type="button" data-bs-target="#carousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-					<button type="button" data-bs-target="#carousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-				</div>
-				<div class="carousel-inner">
-					<div class="carousel-item active">
-						<img src="assets/img/slider/1.jpg" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h2>Первый слайд</h2>
-							<p>Некоторый репрезентативный контент-заполнитель для первого слайда.</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img src="assets/img/slider/2.jpg" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h2>Второй слайд</h2>
-							<p>Некоторый репрезентативный контент-заполнитель для второго слайда.</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img src="assets/img/slider/3.jpg" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h2>Третий слайд</h2>
-							<p>Некоторый репрезентативный контент-заполнитель для третьего слайда.</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img src="assets/img/slider/4.jpg" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h2>Четвертый слайд</h2>
-							<p>Некоторый репрезентативный контент-заполнитель для четвертого слайда.</p>
-						</div>
-					</div>
-					<div class="carousel-item">
-						<img src="assets/img/slider/5.jpg" class="d-block w-100" alt="...">
-						<div class="carousel-caption d-none d-md-block">
-							<h2>Пятый слайд</h2>
-							<p>Некоторый репрезентативный контент-заполнитель для пятого слайда.</p>
-						</div>
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasCartLabel">Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <div class="table-responsive">
+                    <table class="table offcanvasCart-table">
+                        <tbody>
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-muted">
+                                    <i class="fa-solid fa-cart-plus fa-2x d-block mb-2"></i>
+                                    Корзина пуста
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4" class="text-end">Total:</td>
+                                <td>$0</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
 
-			<section class="advantages">
-				<div class="container-fluid">
-					<div class="row mb-5">
-						<div class="col-12">
-							<h2 class="section-title">
-								<span>Наши преимущества</span>
-							</h2>
-						</div>
-					</div>
+                <div class="text-end mt-3">
+                    <a href="cart.html" class="btn btn-outline-warning">Перейти в корзину</a>
+                    <button class="btn btn-outline-secondary" onclick="clearCart()">Очистить</button>
+                </div>
+            </div>
+        </div>
 
-					<div class="row gy-3 items">
-						<div class="col-lg-3 col-sm-6">
-							<div class="item">
-								<p>
-									<i class="fas fa-shipping-fast"></i>
-								</p>
-								<p>Прямые поставки от производителей брендов</p>
-							</div>
-						</div>
+        <main class="main">
 
-						<div class="col-lg-3 col-sm-6">
-							<div class="item">
-								<p>
-									<i class="fas fa-cubes"></i>
-								</p>
-								<p>Широкий ассортимент товаров. Более 10 тыс. наименований</p>
-							</div>
-						</div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="breadcrumbs">
+                            <ul>
+                                <li><a href="index.html">Home</a></li>
+                                <li><span>Корзина</span></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
 
-						<div class="col-lg-3 col-sm-6">
-							<div class="item">
-								<p>
-									<i class="fas fa-hand-holding-usd"></i>
-								</p>
-								<p>Приятные и конкурентные цены</p>
-							</div>
-						</div>
+            <div class="container-fluid">
+                <div class="row">
 
-						<div class="col-lg-3 col-sm-6">
-							<div class="item">
-								<p>
-									<i class="fa-solid fa-user-graduate"></i>
-								</p>
-								<p>Консультации от профессионалов</p>
-							</div>
-						</div>
-					</div>
+                    <div class="col-lg-8 mb-3">
+                        <div class="cart-content p-3 h-100 bg-white">
 
-				</div>
-			</section>
+                            <div class="table-responsive">
+                                <table class="table align-middle table-hover">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Фото</th>
+                                            <th>Товар</th>
+                                            <th>Цена</th>
+                                            <th>Кол-во</th>
+                                            <th><i class="fa-regular fa-trash-can"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="5" class="text-center py-5">
+                                                <i class="fa-solid fa-cart-plus fa-3x d-block mb-3 text-muted"></i>
+                                                <h4>Корзина пуста</h4>
+                                                <p class="text-muted">Добавьте товары в корзину, чтобы оформить заказ</p>
+                                                <a href="index.html" class="btn btn-warning">Вернуться к покупкам</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="text-end">
+                                                <button class="btn btn-outline-warning" onclick="updateCartPage()">
+                                                    <i class="fa-solid fa-rotate"></i> Обновить
+                                                </button>
+                                                <button class="btn btn-outline-danger ms-2" onclick="clearCart()">
+                                                    <i class="fa-solid fa-trash"></i> Очистить
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
 
-			<section class="featured-products">
-				<div class="container-fluid">
-					<div class="row mb-5">
-						<div class="col-12">
-							<h2 class="section-title">
-								<span>Рекомендуемые товары</span>
-							</h2>
-						</div>
-					</div>
+                        </div>
+                    </div>
 
-					<div class="row">
-						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-							<div class="product-card">
-								<div class="product-card-offer">
-									<div class="offer-hit">Hit</div>
-									<div class="offer-new">New</div>
-								</div>
-								<div class="product-thumb">
-									<a href="#"><img src="assets/img/products/1.jpg" alt=""></a>
-								</div>
-								<div class="product-details">
-									<h4>
-										<a href="#">Смартфон Apple iPhone 15 128 ГБ, Dual еSIM, черный black esim
-											esim</a>
-									</h4>
-									<p class="product-excerpt"> Встречайте iPhone 15 - ваш идеальный спутник в мире
-										безграничных возможностей!</p>
-									<div class="product-bottom-details d-flex justify-content-between">
-										<div class="product-price">
-											<small>84 781₽</small>
-											48 562₽
-										</div>
-										<div class="product-links">
-											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
-													class="fas fa-shopping-cart"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                    <div class="col-lg-4 mb-3">
 
-						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-							<div class="product-card">
-								<div class="product-card-offer">
-									<div class="offer-hit">Hit</div>
-								</div>
-								<div class="product-thumb">
-									<a href="#"><img src="assets/img/products/2.jpg" alt=""></a>
-								</div>
-								<div class="product-details">
-									<h4>
-										<a href="#">Беспроводные TWS-наушники Apple AirPods 4, белый (Без активного
-											шумоподавления)</a>
-									</h4>
-									<p class="product-excerpt">Беспроводные TWS-наушники Apple AirPods 4 представляют
-										собой высококачественное устройство, разработанное для обеспечения комфортного
-										прослушивания музыки и общения. </p>
-									<div class="product-bottom-details d-flex justify-content-between">
-										<div class="product-price">
-											10 250₽
-										</div>
-										<div class="product-links">
-											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
-													class="fas fa-shopping-cart"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                        <div class="cart-summary p-3 sidebar">
+                            <h5 class="section-title"><span>Итог корзины</span></h5>
 
-						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-							<div class="product-card">
-								<div class="product-card-offer">
-									<!-- <div class="offer-hit">Hit</div>
-									<div class="offer-new">New</div> -->
-								</div>
-								<div class="product-thumb">
-									<a href="#"><img src="assets/img/products/3.jpg" alt=""></a>
-								</div>
-								<div class="product-details">
-									<h4>
-										<a href="#">Умная колонка Новая Яндекс Станция Лайт 2 с Алисой на YaGPT
-											фиолетовая</a>
-									</h4>
-									<p class="product-excerpt">Яндекс Станция Лайт 2 — новая умная колонка для детей и
-										тех, кто не перестаёт ими быть.</p>
-									<div class="product-bottom-details d-flex justify-content-between">
-										<div class="product-price">
-											5 967₽
-										</div>
-										<div class="product-links">
-											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
-													class="fas fa-shopping-cart"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                            <div class="d-flex justify-content-between my-3">
+                                <h6>Сумма</h6>
+                                <h6 class="subtotal">$0</h6>
+                            </div>
 
-						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-							<div class="product-card">
-								<div class="product-card-offer">
-									<div class="offer-hit">Hit</div>
-								</div>
-								<div class="product-thumb">
-									<a href="#"><img src="assets/img/products/4.jpg" alt=""></a>
-								</div>
-								<div class="product-details">
-									<h4>
-										<a href="#">Портативная акустика JBL Charge 6, 45 Вт, IP68, 2-Way Speaker
-											System, Черный</a>
-									</h4>
-									<p class="product-excerpt">Портативная акустика JBL Charge 6 представляет собой
-										современное аудиоустройство, сочетающее в себе мощное звучание, прочный дизайн и
-										расширенные возможности подключения.</p>
-									<div class="product-bottom-details d-flex justify-content-between">
-										<div class="product-price">
-											<small>31 641₽</small>
-											12 689₽
-										</div>
-										<div class="product-links">
-											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
-													class="fas fa-shopping-cart"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                            <div class="d-flex justify-content-between my-3">
+                                <h6>Доставка</h6>
+                                <h6 class="shipping">$0</h6>
+                            </div>
 
-						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-							<div class="product-card">
-								<div class="product-card-offer">
-									<div class="offer-hit">Hit</div>
-									<div class="offer-new">New</div>
-								</div>
-								<div class="product-thumb">
-									<a href="#"><img src="assets/img/products/5.jpg" alt=""></a>
-								</div>
-								<div class="product-details">
-									<h4>
-										<a href="#">55” Телевизор Tuvio 4K ULTRA HD DLED Frameless на платформе YaOS,
-											TD55UFBHH12, черный</a>
-									</h4>
-									<p class="product-excerpt">Tuvio — бытовая техника и электроника от Яндекс Фабрики
-										для комфортной жизни дома.</p>
-									<div class="product-bottom-details d-flex justify-content-between">
-										<div class="product-price">
-											<small>36 042₽</small>
-											25 604₽
-										</div>
-										<div class="product-links">
-											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
-													class="fas fa-shopping-cart"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                            <div class="d-flex justify-content-between my-3">
+                                <h6>Скидка</h6>
+                                <h6 class="coupon">$0</h6>
+                            </div>
 
-						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-							<div class="product-card">
-								<div class="product-card-offer">
-									<div class="offer-hit">Hit</div>
-									<div class="offer-new">New</div>
-								</div>
-								<div class="product-thumb">
-									<a href="#"><img src="assets/img/products/6.jpg" alt=""></a>
-								</div>
-								<div class="product-details">
-									<h4>
-										<a href="#">Быстрое зарядное устройство COMMO Core 20 USB-C, 20 Вт,
-											Серо-зелёный</a>
-									</h4>
-									<p class="product-excerpt">Commo — это бренд мобильных аксессуаров и электроники,
-										придуманный в Яндекс Фабрике.</p>
-									<div class="product-bottom-details d-flex justify-content-between">
-										<div class="product-price">
-											<small>1 001₽</small>
-											712₽
-										</div>
-										<div class="product-links">
-											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
-													class="fas fa-shopping-cart"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                            <button class="btn btn-link px-0 btn-coupon" data-bs-toggle="collapse"
+                                data-bs-target="#collapseCoupon">
+                                Есть купон?
+                            </button>
 
-						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-							<div class="product-card">
-								<div class="product-card-offer">
-									<div class="offer-hit">Hit</div>
-									<div class="offer-new">New</div>
-								</div>
-								<div class="product-thumb">
-									<a href="#"><img src="assets/img/products/7.jpg" alt=""></a>
-								</div>
-								<div class="product-details">
-									<h4>
-										<a href="#">Смартфон Apple iPhone 17 256GB Lavender (Фиолетовый) Dual ESim
-											2025</a>
-									</h4>
-									<p class="product-excerpt">Современный и стильный смартфон Apple iPhone 17</p>
-									<div class="product-bottom-details d-flex justify-content-between">
-										<div class="product-price">
-											<small>106 284₽</small>
-											70 291₽
-										</div>
-										<div class="product-links">
-											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
-													class="fas fa-shopping-cart"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                            <div class="input-group collapse" id="collapseCoupon">
+                                <input type="text" class="form-control" placeholder="Код купона" id="couponInput">
+                                <button class="btn btn-warning" onclick="applyCoupon()">
+                                    <i class="fa-regular fa-circle-check"></i>
+                                </button>
+                            </div>
 
-						<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
-							<div class="product-card">
-								<div class="product-card-offer">
-									<div class="offer-hit">Hit</div>
-									<div class="offer-new">New</div>
-								</div>
-								<div class="product-thumb">
-									<a href="#"><img src="assets/img/products/8.jpg" alt=""></a>
-								</div>
-								<div class="product-details">
-									<h4>
-										<a href="#">Игровая приставка Sony PlayStation 5 Slim Digital Edition, без
-											дисковода, 825 ГБ SSD, без игр, белый</a>
-									</h4>
-									<p class="product-excerpt"></p>
-									<div class="product-bottom-details d-flex justify-content-between">
-										<div class="product-price">
-											<small>143 264₽</small>
-											43 893₽
-										</div>
-										<div class="product-links">
-											<a href="#" class="btn btn-outline-secondary add-to-cart"><i
-													class="fas fa-shopping-cart"></i></a>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                            <div class="d-flex justify-content-between my-3 border-top pt-3">
+                                <h3>Итого</h3>
+                                <h3 class="total">$0</h3>
+                            </div>
 
-					</div>
-				</div>
-			</section>
+                            <div class="d-grid">
+                                <button class="btn btn-warning" onclick="checkout()">Оформить заказ</button>
+                            </div>
 
-			<section class="about-us" id="about">
-				<div class="container fluid">
-					<div class="row mb-5">
-						<div class="col-12">
-							<h2 class="section-title">
-								<span>О нас</span>
-							</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12">
-							<p>Больше 100 тысяч продавцов на Яндекс Маркете предлагают миллионы товаров на любой вкус и
-								бюджет. Вы найдете все: от техники и одежды до товаров для дома, детских и спортивных
-								вещей.
-								<br><br>На Маркете вы можете:<br>
+                        </div>
 
-								<br><mark>Выбирать товары:</mark> сравнивайте характеристики, читайте отзывы, смотрите
-								рейтинги продавцов и советы экспертов.
-								<br><mark>Покупать быстро:</mark> оформляйте заказ в пару кликов через сайт или
-								приложение, оплачивайте онлайн или при получении.
-								<br><mark>Получать заказы как вам удобно:</mark> курьером домой, по клику, в пункт
-								выдачи, постамат или отделение Почты России.
-								<br><mark>Экономить:</mark> участвуйте в акциях, применяйте промокоды и копите баллы
-								Плюса, следите за скидками.
-								<br><mark>Покупать с уверенностью:</mark> если что-то пойдет не так, поможем вернуть
-								деньги или решить вопрос.
-							</p>
-						</div>
-					</div>
-				</div>
-			</section>
+                    </div>
 
-		</main>
+                </div>
+            </div>
 
-		<footer class="footer" id="footer">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-3 col-6">
-						<h4>Информация</h4>
-						<ul class="list-unstyled">
-							<li><a href="index.html">Главная</a></li>
-							<li><a href="#">Оплата</a></li>
-							<li><a href="#">Доставка</a></li>
-							<li><a href="#">Контакты</a></li>
-						</ul>
-					</div>
+        </main>
 
-					<div class="col-md-3 col-6">
-						<h4>Рабочие часы</h4>
-						<ul class="list-unstyled">
-							<li>Москва</li>
-							<li>пн-пт: 9:00 - 18:00</li>
-						</ul>
-					</div>
+        <footer class="footer" id="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-6">
+                        <h4>Information</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="#">Payment</a></li>
+                            <li><a href="#">Delivery</a></li>
+                            <li><a href="#">Contacts</a></li>
+                        </ul>
+                    </div>
 
-					<div class="col-md-3 col-6">
-						<h4>Контакты</h4>
-						<ul class="list-unstyled">
-							<li><a href="tel:1234567890">123-456-7890</a></li>
-							<li><a href="tel:0987654321">098-765-4321</a></li>
-						</ul>
-					</div>
+                    <div class="col-md-3 col-6">
+                        <h4>Working hours</h4>
+                        <ul class="list-unstyled">
+                            <li>Paris, str. Bretan</li>
+                            <li>mon-fri: 9:00 - 18:00</li>
+                        </ul>
+                    </div>
 
-					<div class="col-md-3 col-6">
-						<h4>Наши социальные сети</h4>
-						<ul class="footer-icons">
-							<li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-							<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</footer>
-	</div>
+                    <div class="col-md-3 col-6">
+                        <h4>Contacts</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="tel:1234567890">123-456-7890</a></li>
+                            <li><a href="tel:0987654321">098-765-4321</a></li>
+                        </ul>
+                    </div>
 
-	<button id="top">
-		<i class="fa-solid fa-angles-up"></i>
-	</button>
+                    <div class="col-md-3 col-6">
+                        <h4>Follow us</h4>
+                        <ul class="footer-icons">
+                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="/assets/js/main.js"></script>
-	<script src="/assets/js/checkout.js"></script>
+    <button id="top">
+        <i class="fa-solid fa-angles-up"></i>
+    </button>
 
-	<!-- Модальное окно оформления заказа -->
-	<div class="modal fade" id="checkoutModal" tabindex="-1">
-		<div class="modal-dialog">
-			<div class="modal-content">
-
-				<form id="orderForm" novalidate>
-
-					<div class="modal-header">
-						<h5 class="modal-title">Оформление заказа</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-					</div>
-
-					<div class="modal-body">
-
-						<div class="mb-3">
-							<label class="form-label">ФИО <span class="text-danger">*</span></label>
-							<input type="text" id="fullname" name="fullname" class="form-control"
-								placeholder="Иванов Иван Иванович" required>
-						</div>
-
-						<div class="mb-3">
-							<label class="form-label">Телефон <span class="text-danger">*</span></label>
-							<input type="tel" id="phone" name="phone" class="form-control"
-								placeholder="+7 (999) 123-45-67" required>
-						</div>
-
-						<div class="mb-3">
-							<label class="form-label">Email <span class="text-danger">*</span></label>
-							<input type="email" id="email" name="email" class="form-control"
-								placeholder="example@mail.ru" required>
-							<div class="form-text">На этот адрес придёт подтверждение заказа</div>
-						</div>
-
-						<div class="mb-3">
-							<label class="form-label">Адрес доставки <span class="text-danger">*</span></label>
-							<textarea id="address" name="address" class="form-control" rows="3"
-								placeholder="Город, улица, дом, квартира" required></textarea>
-						</div>
-
-						<div class="mb-3 form-check">
-							<input type="checkbox" class="form-check-input" id="consentCheck" name="consent" value="1"
-								required>
-							<label class="form-check-label" for="consentCheck">
-								Я даю согласие на обработку персональных данных
-								<span class="text-danger">*</span>
-							</label>
-							<div class="form-text">
-								<small>Ваши данные используются только для обработки заказа и не передаются третьим
-									лицам.</small>
-							</div>
-						</div>
-
-						<div class="text-muted small">
-							<span class="text-danger">*</span> — поля, обязательные для заполнения
-						</div>
-
-						<!-- Блок для сообщений -->
-						<div id="formMessage" class="mt-3" style="display: none;"></div>
-
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-						<button type="submit" class="btn btn-warning" id="submitOrderBtn">
-							<span id="submitText">Оформить заказ</span>
-							<span id="submitSpinner" class="spinner-border spinner-border-sm" style="display: none;"
-								role="status"></span>
-						</button>
-					</div>
-
-				</form>
-
-			</div>
-		</div>
-	</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/owlcarousel/owl.carousel.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/cart.js"></script>
 </body>
 
 </html>
