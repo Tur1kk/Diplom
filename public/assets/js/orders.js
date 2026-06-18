@@ -1,6 +1,5 @@
 /**
  * Orders Management
- * Загрузка и отображение заказов
  */
 
 // Загружаем заказы при загрузке страницы
@@ -42,7 +41,7 @@ function fetchOrders() {
         })
         .then(orders => {
             console.log('📊 Получено заказов:', orders.length);
-            console.log('📊 Данные заказов:', orders);
+            console.log('📊 Данные заказов:', JSON.stringify(orders, null, 2));
             renderOrders(orders);
         })
         .catch(error => {
@@ -66,8 +65,11 @@ function fetchOrders() {
 function renderOrders(orders) {
     const container = document.getElementById('ordersContainer');
     
-    console.log('🎨 Отрисовка заказов, контейнер:', container);
-    console.log('🎨 Получено заказов:', orders);
+    console.log('🎨 Начинаем отрисовку...');
+    console.log('🎨 Контейнер найден:', !!container);
+    console.log('🎨 Заказы:', orders);
+    console.log('🎨 Тип orders:', typeof orders);
+    console.log('🎨 orders.length:', orders ? orders.length : 'orders is null/undefined');
     
     if (!container) {
         console.error('❌ Контейнер не найден!');
