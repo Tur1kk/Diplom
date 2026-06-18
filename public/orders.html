@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-shop :: Заказы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/orders.css">
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header">
+            <div class="header-middle bg-white py-4">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        <div class="col-sm-6">
+                            <a href="index.html" class="header-logo h1">ТехноДом</a>
+                        </div>
+                        <div class="col-sm-6 mt-2 mt-md-0">
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="s" placeholder="Поиск..."
+                                        aria-label="Searching..." aria-describedby="button-search">
+                                    <button class="btn btn-outline-warning" type="submit" id="button-search">
+                                        <i class="fa-solid fa-magnifying-glass"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="header-bottom sticky-top" id="header-nav">
+            <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                        data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
+                        aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Catalog</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="index.html">Главная</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="orders.html">Заказы</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">О нас</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Контакты</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Оплата</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Доставка</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                        aria-expanded="false" data-bs-auto-close="outside">
+                                        Каталог
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="category.html">ПК и ноутбуки</a></li>
+                                        <li><a class="dropdown-item" href="category.html">Смартфоны</a></li>
+                                        <li class="nav-item dropend">
+                                            <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
+                                                data-bs-auto-close="outside">Бытовая техника</a>
+                                            <ul class="dropdown-menu dropdown-menu-end">
+                                                <li><a class="dropdown-item" href="category.html">Для кухни</a></li>
+                                                <li><a class="dropdown-item" href="category.html">Для ванной</a></li>
+                                                <li><a class="dropdown-item" href="category.html">Остальное</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a class="dropdown-item" href="category.html">ТВ и консоли</a></li>
+                                        <li><a class="dropdown-item" href="category.html">Умный дом</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div>
+                        <button class="btn p-1" id="cart-open" type="button">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">5</span>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <main class="main">
+            <section class="orders-section">
+                <div class="container-fluid">
+                    <div class="row mb-4">
+                        <div class="col-12 d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <h2 class="section-title">
+                                <span>Список заказов</span>
+                            </h2>
+                            <div>
+                                <button class="btn btn-outline-warning me-2" onclick="fetchOrders()">
+                                    <i class="fa-solid fa-rotate"></i> Обновить
+                                </button>
+                                <a href="index.html" class="btn btn-warning">
+                                    <i class="fa-solid fa-arrow-left"></i> На главную
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div id="ordersContainer">
+                                <!-- Загрузка -->
+                                <div class="loading-spinner">
+                                    <div class="spinner-border text-warning" role="status">
+                                        <span class="visually-hidden">Загрузка...</span>
+                                    </div>
+                                    <p class="mt-2 text-muted">Загрузка заказов...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer" id="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-6">
+                        <h4>Информация</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="#">Оплата</a></li>
+                            <li><a href="#">Доставка</a></li>
+                            <li><a href="#">Контакты</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <h4>Рабочие часы</h4>
+                        <ul class="list-unstyled">
+                            <li>Москва</li>
+                            <li>пн-пт: 9:00 - 18:00</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <h4>Контакты</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="tel:1234567890">123-456-7890</a></li>
+                            <li><a href="tel:0987654321">098-765-4321</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3 col-6">
+                        <h4>Наши социальные сети</h4>
+                        <ul class="footer-icons">
+                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <button id="top">
+        <i class="fa-solid fa-angles-up"></i>
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/orders.js"></script>
+
+</body>
+
+</html>
