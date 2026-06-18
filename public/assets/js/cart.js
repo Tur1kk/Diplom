@@ -70,7 +70,7 @@ function addToCart(productId, name, price, image, maxQuantity = 99) {
     }
 }
 
-// Удаление товара из корзины
+// Удаление товара из корзины (оставляем для совместимости, но не используем)
 function removeFromCart(productId) {
     cart = cart.filter(item => item.id !== productId);
     saveCart();
@@ -80,6 +80,7 @@ function removeFromCart(productId) {
 // Изменение количества товара
 function updateQuantity(productId, newQuantity) {
     if (newQuantity < 1) {
+        // Если количество меньше 1 - удаляем товар
         removeFromCart(productId);
         return;
     }
@@ -111,7 +112,7 @@ function clearCart() {
     }
 }
 
-// Обновление корзины в offcanvas
+// Обновление корзины в offcanvas (БЕЗ КНОПКИ УДАЛЕНИЯ)
 function updateCartOffcanvas() {
     const tbody = document.querySelector('.offcanvasCart-table tbody');
     const tfoot = document.querySelector('.offcanvasCart-table tfoot');
@@ -121,7 +122,7 @@ function updateCartOffcanvas() {
     if (cart.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="6" class="text-center py-4 text-muted empty-cart">
+                <td colspan="5" class="text-center py-4 text-muted empty-cart">
                     <i class="fa-solid fa-cart-plus fa-2x d-block mb-2"></i>
                     Корзина пуста
                 </td>
@@ -130,7 +131,7 @@ function updateCartOffcanvas() {
         if (tfoot) {
             tfoot.innerHTML = `
                 <tr>
-                    <td colspan="5" class="text-end fw-bold">Итого:</td>
+                    <td colspan="4" class="text-end fw-bold">Итого:</td>
                     <td class="fw-bold">0 ₽</td>
                 </tr>
             `;
@@ -164,12 +165,6 @@ function updateCartOffcanvas() {
                     </div>
                 </td>
                 <td class="product-total-td">${Number(totalPrice).toLocaleString()} ₽</td>
-                <td>
-                    <button class="btn btn-danger btn-sm remove-btn" 
-                            onclick="removeFromCart('${item.id}')">
-                        <i class="fa-regular fa-circle-xmark"></i>
-                    </button>
-                </td>
             </tr>
         `;
     });
@@ -180,7 +175,7 @@ function updateCartOffcanvas() {
         const total = getTotal();
         tfoot.innerHTML = `
             <tr>
-                <td colspan="5" class="text-end fw-bold">Итого:</td>
+                <td colspan="4" class="text-end fw-bold">Итого:</td>
                 <td class="fw-bold">${Number(total).toLocaleString()} ₽</td>
             </tr>
         `;
@@ -204,6 +199,7 @@ function decrementQuantity(productId) {
             item.quantity--;
             saveCart();
         } else {
+            // Если количество становится 0 - удаляем товар
             removeFromCart(productId);
         }
     }
@@ -269,16 +265,37 @@ document.addEventListener('DOMContentLoaded', function() {
             if (productCard) {
                 const nameEl = productCard.querySelector('.product-details h4 a');
                 const name = nameEl ? nameEl.textContent : 'Товар';
+                
+                // === ИСПРАВЛЕНИЕ: БЕРЁМ СКИДОЧНУЮ ЦЕНУ ===
                 const priceEl = productCard.querySelector('.product-price');
-                let priceText = priceEl ? priceEl.textContent : '0';
-                // Извлекаем цену (убираем валюту и пробелы)
-                const priceMatch = priceText.match(/([\d\s]+)/);
-                const price = priceMatch ? parseFloat(priceMatch[0].replace(/\s/g, '')) : 0;
+                let price = 0;
+                
+                if (priceEl) {
+                    // Ищем основную цену (без тега <small>)
+                    const mainPrice = priceEl.textContent.trim();
+                    // Убираем старую цену в <small> если она есть
+                    const smallPrice = priceEl.querySelector('small');
+                    let priceText = mainPrice;
+                    if (smallPrice) {
+                        // Если есть <small>, берём только то, что после него
+                        priceText = mainPrice.replace(smallPrice.textContent, '').trim();
+                    }
+                    // Извлекаем число
+                    const priceMatch = priceText.match(/([\d\s]+)/);
+                    if (priceMatch) {
+                        price = parseFloat(priceMatch[0].replace(/\s/g, ''));
+                    }
+                }
+                
                 const image = productCard.querySelector('.product-thumb img')?.src || '/assets/img/default.jpg';
-                // Используем название товара как ID для объединения одинаковых товаров
+                // Используем название товара + цена для ID
                 const id = 'product_' + name.replace(/\s/g, '_').substring(0, 30) + '_' + price;
                 
-                addToCart(id, name, price, image);
+                if (price > 0) {
+                    addToCart(id, name, price, image);
+                } else {
+                    showNotification('Не удалось определить цену товара', 'warning');
+                }
             }
         });
     });
