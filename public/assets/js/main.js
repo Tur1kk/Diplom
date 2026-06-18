@@ -24,59 +24,6 @@ window.addEventListener('scroll', function () {
     }
 });
 
-// === Инициализация Offcanvas для корзины (только если элемент существует) ===
-const offcanvasCartEl = document.getElementById('offcanvasCart');
-let offcanvasCart = null;
-
-if (offcanvasCartEl) {
-    try {
-        offcanvasCart = new bootstrap.Offcanvas(offcanvasCartEl);
-        console.log('✅ Offcanvas корзины инициализирован');
-    } catch (error) {
-        console.warn('⚠️ Ошибка инициализации Offcanvas:', error);
-    }
-}
-
-// === Кнопка открытия корзины ===
-const cartOpenBtn = document.getElementById('cart-open');
-if (cartOpenBtn && offcanvasCart) {
-    cartOpenBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        try {
-            offcanvasCart.toggle();
-        } catch (error) {
-            console.warn('⚠️ Ошибка открытия корзины:', error);
-        }
-    });
-} else if (cartOpenBtn) {
-    // Если корзина не инициализирована, просто логируем
-    cartOpenBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        console.log('ℹ️ Корзина не доступна на этой странице');
-    });
-}
-
-// === Кнопки закрытия корзины ===
-document.querySelectorAll('.closecart').forEach(item => {
-    item.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (offcanvasCart) {
-            try {
-                offcanvasCart.hide();
-            } catch (error) {
-                console.warn('⚠️ Ошибка закрытия корзины:', error);
-            }
-        }
-        const href = item.dataset.href;
-        if (href) {
-            const target = document.getElementById(href);
-            if (target) {
-                target.scrollIntoView();
-            }
-        }
-    });
-});
-
 // === Кнопка "Наверх" ===
 $(document).ready(function () {
     $(window).scroll(function () {
@@ -112,4 +59,29 @@ $(document).ready(function () {
             }
         });
     }
+});
+
+// === Кнопки закрытия корзины ===
+document.querySelectorAll('.closecart').forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        const offcanvasEl = document.getElementById('offcanvasCart');
+        if (offcanvasEl) {
+            const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl);
+            if (offcanvas) {
+                try {
+                    offcanvas.hide();
+                } catch (error) {
+                    console.warn('⚠️ Ошибка закрытия корзины:', error);
+                }
+            }
+        }
+        const href = item.dataset.href;
+        if (href) {
+            const target = document.getElementById(href);
+            if (target) {
+                target.scrollIntoView();
+            }
+        }
+    });
 });
