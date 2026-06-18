@@ -671,3 +671,212 @@ footer a:hover {
         padding-right: 8px;
     }
 }
+
+/* ============================= Стили для корзины ============================ */
+
+/* Ширина корзины */
+.offcanvas-end {
+    width: 480px !important;
+    max-width: 90vw !important;
+}
+
+/* Адаптация для мобильных */
+@media (max-width: 576px) {
+    .offcanvas-end {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* Таблица корзины - компактная */
+.offcanvasCart-table {
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
+.offcanvasCart-table .product-img-td {
+    width: 50px;
+    padding: 4px 4px !important;
+}
+
+.offcanvasCart-table .product-img-td img {
+    max-width: 40px;
+    max-height: 40px;
+    object-fit: cover;
+}
+
+.offcanvasCart-table .product-name-td {
+    max-width: 120px;
+    padding: 4px 4px !important;
+}
+
+.offcanvasCart-table .product-name-td a {
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    color: #333;
+}
+
+.offcanvasCart-table .product-name-td a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.offcanvasCart-table .product-price-td,
+.offcanvasCart-table .product-total-td {
+    white-space: nowrap;
+    padding: 4px 4px !important;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.offcanvasCart-table .product-qty-td {
+    padding: 4px 4px !important;
+}
+
+.offcanvasCart-table .qty-btn {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background: #fff;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.offcanvasCart-table .qty-btn:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #fff;
+}
+
+.offcanvasCart-table .qty-display {
+    min-width: 22px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.offcanvasCart-table .remove-btn {
+    padding: 2px 6px;
+    font-size: 13px;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offcanvasCart-table .remove-btn:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.offcanvasCart-table td {
+    vertical-align: middle;
+    padding: 4px 4px !important;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.offcanvasCart-table thead th {
+    font-size: 11px;
+    font-weight: 600;
+    color: #6c757d;
+    border-bottom: 2px solid #eee;
+    padding: 6px 4px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.offcanvasCart-table .empty-cart i {
+    font-size: 40px;
+    color: #ccc;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Низ корзины */
+.offcanvas-body .cart-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 2px solid #eee;
+    margin-top: 8px;
+}
+
+.cart-actions .total-display {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.cart-actions .total-display span {
+    color: var(--accent-color);
+}
+
+.offcanvas-body .btn-checkout {
+    background-color: var(--accent-color);
+    color: var(--contrast-color);
+    border: none;
+    font-weight: 600;
+    padding: 8px 18px;
+}
+
+.offcanvas-body .btn-checkout:hover {
+    background-color: #e6b800;
+    color: var(--contrast-color);
+}
+
+.offcanvas-body .btn-clear {
+    color: #6c757d;
+    border-color: #6c757d;
+    padding: 8px 14px;
+}
+
+.offcanvas-body .btn-clear:hover {
+    background-color: #dc3545;
+    color: #fff;
+    border-color: #dc3545;
+}
+
+/* Анимация обновления */
+@keyframes cartUpdate {
+    0% { background-color: rgba(255, 211, 51, 0.15); }
+    100% { background-color: transparent; }
+}
+
+.offcanvasCart-table tbody tr {
+    animation: cartUpdate 0.4s ease;
+}
+
+/* Фикс для переполнения */
+.offcanvas-body .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Скрываем скроллбар когда не нужно */
+.offcanvas-body .table-responsive::-webkit-scrollbar {
+    height: 4px;
+}
+
+.offcanvas-body .table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.offcanvas-body .table-responsive::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 2px;
+}
