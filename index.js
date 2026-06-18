@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const Database = require('better-sqlite3');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -16,34 +16,47 @@ app.get('/orders', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'orders.html'));
 });
 
-// Создаём БД (файл создастся автоматически)
-const db = new Database('database.db');
+// === JSON хранилище ===
+const DATA_FILE = path.join(__dirname, 'orders.json');
 
-// Создаём таблицы
-db.exec(`
-    CREATE TABLE IF NOT EXISTS orders (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        fullname TEXT NOT NULL,
-        phone TEXT NOT NULL,
-        email TEXT NOT NULL,
-        address TEXT NOT NULL,
-        consent INTEGER NOT NULL DEFAULT 0,
-        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-`);
+// Функция для чтения заказов
+function getOrders() {
+    try {
+        if (!fs.existsSync(DATA_FILE)) {
+            // Если файла нет, создаём его с пустым массивом
+            fs.writeFileSync(DATA_FILE, JSON.stringify([]));
+            console.log('📁 Создан новый файл orders.json');
+            return [];
+        }
+        const data = fs.readFileSync(DATA_FILE, 'utf8');
+        const orders = JSON.parse(data);
+        return orders;
+    } catch (error) {
+        console.error('❌ Ошибка чтения orders.json:', error);
+        return [];
+    }
+}
 
-console.log('✅ База данных и таблицы созданы');
+// Функция для сохранения заказов
+function saveOrders(orders) {
+    try {
+        fs.writeFileSync(DATA_FILE, JSON.stringify(orders, null, 2));
+        console.log(`💾 Сохранено ${orders.length} заказов в orders.json`);
+    } catch (error) {
+        console.error('❌ Ошибка записи orders.json:', error);
+    }
+}
 
 // === API ===
 
 // Получить все заказы
 app.get('/api/orders', (req, res) => {
     try {
-        const orders = db.prepare('SELECT * FROM orders ORDER BY created_at DESC').all();
+        const orders = getOrders();
         console.log(`📊 Найдено заказов: ${orders.length}`);
         res.json(orders);
     } catch (error) {
-        console.error('❌ Ошибка:', error);
+        console.error('❌ Ошибка получения заказов:', error);
         res.status(500).json({ error: error.message });
     }
 });
@@ -54,29 +67,78 @@ app.post('/api/orders', (req, res) => {
     
     const { fullname, phone, email, address, consent } = req.body;
     
+    // Валидация
     if (!fullname || !phone || !email || !address) {
-        return res.status(400).json({ error: 'Все поля обязательны' });
+        return res.status(400).json({ error: 'Все поля обязательны для заполнения' });
+    }
+    
+    // Валидация email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return res.status(400).json({ error: 'Некорректный email адрес' });
     }
     
     if (!consent) {
-        return res.status(400).json({ error: 'Необходимо согласие' });
+        return res.status(400).json({ error: 'Необходимо согласие на обработку данных' });
     }
     
     try {
-        const result = db.prepare(`
-            INSERT INTO orders (fullname, phone, email, address, consent) 
-            VALUES (?, ?, ?, ?, ?)
-        `).run(fullname, phone, email, address, consent ? 1 : 0);
+        const orders = getOrders();
         
-        const newOrder = db.prepare('SELECT * FROM orders WHERE id = ?').get(result.lastInsertRowid);
+        // Создаём новый заказ
+        const newOrder = {
+            id: orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1,
+            fullname: fullname.trim(),
+            phone: phone.trim(),
+            email: email.trim(),
+            address: address.trim(),
+            consent: consent ? 1 : 0,
+            created_at: new Date().toISOString()
+        };
+        
+        orders.push(newOrder);
+        saveOrders(orders);
+        
         console.log('✅ Заказ создан:', newOrder);
         res.status(201).json({ success: true, order: newOrder });
     } catch (error) {
-        console.error('❌ Ошибка:', error);
+        console.error('❌ Ошибка создания заказа:', error);
         res.status(500).json({ error: error.message });
     }
 });
 
+// Удалить заказ (опционально)
+app.delete('/api/orders/:id', (req, res) => {
+    try {
+        const id = parseInt(req.params.id);
+        let orders = getOrders();
+        const initialLength = orders.length;
+        orders = orders.filter(order => order.id !== id);
+        
+        if (orders.length === initialLength) {
+            return res.status(404).json({ error: 'Заказ не найден' });
+        }
+        
+        saveOrders(orders);
+        res.json({ success: true, message: 'Заказ удалён' });
+    } catch (error) {
+        console.error('❌ Ошибка удаления заказа:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// Запуск сервера
 app.listen(PORT, "0.0.0.0", () => {
     console.log(`🚀 Сервер запущен на порту ${PORT}`);
+    console.log(`📁 Данные хранятся в: ${DATA_FILE}`);
+    
+    // Проверяем существование файла
+    if (fs.existsSync(DATA_FILE)) {
+        const stats = fs.statSync(DATA_FILE);
+        console.log(`📊 Размер файла: ${stats.size} байт`);
+        const orders = getOrders();
+        console.log(`📊 Текущее количество заказов: ${orders.length}`);
+    } else {
+        console.log('📁 Файл orders.json будет создан при первом заказе');
+    }
 });
