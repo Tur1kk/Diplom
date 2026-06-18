@@ -146,11 +146,7 @@ function renderOrders(orders) {
         container.innerHTML = `
             <div class="empty-orders">
                 <i class="fa-solid fa-box-open"></i>
-                <h3>Заказов пока нет</h3>
-                <p class="text-muted">Первый заказ будет отображаться здесь</p>
-                <a href="/" class="btn btn-warning">
-                    <i class="fa-solid fa-shopping-bag"></i> Перейти к покупкам
-                </a>
+                <h3>Заказов пока нет</h3>               
             </div>
         `;
         return;
