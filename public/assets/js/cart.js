@@ -28,7 +28,6 @@ function saveCart() {
         localStorage.setItem('cart', JSON.stringify(cart));
         updateCartBadge();
         updateCartOffcanvas();
-        updateCartPage();
     } catch (error) {
         console.error('Ошибка сохранения корзины:', error);
     }
@@ -43,18 +42,22 @@ function updateCartBadge() {
     });
 }
 
-// Добавление товара в корзину
+// Добавление товара в корзину (ОБЪЕДИНЯЕТ ОДИНАКОВЫЕ ТОВАРЫ)
 function addToCart(productId, name, price, image, maxQuantity = 99) {
+    // Ищем товар с таким же ID
     const existingItem = cart.find(item => item.id === productId);
     
     if (existingItem) {
+        // Если товар уже есть - увеличиваем количество
         if (existingItem.quantity < maxQuantity) {
             existingItem.quantity++;
+            saveCart();
+            showNotification(`${name} (${existingItem.quantity} шт.)`, 'success');
         } else {
             showNotification('Достигнуто максимальное количество', 'warning');
-            return;
         }
     } else {
+        // Если товара нет - добавляем новый
         cart.push({
             id: productId,
             name: name,
@@ -62,10 +65,9 @@ function addToCart(productId, name, price, image, maxQuantity = 99) {
             image: image,
             quantity: 1
         });
+        saveCart();
+        showNotification(`${name} добавлен в корзину!`, 'success');
     }
-    
-    saveCart();
-    showNotification(`${name} добавлен в корзину!`, 'success');
 }
 
 // Удаление товара из корзины
@@ -101,9 +103,12 @@ function getTotalItems() {
 
 // Очистка корзины
 function clearCart() {
-    cart = [];
-    saveCart();
-    showNotification('Корзина очищена', 'info');
+    if (cart.length === 0) return;
+    if (confirm('Очистить корзину?')) {
+        cart = [];
+        saveCart();
+        showNotification('Корзина очищена', 'info');
+    }
 }
 
 // Обновление корзины в offcanvas
@@ -116,7 +121,7 @@ function updateCartOffcanvas() {
     if (cart.length === 0) {
         tbody.innerHTML = `
             <tr>
-                <td colspan="5" class="text-center py-4 text-muted">
+                <td colspan="6" class="text-center py-4 text-muted empty-cart">
                     <i class="fa-solid fa-cart-plus fa-2x d-block mb-2"></i>
                     Корзина пуста
                 </td>
@@ -125,8 +130,8 @@ function updateCartOffcanvas() {
         if (tfoot) {
             tfoot.innerHTML = `
                 <tr>
-                    <td colspan="4" class="text-end">Total:</td>
-                    <td>$0</td>
+                    <td colspan="5" class="text-end fw-bold">Итого:</td>
+                    <td class="fw-bold">0 ₽</td>
                 </tr>
             `;
         }
@@ -134,17 +139,34 @@ function updateCartOffcanvas() {
     }
     
     let html = '';
-    cart.forEach((item, index) => {
+    cart.forEach((item) => {
+        const totalPrice = (item.price * item.quantity);
         html += `
             <tr>
                 <td class="product-img-td">
                     <a href="#"><img src="${item.image}" alt="${item.name}"></a>
                 </td>
-                <td><a href="#">${item.name}</a></td>
-                <td>$${item.price}</td>
-                <td>&times;${item.quantity}</td>
+                <td class="product-name-td">
+                    <a href="#">${item.name}</a>
+                </td>
+                <td class="product-price-td">${Number(item.price).toLocaleString()} ₽</td>
+                <td class="product-qty-td">
+                    <div class="d-flex align-items-center gap-1">
+                        <button class="btn btn-sm btn-outline-secondary qty-btn" 
+                                onclick="decrementQuantity('${item.id}')">
+                            <i class="fa-solid fa-minus"></i>
+                        </button>
+                        <span class="qty-display">${item.quantity}</span>
+                        <button class="btn btn-sm btn-outline-secondary qty-btn" 
+                                onclick="incrementQuantity('${item.id}')">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </td>
+                <td class="product-total-td">${Number(totalPrice).toLocaleString()} ₽</td>
                 <td>
-                    <button class="btn btn-danger btn-sm" onclick="removeFromCart('${item.id}')">
+                    <button class="btn btn-danger btn-sm remove-btn" 
+                            onclick="removeFromCart('${item.id}')">
                         <i class="fa-regular fa-circle-xmark"></i>
                     </button>
                 </td>
@@ -158,88 +180,11 @@ function updateCartOffcanvas() {
         const total = getTotal();
         tfoot.innerHTML = `
             <tr>
-                <td colspan="4" class="text-end">Total:</td>
-                <td>$${total}</td>
+                <td colspan="5" class="text-end fw-bold">Итого:</td>
+                <td class="fw-bold">${Number(total).toLocaleString()} ₽</td>
             </tr>
         `;
     }
-}
-
-// Обновление страницы корзины (cart.html)
-function updateCartPage() {
-    const tbody = document.querySelector('.cart-content tbody');
-    const subtotalEl = document.querySelector('.cart-summary .subtotal');
-    const totalEl = document.querySelector('.cart-summary .total');
-    const shippingEl = document.querySelector('.cart-summary .shipping');
-    const couponEl = document.querySelector('.cart-summary .coupon');
-    
-    if (!tbody) return;
-    
-    if (cart.length === 0) {
-        tbody.innerHTML = `
-            <tr>
-                <td colspan="5" class="text-center py-5">
-                    <i class="fa-solid fa-cart-plus fa-3x d-block mb-3 text-muted"></i>
-                    <h4>Корзина пуста</h4>
-                    <p class="text-muted">Добавьте товары в корзину, чтобы оформить заказ</p>
-                    <a href="index.html" class="btn btn-warning">Вернуться к покупкам</a>
-                </td>
-            </tr>
-        `;
-        
-        // Обновляем суммы
-        if (subtotalEl) subtotalEl.textContent = '$0';
-        if (totalEl) totalEl.textContent = '$0';
-        return;
-    }
-    
-    let html = '';
-    cart.forEach((item) => {
-        html += `
-            <tr>
-                <td class="product-img-td">
-                    <a href="#">
-                        <img src="${item.image}" alt="${item.name}">
-                    </a>
-                </td>
-                <td>
-                    <a href="#" class="cart-content-title">${item.name}</a>
-                </td>
-                <td>$${item.price}</td>
-                <td>
-                    <div class="d-flex align-items-center gap-2">
-                        <button class="btn btn-sm btn-outline-secondary" onclick="decrementQuantity('${item.id}')">
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-                        <input type="number" value="${item.quantity}" class="form-control cart-qty" 
-                               style="width:60px; text-align:center;" 
-                               onchange="updateQuantity('${item.id}', parseInt(this.value))"
-                               onfocus="this.select()">
-                        <button class="btn btn-sm btn-outline-secondary" onclick="incrementQuantity('${item.id}')">
-                            <i class="fa-solid fa-plus"></i>
-                        </button>
-                    </div>
-                </td>
-                <td>
-                    <button class="btn btn-danger btn-sm" onclick="removeFromCart('${item.id}')">
-                        <i class="fa-regular fa-circle-xmark"></i>
-                    </button>
-                </td>
-            </tr>
-        `;
-    });
-    
-    tbody.innerHTML = html;
-    
-    // Обновляем суммы
-    const subtotal = getTotal();
-    const shipping = subtotal > 0 ? (subtotal > 500 ? 0 : 10) : 0;
-    const coupon = 0;
-    const total = subtotal + shipping - coupon;
-    
-    if (subtotalEl) subtotalEl.textContent = `$${subtotal}`;
-    if (shippingEl) shippingEl.textContent = shipping === 0 ? 'FREE' : `$${shipping}`;
-    if (totalEl) totalEl.textContent = `$${total}`;
 }
 
 // Увеличение количества
@@ -315,7 +260,6 @@ document.addEventListener('DOMContentLoaded', function() {
     loadCart();
     updateCartBadge();
     updateCartOffcanvas();
-    updateCartPage();
     
     // Обработчики для кнопок "Добавить в корзину"
     document.querySelectorAll('.add-to-cart').forEach(btn => {
@@ -323,35 +267,28 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             const productCard = this.closest('.product-card');
             if (productCard) {
-                const name = productCard.querySelector('.product-details h4 a')?.textContent || 'Товар';
-                const priceText = productCard.querySelector('.product-price')?.textContent?.trim() || '0';
-                const price = parseFloat(priceText.replace(/[^0-9.]/g, ''));
+                const nameEl = productCard.querySelector('.product-details h4 a');
+                const name = nameEl ? nameEl.textContent : 'Товар';
+                const priceEl = productCard.querySelector('.product-price');
+                let priceText = priceEl ? priceEl.textContent : '0';
+                // Извлекаем цену (убираем валюту и пробелы)
+                const priceMatch = priceText.match(/([\d\s]+)/);
+                const price = priceMatch ? parseFloat(priceMatch[0].replace(/\s/g, '')) : 0;
                 const image = productCard.querySelector('.product-thumb img')?.src || '/assets/img/default.jpg';
-                const id = 'product_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                // Используем название товара как ID для объединения одинаковых товаров
+                const id = 'product_' + name.replace(/\s/g, '_').substring(0, 30) + '_' + price;
                 
                 addToCart(id, name, price, image);
             }
         });
     });
     
-    // Обработчик для кнопки "Очистить корзину"
-    const clearBtn = document.getElementById('clearCart');
+    // Обработчик для кнопки "Очистить корзину" в offcanvas
+    const clearBtn = document.getElementById('clearCartBtn');
     if (clearBtn) {
         clearBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            if (confirm('Очистить корзину?')) {
-                clearCart();
-            }
-        });
-    }
-    
-    // Обработчик для кнопки "Update Cart" (обновить корзину)
-    const updateBtn = document.querySelector('.btn-outline-warning[value="Update Cart"]');
-    if (updateBtn) {
-        updateBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            updateCartPage();
-            showNotification('Корзина обновлена', 'success');
+            clearCart();
         });
     }
 });
@@ -366,3 +303,4 @@ window.decrementQuantity = decrementQuantity;
 window.clearCart = clearCart;
 window.getTotal = getTotal;
 window.getTotalItems = getTotalItems;
+window.updateCartOffcanvas = updateCartOffcanvas;
