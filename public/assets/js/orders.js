@@ -5,6 +5,7 @@
 
 // Загружаем заказы при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('📄 Страница заказов загружена');
     fetchOrders();
 });
 
@@ -13,6 +14,13 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function fetchOrders() {
     const container = document.getElementById('ordersContainer');
+    
+    if (!container) {
+        console.error('❌ Контейнер ordersContainer не найден');
+        return;
+    }
+    
+    console.log('🔄 Загрузка заказов...');
     
     // Показываем спиннер
     container.innerHTML = `
@@ -26,22 +34,24 @@ function fetchOrders() {
     
     fetch('/api/orders')
         .then(response => {
+            console.log('📡 Ответ получен, статус:', response.status);
             if (!response.ok) {
-                throw new Error('Ошибка при загрузке заказов');
+                throw new Error(`HTTP ошибка: ${response.status}`);
             }
             return response.json();
         })
         .then(orders => {
+            console.log('📊 Получено заказов:', orders.length);
             renderOrders(orders);
         })
         .catch(error => {
-            console.error('Error:', error);
+            console.error('❌ Ошибка загрузки:', error);
             container.innerHTML = `
                 <div class="empty-orders">
                     <i class="fa-solid fa-triangle-exclamation text-danger"></i>
                     <h3>Ошибка загрузки</h3>
-                    <p class="text-muted">Не удалось загрузить список заказов. Попробуйте позже.</p>
-                    <button class="btn btn-warning" onclick="fetchOrders()">
+                    <p class="text-muted">${error.message}</p>
+                    <button class="btn btn-warning mt-2" onclick="fetchOrders()">
                         <i class="fa-solid fa-rotate"></i> Попробовать снова
                     </button>
                 </div>
@@ -51,19 +61,19 @@ function fetchOrders() {
 
 /**
  * Отрисовка таблицы с заказами
- * @param {Array} orders - Массив заказов
  */
 function renderOrders(orders) {
     const container = document.getElementById('ordersContainer');
     
-    // Проверяем, есть ли заказы
+    if (!container) return;
+    
     if (!orders || orders.length === 0) {
         container.innerHTML = `
             <div class="empty-orders">
                 <i class="fa-solid fa-box-open"></i>
                 <h3>Заказов пока нет</h3>
                 <p class="text-muted">Первый заказ будет отображаться здесь</p>
-                <a href="index.html" class="btn btn-warning">
+                <a href="/" class="btn btn-warning">
                     <i class="fa-solid fa-shopping-bag"></i> Перейти к покупкам
                 </a>
             </div>
@@ -71,7 +81,6 @@ function renderOrders(orders) {
         return;
     }
     
-    // Строим таблицу
     let tableHtml = `
         <div class="orders-table-wrap">
             <div class="orders-table-scroll">
@@ -91,7 +100,6 @@ function renderOrders(orders) {
     `;
     
     orders.forEach((order, index) => {
-        // Форматируем дату
         const date = new Date(order.created_at);
         const formattedDate = date.toLocaleString('ru-RU', {
             day: '2-digit',
@@ -101,7 +109,6 @@ function renderOrders(orders) {
             minute: '2-digit'
         });
         
-        // Согласие
         const consentHtml = order.consent == 1 
             ? `<span class="consent-badge yes"><i class="fa-solid fa-check-circle"></i> Да</span>`
             : `<span class="consent-badge no"><i class="fa-solid fa-times-circle"></i> Нет</span>`;
@@ -143,9 +150,7 @@ function renderOrders(orders) {
 }
 
 /**
- * Экранирование HTML для защиты от XSS
- * @param {string} text - Текст для экранирования
- * @returns {string} Экранированный текст
+ * Экранирование HTML
  */
 function escapeHtml(text) {
     if (!text) return '';
