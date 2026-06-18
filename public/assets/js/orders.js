@@ -21,7 +21,6 @@ function fetchOrders() {
     
     console.log('🔄 Загрузка заказов...');
     
-    // Показываем спиннер
     container.innerHTML = `
         <div class="loading-spinner">
             <div class="spinner-border text-warning" role="status">
@@ -66,17 +65,12 @@ function renderOrders(orders) {
     const container = document.getElementById('ordersContainer');
     
     console.log('🎨 Начинаем отрисовку...');
-    console.log('🎨 Контейнер найден:', !!container);
-    console.log('🎨 Заказы:', orders);
-    console.log('🎨 Тип orders:', typeof orders);
-    console.log('🎨 orders.length:', orders ? orders.length : 'orders is null/undefined');
     
     if (!container) {
         console.error('❌ Контейнер не найден!');
         return;
     }
     
-    // Проверяем, что orders - это массив
     if (!Array.isArray(orders)) {
         console.error('❌ orders не является массивом:', orders);
         orders = [];
@@ -110,6 +104,8 @@ function renderOrders(orders) {
                             <th>Телефон</th>
                             <th>Email</th>
                             <th>Адрес</th>
+                            <th>Товары</th>
+                            <th>Сумма</th>
                             <th class="text-center">Согласие</th>
                             <th>Дата</th>
                         </tr>
@@ -142,6 +138,19 @@ function renderOrders(orders) {
             ? `<span class="consent-badge yes"><i class="fa-solid fa-check-circle"></i> Да</span>`
             : `<span class="consent-badge no"><i class="fa-solid fa-times-circle"></i> Нет</span>`;
         
+        // Товары
+        let itemsHtml = '';
+        if (order.items && Array.isArray(order.items) && order.items.length > 0) {
+            itemsHtml = order.items.map(item => 
+                `<div class="order-item">${escapeHtml(item.name)} × ${item.quantity}</div>`
+            ).join('');
+        } else {
+            itemsHtml = '<span class="text-muted">Нет товаров</span>';
+        }
+        
+        // Сумма
+        const total = order.total || (order.items ? order.items.reduce((sum, item) => sum + (item.price * item.quantity), 0) : 0);
+        
         tableHtml += `
             <tr>
                 <td><span class="order-number">${index + 1}</span></td>
@@ -149,6 +158,8 @@ function renderOrders(orders) {
                 <td class="order-phone">${escapeHtml(order.phone)}</td>
                 <td class="order-email"><a href="mailto:${escapeHtml(order.email)}">${escapeHtml(order.email)}</a></td>
                 <td class="order-address">${escapeHtml(order.address)}</td>
+                <td class="order-items">${itemsHtml}</td>
+                <td class="order-total"><strong>${Number(total).toLocaleString()} ₽</strong></td>
                 <td class="text-center">${consentHtml}</td>
                 <td class="order-date"><i class="fa-regular fa-calendar me-1"></i>${formattedDate}</td>
             </tr>

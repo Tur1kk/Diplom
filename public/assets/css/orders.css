@@ -296,3 +296,26 @@
 .orders-table-scroll::-webkit-scrollbar-thumb:hover {
     background: #e6b800;
 }
+/* Стили для товаров в заказе */
+.order-items {
+    max-width: 200px;
+    font-size: 13px;
+}
+
+.order-item {
+    padding: 2px 0;
+    border-bottom: 1px dashed #eee;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.order-item:last-child {
+    border-bottom: none;
+}
+
+.order-total {
+    font-weight: 700;
+    color: var(--red-color);
+    font-size: 15px;
+}

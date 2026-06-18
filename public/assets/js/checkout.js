@@ -1,6 +1,6 @@
 /**
  * Оформление заказа
- * Отправка данных на сервер
+ * Отправка данных на сервер вместе с товарами из корзины
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -46,16 +46,36 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Сбор данных
+        // Получаем товары из корзины
+        let cartItems = [];
+        try {
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cartItems = JSON.parse(savedCart);
+                console.log('📦 Товары из корзины:', cartItems);
+            }
+        } catch (error) {
+            console.error('❌ Ошибка получения корзины:', error);
+        }
+
+        // Проверяем, что корзина не пуста
+        if (cartItems.length === 0) {
+            showFormMessage('Корзина пуста! Добавьте товары перед оформлением заказа.', 'danger');
+            return;
+        }
+
+        // Сбор данных формы
         const formData = {
             fullname: fullname.value.trim(),
             phone: phone.value.trim(),
             email: email.value.trim(),
             address: address.value.trim(),
-            consent: consentCheck.checked ? 1 : 0
+            consent: consentCheck.checked ? 1 : 0,
+            items: cartItems, // Добавляем товары из корзины
+            total: cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0) // Общая сумма
         };
 
-        console.log('📝 Данные формы:', formData);
+        console.log('📝 Данные заказа:', formData);
 
         // Валидация
         if (!formData.fullname || !formData.phone || !formData.email || !formData.address) {
@@ -95,18 +115,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
             console.log('📡 Статус ответа:', response.status);
             
-            // Проверяем, что ответ содержит JSON
-            const contentType = response.headers.get('content-type');
-            if (!contentType || !contentType.includes('application/json')) {
-                throw new Error('Сервер вернул не JSON ответ');
-            }
-            
             const result = await response.json();
             console.log('📦 Ответ сервера:', result);
 
             if (response.ok && result.success) {
                 showFormMessage('✅ Заказ успешно оформлен!', 'success');
                 form.reset();
+                
+                // Очищаем корзину после успешного заказа
+                localStorage.removeItem('cart');
+                // Обновляем бейдж корзины
+                const badges = document.querySelectorAll('.cart-badge');
+                badges.forEach(badge => {
+                    badge.textContent = '0';
+                });
+                // Обновляем корзину в offcanvas
+                if (window.updateCartOffcanvas) {
+                    window.updateCartOffcanvas();
+                }
                 
                 // Закрываем модальное окно через 2 секунды
                 setTimeout(() => {
@@ -128,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
-     * Безопасное закрытие модального окна (без ошибок)
+     * Безопасное закрытие модального окна
      */
     function closeModalSafely(modalId) {
         const modalElement = document.getElementById(modalId);
@@ -138,7 +164,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
-            // Способ 1: Пытаемся получить экземпляр Bootstrap Modal
             const modal = bootstrap.Modal.getInstance(modalElement);
             if (modal) {
                 modal.hide();
@@ -150,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
-            // Способ 2: Используем jQuery (если доступен)
             if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
                 $(modalElement).modal('hide');
                 console.log(`✅ Модальное окно #${modalId} закрыто через jQuery`);
@@ -160,23 +184,16 @@ document.addEventListener('DOMContentLoaded', function() {
             console.warn('⚠️ Ошибка при использовании jQuery:', e);
         }
         
-        // Способ 3: Ручное закрытие (fallback)
         try {
-            // Удаляем класс show
             modalElement.classList.remove('show');
             modalElement.style.display = 'none';
-            
-            // Удаляем backdrop
             const backdrop = document.querySelector('.modal-backdrop');
             if (backdrop && backdrop.parentNode) {
                 backdrop.parentNode.removeChild(backdrop);
             }
-            
-            // Убираем класс modal-open у body
             document.body.classList.remove('modal-open');
             document.body.style.overflow = '';
             document.body.style.paddingRight = '';
-            
             console.log(`✅ Модальное окно #${modalId} закрыто вручную (fallback)`);
         } catch (e) {
             console.error('❌ Критическая ошибка при закрытии модального окна:', e);
@@ -203,7 +220,6 @@ document.addEventListener('DOMContentLoaded', function() {
      * Показать уведомление на странице
      */
     function showNotification(text, type = 'info') {
-        // Удаляем старые уведомления
         const oldContainer = document.getElementById('notificationContainer');
         if (oldContainer) {
             oldContainer.remove();
@@ -234,7 +250,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         container.appendChild(notification);
         
-        // Автоматическое скрытие через 5 секунд
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.classList.remove('show');

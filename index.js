@@ -5,11 +5,8 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 10000;
 
-// Раздача статических файлов
 app.use(express.static('public'));
 app.use(express.json());
-
-// === Маршруты ===
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
@@ -19,10 +16,11 @@ app.get('/orders', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'orders.html'));
 });
 
-// === Работа с данными ===
-
+// === Путь к файлу данных ===
 const DATA_FILE = path.join(__dirname, 'orders.json');
 console.log(`📁 Файл данных: ${DATA_FILE}`);
+
+// === Функции работы с данными ===
 
 function getOrders() {
     try {
@@ -68,12 +66,12 @@ app.get('/api/orders', (req, res) => {
     }
 });
 
-// Создать заказ
+// Создать заказ (с товарами)
 app.post('/api/orders', (req, res) => {
     console.log('📝 POST /api/orders');
     console.log('📦 Тело запроса:', JSON.stringify(req.body, null, 2));
     
-    const { fullname, phone, email, address, consent } = req.body;
+    const { fullname, phone, email, address, consent, items, total } = req.body;
     
     // Валидация
     if (!fullname || !phone || !email || !address) {
@@ -86,10 +84,17 @@ app.post('/api/orders', (req, res) => {
         return res.status(400).json({ error: 'Необходимо согласие' });
     }
     
+    // Проверяем наличие товаров
+    if (!items || !Array.isArray(items) || items.length === 0) {
+        console.log('❌ Корзина пуста');
+        return res.status(400).json({ error: 'Корзина пуста. Добавьте товары.' });
+    }
+    
     try {
         const orders = getOrders();
         console.log(`📊 Текущее количество заказов: ${orders.length}`);
         
+        // Создаём новый заказ с товарами
         const newOrder = {
             id: orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1,
             fullname: fullname.trim(),
@@ -97,6 +102,14 @@ app.post('/api/orders', (req, res) => {
             email: email.trim(),
             address: address.trim(),
             consent: consent ? 1 : 0,
+            items: items.map(item => ({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                quantity: item.quantity,
+                image: item.image || ''
+            })),
+            total: total || items.reduce((sum, item) => sum + (item.price * item.quantity), 0),
             created_at: new Date().toISOString()
         };
         
@@ -140,8 +153,7 @@ app.get('/api/status', (req, res) => {
         fileSize: size,
         fileContent: content,
         nodeVersion: process.version,
-        cwd: process.cwd(),
-        dirContent: fs.readdirSync(__dirname)
+        cwd: process.cwd()
     });
 });
 
@@ -152,12 +164,12 @@ app.listen(PORT, "0.0.0.0", () => {
     console.log(`📁 Рабочая директория: ${__dirname}`);
     console.log(`📁 Файл данных: ${DATA_FILE}`);
     
-    // Проверяем содержимое директории
-    console.log('📁 Содержимое:');
-    const files = fs.readdirSync(__dirname);
-    files.forEach(file => {
-        const stats = fs.statSync(path.join(__dirname, file));
-        const type = stats.isDirectory() ? '📁' : '📄';
-        console.log(`  ${type} ${file} ${stats.isDirectory() ? '' : `(${stats.size} байт)`}`);
-    });
+    if (fs.existsSync(DATA_FILE)) {
+        const stats = fs.statSync(DATA_FILE);
+        console.log(`📊 Размер файла: ${stats.size} байт`);
+        const orders = getOrders();
+        console.log(`📊 Количество заказов: ${orders.length}`);
+    } else {
+        console.log('📁 Файл orders.json будет создан при первом заказе');
+    }
 });
