@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>E-shop :: Product</title>
+    <title>ТехноДом :: Товар</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
                     <div class="row align-items-center">
 
                         <div class="col-sm-6">
-                            <a href="index.html" class="header-logo h1">Технодом</a>
+                            <a href="index.html" class="header-logo h1">ТехноДом</a>
                         </div>
 
                         <div class="col-sm-6 mt-2 mt-md-0">
@@ -60,26 +60,23 @@
                     <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
                         aria-labelledby="offcanvasNavbarLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Catalog</h5>
+                            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Каталог</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
                                 aria-label="Close"></button>
                         </div>
                         <div class="offcanvas-body">
                             <ul class="navbar-nav">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="index.html">Главная</a>
+                                    <a class="nav-link" href="index.html">Главная</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">О нас</a>
+                                    <a class="nav-link" href="#about">О нас</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Контакты</a>
+                                    <a class="nav-link" href="#footer">Контакты</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Оплата</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">Доставка</a>
+                                    <a class="nav-link" href="orders.html">Заказы</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -88,31 +85,31 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li>
-                                            <a class="dropdown-item" href="category.html">Shoes</a>
+                                            <a class="dropdown-item" href="category.html">ПК и ноутбуки</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="category.html">Jeans</a>
+                                            <a class="dropdown-item" href="category.html">Смартфоны</a>
                                         </li>
                                         <li class="nav-item dropend">
                                             <a class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="dropdown"
-                                                data-bs-auto-close="outside">Sportswear</a>
+                                                data-bs-auto-close="outside">Бытовая техника</a>
                                             <ul class="dropdown-menu dropdown-menu-end">
                                                 <li>
-                                                    <a class="dropdown-item" href="category.html">Men's Sportswear</a>
+                                                    <a class="dropdown-item" href="category.html">Для кухни</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="category.html">Women's Sportswear</a>
+                                                    <a class="dropdown-item" href="category.html">Для ванной</a>
                                                 </li>
                                                 <li>
-                                                    <a class="dropdown-item" href="category.html">Baby's Sportswear</a>
+                                                    <a class="dropdown-item" href="category.html">Остальное</a>
                                                 </li>
                                             </ul>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="category.html">Coat</a>
+                                            <a class="dropdown-item" href="category.html">ТВ и консоли</a>
                                         </li>
                                         <li>
-                                            <a class="dropdown-item" href="category.html">Shirts</a>
+                                            <a class="dropdown-item" href="category.html">Умный дом</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -121,15 +118,10 @@
                     </div>
 
                     <div>
-                        <a href="#" class="btn p-1">
-                            <i class="fa-solid fa-heart"></i>
-                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">3</span>
-                        </a>
-
-                        <button class="btn p-1" id="cart-open" type="button" data-bs-toggle="offcanvas2"
+                        <button class="btn p-1" id="cart-open" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
                             <i class="fa-solid fa-cart-shopping"></i>
-                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">5</span>
+                            <span class="badge text-bg-warning cart-badge bg-warning rounded-circle">0</span>
                         </button>
                     </div>
 
@@ -138,59 +130,57 @@
         </div>
         <!-- ./header-bottom -->
 
+        <!-- ===== ВЫЕЗЖАЮЩАЯ КОРЗИНА ===== -->
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart" aria-labelledby="offcanvasCartLabel">
             <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasCartLabel">Cart</h5>
+                <h5 class="offcanvas-title" id="offcanvasCartLabel">
+                    <i class="fa-solid fa-cart-shopping me-2"></i>Корзина
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">
-                <div class="table-responsive">
-                    <table class="table offcanvasCart-table">
-                        <tbody>
-                            <tr>
-                                <td class="product-img-td"><a href="product.html"><img src="assets/img/products/1.jpg"
-                                            alt=""></a>
-                                </td>
-                                <td><a href="product.html">Product 1 Lorem ipsum dolor, sit amet consectetur
-                                        adipisicing.</a></td>
-                                <td>$65</td>
-                                <td>&times;1</td>
-                                <td><button class="btn btn-danger"><i class="fa-regular fa-circle-xmark"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product-img-td"><a href="product.html"><img src="assets/img/products/2.jpg"
-                                            alt=""></a>
-                                </td>
-                                <td><a href="product.html">Product 2</a></td>
-                                <td>$80</td>
-                                <td>&times;2</td>
-                                <td><button class="btn btn-danger"><i class="fa-regular fa-circle-xmark"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="product-img-td"><a href="product.html"><img src="assets/img/products/3.jpg"
-                                            alt=""></a>
-                                </td>
-                                <td><a href="product.html">Product 3</a></td>
-                                <td>$100</td>
-                                <td>&times;1</td>
-                                <td><button class="btn btn-danger"><i class="fa-regular fa-circle-xmark"></i></button>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="4" class="text-end">Total:</td>
-                                <td>$325</td>
-                            </tr>
-                        </tfoot>
-                    </table>
+            <div class="offcanvas-body d-flex flex-column">
+                <div class="flex-grow-1">
+                    <div class="table-responsive">
+                        <table class="table offcanvasCart-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Товар</th>
+                                    <th>Цена</th>
+                                    <th>Кол-во</th>
+                                    <th>Сумма</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="5" class="text-center py-4 text-muted empty-cart">
+                                        <i class="fa-solid fa-cart-plus"></i>
+                                        Корзина пуста
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4" class="text-end fw-bold">Итого:</td>
+                                    <td class="fw-bold">0 ₽</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
 
-                <div class="text-end mt-3">
-                    <a href="#" class="btn btn-outline-warning">Cart</a>
-                    <a href="#" class="btn btn-outline-secondary">Checkout</a>
+                <div class="cart-actions">
+                    <div class="total-display">
+                        Итого: <span id="offcanvasTotal">0 ₽</span>
+                    </div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-sm btn-clear" id="clearCartBtn">
+                            <i class="fa-solid fa-trash"></i> Очистить
+                        </button>
+                        <button class="btn btn-sm btn-checkout" data-bs-toggle="modal" data-bs-target="#checkoutModal">
+                            <i class="fa-solid fa-credit-card"></i> Оформить
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -203,8 +193,8 @@
                         <nav class="breadcrumbs">
                             <ul>
                                 <li><a href="index.html">Главная</a></li>
-                                <li><a href="category.html">Категория</a></li>
-                                <li><span>Продукт</span></li>
+                                <li><a href="category.html">Каталог</a></li>
+                                <li><span>iPhone 15</span></li>
                             </ul>
                         </nav>
                     </div>
@@ -218,30 +208,30 @@
                             <div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade">
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="assets/img/products/1.jpg" class="d-block w-100" alt="...">
+                                        <img src="assets/img/products/1.jpg" class="d-block w-100" alt="iPhone 15">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="assets/img/products/2.jpg" class="d-block w-100" alt="...">
+                                        <img src="assets/img/products/2.jpg" class="d-block w-100" alt="iPhone 15">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="assets/img/products/3.jpg" class="d-block w-100" alt="...">
+                                        <img src="assets/img/products/3.jpg" class="d-block w-100" alt="iPhone 15">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="assets/img/products/4.jpg" class="d-block w-100" alt="...">
+                                        <img src="assets/img/products/4.jpg" class="d-block w-100" alt="iPhone 15">
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="assets/img/products/5.jpg" class="d-block w-100" alt="...">
+                                        <img src="assets/img/products/5.jpg" class="d-block w-100" alt="iPhone 15">
                                     </div>
                                 </div>
                                 <button class="carousel-control-prev" type="button"
                                     data-bs-target="#carouselExampleFade" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
+                                    <span class="visually-hidden">Назад</span>
                                 </button>
                                 <button class="carousel-control-next" type="button"
                                     data-bs-target="#carouselExampleFade" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
+                                    <span class="visually-hidden">Вперед</span>
                                 </button>
                             </div>
                         </div>
@@ -249,7 +239,8 @@
 
                     <div class="col-md-7 col-lg-8 mb-3">
                         <div class="bg-white product-content p-3 h-100">
-                            <h1 class="section-title h3"><span>Смартфон Apple iPhone 15 128 ГБ, Dual еSIM, черный black esim esim</span></h1>
+                            <h1 class="section-title h3"><span>Смартфон Apple iPhone 15 128 ГБ, Dual еSIM, черный</span>
+                            </h1>
 
                             <div class="product-rating">
                                 <i class="fa-solid fa-star active"></i>
@@ -265,14 +256,16 @@
                                 48 562₽
                             </div>
 
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ducimus adipisci alias,
-                                minus totam fugiat quia unde ipsum aliquam suscipit officia ut iure sunt quis,
-                                doloremque quibusdam, similique eos veritatis.</p>
+                            <p>Встречайте iPhone 15 - ваш идеальный спутник в мире безграничных возможностей!
+                                Сверхъяркий дисплей, мощный процессор и продвинутая камера для потрясающих снимков.</p>
 
                             <div class="product-add2cart">
-                                <div class="input-group">
-                                    <input type="number" class="form-control" value="1" min="1">
-                                    <button class="btn btn-warning"><i class="fas fa-shopping-cart"></i> Добавить в корзину</button>
+                                <div class="input-group" style="max-width: 350px;">
+                                    <input type="number" class="form-control" id="productQty" value="1" min="1"
+                                        style="max-width: 80px;">
+                                    <button class="btn btn-warning" id="addToCartBtn">
+                                        <i class="fas fa-shopping-cart"></i> Добавить в корзину
+                                    </button>
                                 </div>
                             </div>
 
@@ -284,7 +277,7 @@
                                             </h5>
                                             <ul class="list-unstyled">
                                                 <li>Гарантия 1 год</li>
-                                                <li>Возвращение товара в течение 14 дней</li>
+                                                <li>Возврат в течение 14 дней</li>
                                                 <li>Гарантия качества</li>
                                             </ul>
                                         </div>
@@ -309,8 +302,8 @@
                                         <div class="card-body">
                                             <h5 class="card-title"><i class="fa-regular fa-credit-card"></i> Оплата</h5>
                                             <ul class="list-unstyled">
-                                                <li>Наличный рассчет</li>
-                                                <li>Безналичный рассчет</li>
+                                                <li>Наличный расчёт</li>
+                                                <li>Безналичный расчёт</li>
                                                 <li>VISA/MasterCard</li>
                                             </ul>
                                         </div>
@@ -334,7 +327,7 @@
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="features-tab" data-bs-toggle="tab"
                                         data-bs-target="#features-tab-pane" type="button" role="tab"
-                                        aria-controls="features-tab-pane" aria-selected="false">Особенности</button>
+                                        aria-controls="features-tab-pane" aria-selected="false">Характеристики</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
@@ -345,24 +338,44 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel"
                                     aria-labelledby="description-tab" tabindex="0">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure numquam ratione
-                                        voluptatibus reiciendis? Vitae ex nesciunt repudiandae sunt deserunt! Quis
-                                        numquam cum architecto illum, officia quo possimus! Earum, illo quaerat!</p>
-                                    <p>Dolores illum sed officia? Assumenda iusto quis exercitationem eligendi, totam
-                                        laudantium dignissimos quae corrupti soluta quasi ipsum nemo recusandae!
-                                        Recusandae quibusdam maiores beatae et inventore architecto amet obcaecati vel
-                                        neque.</p>
-                                    <p>Obcaecati libero atque, excepturi facere magnam nulla, iure tempora ipsum dolorem
-                                        autem eius cum exercitationem ad perspiciatis laboriosam rerum! Id, unde
-                                        recusandae velit quam exercitationem quia minus nihil molestias dolorem?</p>
+                                    <p>iPhone 15 — это новейший смартфон от Apple, который сочетает в себе передовые
+                                        технологии и элегантный дизайн. Устройство оснащено ярким OLED-дисплеем, мощным
+                                        процессором A16 Bionic и улучшенной системой камер.</p>
+                                    <p>Смартфон поддерживает Dual еSIM, что позволяет использовать два номера
+                                        одновременно. Благодаря продвинутой системе камер вы сможете делать потрясающие
+                                        снимки в любых условиях.</p>
+                                    <p>iPhone 15 работает на новейшей операционной системе iOS 17, которая открывает
+                                        новые возможности для персонализации и продуктивности. Аккумулятор обеспечивает
+                                        длительное время работы, а поддержка быстрой зарядки позволит быстро
+                                        восстановить заряд.</p>
                                 </div>
                                 <div class="tab-pane fade" id="features-tab-pane" role="tabpanel"
                                     aria-labelledby="features-tab" tabindex="0">
                                     <table class="table">
                                         <tbody>
                                             <tr>
+                                                <th scope="row">Процессор</th>
+                                                <td>A16 Bionic</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Память</th>
+                                                <td>128 ГБ</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Дисплей</th>
+                                                <td>6.1" OLED, Super Retina XDR</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Камера</th>
+                                                <td>48 МП + 12 МП (Ultra Wide)</td>
+                                            </tr>
+                                            <tr>
                                                 <th scope="row">Цвета</th>
                                                 <td>черный, белый, зеленый</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Связь</th>
+                                                <td>5G, Dual еSIM</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -371,10 +384,9 @@
                                 <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel"
                                     aria-labelledby="reviews-tab" tabindex="0">
 
-                                    <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal"
                                         data-bs-target="#reviewModal">
-                                        Write review
+                                        <i class="fa-regular fa-pen-to-square me-1"></i> Написать отзыв
                                     </button>
 
                                     <!-- Modal -->
@@ -383,7 +395,8 @@
                                         <div class="modal-dialog modal-dialog-centered modal-lg">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <h1 class="modal-title fs-5" id="reviewModalLabel">Write review</h1>
+                                                    <h1 class="modal-title fs-5" id="reviewModalLabel">Написать отзыв
+                                                    </h1>
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                         aria-label="Close"></button>
                                                 </div>
@@ -391,21 +404,19 @@
                                                 <form action="">
                                                     <div class="modal-body">
                                                         <div class="mb-3">
-                                                            <label for="exampleFormControlInput1"
-                                                                class="form-label">Email address</label>
-                                                            <input type="email" class="form-control"
-                                                                id="exampleFormControlInput1"
+                                                            <label for="reviewEmail" class="form-label">Email</label>
+                                                            <input type="email" class="form-control" id="reviewEmail"
                                                                 placeholder="name@example.com">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <label for="exampleFormControlTextarea1"
-                                                                class="form-label">Example textarea</label>
-                                                            <textarea class="form-control"
-                                                                id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                            <label for="reviewText" class="form-label">Текст
+                                                                отзыва</label>
+                                                            <textarea class="form-control" id="reviewText" rows="3"
+                                                                placeholder="Напишите ваш отзыв о товаре..."></textarea>
                                                         </div>
 
                                                         <div class="mb-3">
-                                                            <p>Rate the product:</p>
+                                                            <p>Оцените товар:</p>
                                                             <div class="form-check form-check-inline">
                                                                 <input class="form-check-input" type="radio" name="rate"
                                                                     id="rate1" value="1" required>
@@ -432,14 +443,12 @@
                                                                 <label class="form-check-label" for="rate5">5</label>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="submit" class="btn btn-warning">Send
-                                                            review</button>
+                                                        <button type="submit" class="btn btn-warning">Отправить
+                                                            отзыв</button>
                                                     </div>
                                                 </form>
-
                                             </div>
                                         </div>
                                     </div>
@@ -447,7 +456,7 @@
                                     <div class="card product-review mb-3">
                                         <div class="card-body">
                                             <div class="product-review-header">
-                                                <h5 class="card-title">John Doe</h5>
+                                                <h5 class="card-title">Алексей Иванов</h5>
                                                 <span class="review-date">27.02.2026</span>
                                             </div>
 
@@ -460,14 +469,9 @@
                                             </div>
 
                                             <div class="card-text">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-                                                    obcaecati laborum deleniti id consequatur possimus repellendus eius
-                                                    tempora corrupti. Doloribus in nisi consequatur ipsam repudiandae
-                                                    eaque perspiciatis quas minima provident!</p>
-                                                <p>Est amet libero voluptates aspernatur quam nisi velit quaerat natus
-                                                    et? Vero quasi veritatis necessitatibus, nesciunt neque iste quos ut
-                                                    ullam laboriosam? Enim temporibus labore sequi esse non harum nam.
-                                                </p>
+                                                <p>Отличный смартфон! Камера просто великолепна, фотографии получаются
+                                                    очень детализированными. Дисплей яркий и насыщенный. Работает
+                                                    быстро, никаких тормозов. Очень доволен покупкой!</p>
                                             </div>
                                         </div>
                                     </div>
@@ -475,8 +479,8 @@
                                     <div class="card product-review mb-3">
                                         <div class="card-body">
                                             <div class="product-review-header">
-                                                <h5 class="card-title">John Doe</h5>
-                                                <span class="review-date">27.02.2026</span>
+                                                <h5 class="card-title">Мария Петрова</h5>
+                                                <span class="review-date">25.02.2026</span>
                                             </div>
 
                                             <div class="product-rating mb-3">
@@ -488,10 +492,9 @@
                                             </div>
 
                                             <div class="card-text">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-                                                    obcaecati laborum deleniti id consequatur possimus repellendus eius
-                                                    tempora corrupti. Doloribus in nisi consequatur ipsam repudiandae
-                                                    eaque perspiciatis quas minima provident!</p>
+                                                <p>Хороший телефон, но цена кусается. Купила в подарок мужу, ему очень
+                                                    понравился. Быстрый, красивый, все приложения летают. Жаль, что
+                                                    зарядка не в комплекте.</p>
                                             </div>
                                         </div>
                                     </div>
@@ -499,8 +502,8 @@
                                     <div class="card product-review mb-3">
                                         <div class="card-body">
                                             <div class="product-review-header">
-                                                <h5 class="card-title">John Doe</h5>
-                                                <span class="review-date">27.02.2026</span>
+                                                <h5 class="card-title">Сергей Смирнов</h5>
+                                                <span class="review-date">20.02.2026</span>
                                             </div>
 
                                             <div class="product-rating mb-3">
@@ -512,17 +515,14 @@
                                             </div>
 
                                             <div class="card-text">
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-                                                    obcaecati laborum deleniti id consequatur possimus repellendus eius
-                                                    tempora corrupti. Doloribus in nisi consequatur ipsam repudiandae
-                                                    eaque perspiciatis quas minima provident!</p>
+                                                <p>Лучший смартфон, который у меня был! Мощный процессор, отличная
+                                                    камера, стильный дизайн. Dual еSIM очень удобно для работы и личных
+                                                    звонков. Рекомендую всем!</p>
                                             </div>
                                         </div>
                                     </div>
 
                                 </div>
-
-                               
                             </div>
                         </div>
                     </div>
@@ -550,15 +550,13 @@
                             </div>
                             <div class="product-details">
                                 <h4>
-                                    <a href="product.html">Product 1 Lorem ipsum dolor, sit amet consectetur
-                                        adipisicing.</a>
+                                    <a href="product.html">Смартфон Apple iPhone 15 128 ГБ</a>
                                 </h4>
-                                <p class="product-excerpt">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Placeat, aperiam!</p>
+                                <p class="product-excerpt">Встречайте iPhone 15 - ваш идеальный спутник!</p>
                                 <div class="product-bottom-details d-flex justify-content-between">
                                     <div class="product-price">
-                                        <small>$70</small>
-                                        $65
+                                        <small>84 781₽</small>
+                                        48 562₽
                                     </div>
                                     <div class="product-links">
                                         <a href="#" class="btn btn-outline-secondary add-to-cart"><i
@@ -577,13 +575,11 @@
                             </div>
                             <div class="product-details">
                                 <h4>
-                                    <a href="product.html">Product 2</a>
+                                    <a href="product.html">Наушники Apple AirPods 4</a>
                                 </h4>
-                                <p class="product-excerpt">Lorem ipsum dolor</p>
+                                <p class="product-excerpt">Беспроводные наушники с высоким качеством звука</p>
                                 <div class="product-bottom-details d-flex justify-content-between">
-                                    <div class="product-price">
-                                        $65
-                                    </div>
+                                    <div class="product-price">10 250₽</div>
                                     <div class="product-links">
                                         <a href="#" class="btn btn-outline-secondary add-to-cart"><i
                                                 class="fas fa-shopping-cart"></i></a>
@@ -593,22 +589,17 @@
                         </div>
 
                         <div class="product-card">
-                            <div class="product-card-offer">
-                                <!-- <div class="offer-hit">Hit</div>
-								<div class="offer-new">New</div> -->
-                            </div>
+                            <div class="product-card-offer"></div>
                             <div class="product-thumb">
                                 <a href="product.html"><img src="assets/img/products/3.jpg" alt=""></a>
                             </div>
                             <div class="product-details">
                                 <h4>
-                                    <a href="product.html">Product 3 Lorem ipsum</a>
+                                    <a href="product.html">Яндекс Станция Лайт 2</a>
                                 </h4>
-                                <p class="product-excerpt">Lorem ipsum</p>
+                                <p class="product-excerpt">Умная колонка с Алисой на YaGPT</p>
                                 <div class="product-bottom-details d-flex justify-content-between">
-                                    <div class="product-price">
-                                        $100
-                                    </div>
+                                    <div class="product-price">5 967₽</div>
                                     <div class="product-links">
                                         <a href="#" class="btn btn-outline-secondary add-to-cart"><i
                                                 class="fas fa-shopping-cart"></i></a>
@@ -626,13 +617,13 @@
                             </div>
                             <div class="product-details">
                                 <h4>
-                                    <a href="product.html">Product 4</a>
+                                    <a href="product.html">JBL Charge 6</a>
                                 </h4>
-                                <p class="product-excerpt">Lorem ipsum dolor</p>
+                                <p class="product-excerpt">Портативная акустика с мощным звучанием</p>
                                 <div class="product-bottom-details d-flex justify-content-between">
                                     <div class="product-price">
-                                        <small>$70</small>
-                                        $65
+                                        <small>31 641₽</small>
+                                        12 689₽
                                     </div>
                                     <div class="product-links">
                                         <a href="#" class="btn btn-outline-secondary add-to-cart"><i
@@ -652,15 +643,13 @@
                             </div>
                             <div class="product-details">
                                 <h4>
-                                    <a href="product.html">Product 5 Lorem ipsum dolor, sit amet consectetur
-                                        adipisicing.</a>
+                                    <a href="product.html">Телевизор Tuvio 55" 4K</a>
                                 </h4>
-                                <p class="product-excerpt">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Placeat, aperiam!</p>
+                                <p class="product-excerpt">4K ULTRA HD на платформе YaOS</p>
                                 <div class="product-bottom-details d-flex justify-content-between">
                                     <div class="product-price">
-                                        <small>$70</small>
-                                        $65
+                                        <small>36 042₽</small>
+                                        25 604₽
                                     </div>
                                     <div class="product-links">
                                         <a href="#" class="btn btn-outline-secondary add-to-cart"><i
@@ -680,66 +669,13 @@
                             </div>
                             <div class="product-details">
                                 <h4>
-                                    <a href="product.html">Product 6</a>
+                                    <a href="product.html">Зарядка COMMO Core 20W</a>
                                 </h4>
-                                <p class="product-excerpt"></p>
+                                <p class="product-excerpt">Быстрая зарядка USB-C 20 Вт</p>
                                 <div class="product-bottom-details d-flex justify-content-between">
                                     <div class="product-price">
-                                        <small>$70</small>
-                                        $65
-                                    </div>
-                                    <div class="product-links">
-                                        <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                class="fas fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card">
-                            <div class="product-card-offer">
-                                <div class="offer-hit">Hit</div>
-                                <div class="offer-new">New</div>
-                            </div>
-                            <div class="product-thumb">
-                                <a href="product.html"><img src="assets/img/products/7.jpg" alt=""></a>
-                            </div>
-                            <div class="product-details">
-                                <h4>
-                                    <a href="product.html">Product 7</a>
-                                </h4>
-                                <p class="product-excerpt">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                                    Placeat, aperiam!</p>
-                                <div class="product-bottom-details d-flex justify-content-between">
-                                    <div class="product-price">
-                                        <small>$70</small>
-                                        $65
-                                    </div>
-                                    <div class="product-links">
-                                        <a href="#" class="btn btn-outline-secondary add-to-cart"><i
-                                                class="fas fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product-card">
-                            <div class="product-card-offer">
-                                <div class="offer-hit">Hit</div>
-                                <div class="offer-new">New</div>
-                            </div>
-                            <div class="product-thumb">
-                                <a href="product.html"><img src="assets/img/products/8.jpg" alt=""></a>
-                            </div>
-                            <div class="product-details">
-                                <h4>
-                                    <a href="product.html">Product 8 Lorem</a>
-                                </h4>
-                                <p class="product-excerpt">Lorem ipsum dolor</p>
-                                <div class="product-bottom-details d-flex justify-content-between">
-                                    <div class="product-price">
-                                        <small>$70</small>
-                                        $65
+                                        <small>1 001₽</small>
+                                        712₽
                                     </div>
                                     <div class="product-links">
                                         <a href="#" class="btn btn-outline-secondary add-to-cart"><i
@@ -749,62 +685,104 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </section>
 
         </main>
 
         <footer class="footer" id="footer">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-md-3 col-6">
-						<h4>Информация</h4>
-						<ul class="list-unstyled">
-							<li><a href="index.html">Главная</a></li>
-							<li><a href="#">Оплата</a></li>
-							<li><a href="#">Доставка</a></li>
-							<li><a href="#">Контакты</a></li>
-						</ul>
-					</div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 col-6">
+                        <h4>Информация</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="index.html">Главная</a></li>
+                            <li><a href="#about">О нас</a></li>
+                            <li><a href="#footer">Контакты</a></li>
+                        </ul>
+                    </div>
 
-					<div class="col-md-3 col-6">
-						<h4>Рабочие часы</h4>
-						<ul class="list-unstyled">
-							<li>Москва</li>
-							<li>пн-пт: 9:00 - 18:00</li>
-						</ul>
-					</div>
+                    <div class="col-md-3 col-6">
+                        <h4>Рабочие часы</h4>
+                        <ul class="list-unstyled">
+                            <li>Москва</li>
+                            <li>пн-пт: 9:00 - 18:00</li>
+                        </ul>
+                    </div>
 
-					<div class="col-md-3 col-6">
-						<h4>Контакты</h4>
-						<ul class="list-unstyled">
-							<li><a href="tel:1234567890">123-456-7890</a></li>
-							<li><a href="tel:0987654321">098-765-4321</a></li>
-						</ul>
-					</div>
+                    <div class="col-md-3 col-6">
+                        <h4>Контакты</h4>
+                        <ul class="list-unstyled">
+                            <li><a href="tel:1234567890">123-456-7890</a></li>
+                            <li><a href="tel:0987654321">098-765-4321</a></li>
+                            <li><a href="mailto:info@tehnodom.ru">info@tehnodom.ru</a></li>
+                        </ul>
+                    </div>
 
-					<div class="col-md-3 col-6">
-						<h4>Наши социальные сети</h4>
-						<ul class="footer-icons">
-							<li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-							<li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-							<li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</footer>
+                    <div class="col-md-3 col-6">
+                        <h4>Наши социальные сети</h4>
+                        <ul class="footer-icons">
+                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
     <button id="top">
         <i class="fa-solid fa-angles-up"></i>
     </button>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/owlcarousel/owl.carousel.min.js"></script>
-    <script src="assets/js/main.js"></script>
-</body>
-
-</html>
+    <!-- ===== МОДАЛЬНОЕ ОКНО ОФОРМЛЕНИЯ ЗАКАЗА ===== -->
+    <div class="modal fade" id="checkoutModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="orderForm" novalidate>
+                    <div class="modal-header">
+                        <h5 class="modal-title">Оформление заказа</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">ФИО <span class="text-danger">*</span></label>
+                            <input type="text" id="fullname" name="fullname" class="form-control"
+                                placeholder="Иванов Иван Иванович" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Телефон <span class="text-danger">*</span></label>
+                            <input type="tel" id="phone" name="phone" class="form-control"
+                                placeholder="+7 (999) 123-45-67" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email <span class="text-danger">*</span></label>
+                            <input type="email" id="email" name="email" class="form-control"
+                                placeholder="example@mail.ru" required>
+                            <div class="form-text">На этот адрес придёт подтверждение заказа</div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Адрес доставки <span class="text-danger">*</span></label>
+                            <textarea id="address" name="address" class="form-control" rows="3"
+                                placeholder="Город, улица, дом, квартира" required></textarea>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="consentCheck" name="consent" value="1"
+                                required>
+                            <label class="form-check-label" for="consentCheck">
+                                Я даю согласие на обработку персональных данных <span class="text-danger">*</span>
+                            </label>
+                            <div class="form-text">
+                                <small>Ваши данные используются только для обработки заказа и не передаются третьим
+                                    лицам.</small>
+                            </div>
+                        </div>
+                        <div class="text-muted small">
+                            <span class="text-danger">*</span> — поля, обязательные для заполнения
+                        </div>
+                        <div id="formMessage" class="mt-3" style="display: none;"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-warning
