@@ -95,6 +95,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             console.log('📡 Статус ответа:', response.status);
             
+            // Проверяем, что ответ содержит JSON
+            const contentType = response.headers.get('content-type');
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Сервер вернул не JSON ответ');
+            }
+            
             const result = await response.json();
             console.log('📦 Ответ сервера:', result);
 
@@ -104,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Закрываем модальное окно через 2 секунды
                 setTimeout(() => {
-                    closeModal('checkoutModal');
+                    closeModalSafely('checkoutModal');
                     showNotification('Спасибо за заказ! Мы свяжемся с вами в ближайшее время.', 'success');
                 }, 2000);
             } else {
@@ -122,9 +128,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
-     * Закрытие модального окна без ошибок
+     * Безопасное закрытие модального окна (без ошибок)
      */
-    function closeModal(modalId) {
+    function closeModalSafely(modalId) {
         const modalElement = document.getElementById(modalId);
         if (!modalElement) {
             console.warn(`⚠️ Модальное окно #${modalId} не найдено`);
@@ -132,32 +138,48 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         try {
-            // Пытаемся получить экземпляр Bootstrap Modal
+            // Способ 1: Пытаемся получить экземпляр Bootstrap Modal
             const modal = bootstrap.Modal.getInstance(modalElement);
             if (modal) {
                 modal.hide();
                 console.log(`✅ Модальное окно #${modalId} закрыто через Bootstrap API`);
-            } else {
-                // Если экземпляра нет, используем jQuery
-                if (typeof $ !== 'undefined' && $.fn.modal) {
-                    $(modalElement).modal('hide');
-                    console.log(`✅ Модальное окно #${modalId} закрыто через jQuery`);
-                } else {
-                    // Самый простой способ - скрыть вручную
-                    modalElement.classList.remove('show');
-                    modalElement.style.display = 'none';
-                    document.querySelector('.modal-backdrop')?.remove();
-                    document.body.classList.remove('modal-open');
-                    console.log(`✅ Модальное окно #${modalId} закрыто вручную`);
-                }
+                return;
             }
-        } catch (error) {
-            console.error('❌ Ошибка при закрытии модального окна:', error);
-            // Fallback: скрываем вручную
+        } catch (e) {
+            console.warn('⚠️ Ошибка при получении экземпляра Bootstrap:', e);
+        }
+        
+        try {
+            // Способ 2: Используем jQuery (если доступен)
+            if (typeof $ !== 'undefined' && $.fn && $.fn.modal) {
+                $(modalElement).modal('hide');
+                console.log(`✅ Модальное окно #${modalId} закрыто через jQuery`);
+                return;
+            }
+        } catch (e) {
+            console.warn('⚠️ Ошибка при использовании jQuery:', e);
+        }
+        
+        // Способ 3: Ручное закрытие (fallback)
+        try {
+            // Удаляем класс show
             modalElement.classList.remove('show');
             modalElement.style.display = 'none';
-            document.querySelector('.modal-backdrop')?.remove();
+            
+            // Удаляем backdrop
+            const backdrop = document.querySelector('.modal-backdrop');
+            if (backdrop && backdrop.parentNode) {
+                backdrop.parentNode.removeChild(backdrop);
+            }
+            
+            // Убираем класс modal-open у body
             document.body.classList.remove('modal-open');
+            document.body.style.overflow = '';
+            document.body.style.paddingRight = '';
+            
+            console.log(`✅ Модальное окно #${modalId} закрыто вручную (fallback)`);
+        } catch (e) {
+            console.error('❌ Критическая ошибка при закрытии модального окна:', e);
         }
     }
 
@@ -181,20 +203,23 @@ document.addEventListener('DOMContentLoaded', function() {
      * Показать уведомление на странице
      */
     function showNotification(text, type = 'info') {
-        let container = document.getElementById('notificationContainer');
-        if (!container) {
-            container = document.createElement('div');
-            container.id = 'notificationContainer';
-            container.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                z-index: 9999;
-                max-width: 400px;
-                width: 100%;
-            `;
-            document.body.appendChild(container);
+        // Удаляем старые уведомления
+        const oldContainer = document.getElementById('notificationContainer');
+        if (oldContainer) {
+            oldContainer.remove();
         }
+        
+        const container = document.createElement('div');
+        container.id = 'notificationContainer';
+        container.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 400px;
+            width: 100%;
+        `;
+        document.body.appendChild(container);
 
         const alertClass = type === 'success' ? 'alert-success' : 
                           type === 'danger' ? 'alert-danger' : 'alert-info';
@@ -209,12 +234,16 @@ document.addEventListener('DOMContentLoaded', function() {
         
         container.appendChild(notification);
         
+        // Автоматическое скрытие через 5 секунд
         setTimeout(() => {
             if (notification.parentNode) {
                 notification.classList.remove('show');
                 setTimeout(() => {
                     if (notification.parentNode) {
                         notification.remove();
+                    }
+                    if (container.children.length === 0) {
+                        container.remove();
                     }
                 }, 300);
             }
